@@ -293,7 +293,7 @@ $(document).ready(function() {
 
 
     $('.button_start').click(function(){
-        //fullScreen(document.documentElement);
+        fullScreen(document.documentElement);
         //document.onkeydown = goFullscreen;
         startNewGame();
         console.log(money);

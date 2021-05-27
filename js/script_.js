@@ -291,6 +291,7 @@ $(document).ready(function() {
         var player = this.vPlayer;
 
         player.ready(function(){
+        this.load();
 
         var isSet = false;
         var videoData = findVideoById(this.id());

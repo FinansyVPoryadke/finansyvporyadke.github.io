@@ -321,7 +321,7 @@ $(document).ready(function() {
         }
         },100);*/
 
-  
+  videos[0].vPlayer.load();
 
     $.each(videos, function () {
  //       var videoData = this;

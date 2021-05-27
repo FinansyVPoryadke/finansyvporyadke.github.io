@@ -270,7 +270,7 @@ $(document).ready(function() {
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
-    timeForGame = 5;
+    timeForGame = 30;
 
     videojsPlayers = [];
     videos = [];
@@ -295,7 +295,7 @@ $(document).ready(function() {
 
 
     $('.button_start').click(function(){
-        //fullScreen(document.documentElement);
+        fullScreen(document.documentElement);
         //document.onkeydown = goFullscreen;
         money = startNewGame();
         console.log(money);
@@ -489,10 +489,22 @@ $(document).ready(function() {
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
 
-                    if(lastVideoConteiner.hasClass('scene_2')) startFirstGame();
-                    if(lastVideoConteiner.hasClass('scene_3')) startSecondGame();
-                    if(lastVideoConteiner.hasClass('scene_4')) startThirdGame();
-                    if(lastVideoConteiner.hasClass('scene_5')) startFourthGame();
+                    if(lastVideoConteiner.hasClass('scene_2')) {
+                        findVideoBySceneAndType('scene_3', 'v_main').vPlayer.load();
+                        startFirstGame();
+                    }
+                    if(lastVideoConteiner.hasClass('scene_3')) {
+                        findVideoBySceneAndType('scene_4', 'v_main').vPlayer.load();
+                        startSecondGame();
+                    }
+                    if(lastVideoConteiner.hasClass('scene_4')) {
+                        findVideoBySceneAndType('scene_5', 'v_main').vPlayer.load();
+                        startThirdGame();
+                    }
+                    if(lastVideoConteiner.hasClass('scene_5')) {
+                        findVideoBySceneAndType('scene_6', 'v_2').vPlayer.load();
+                        startFourthGame();
+                    }
 
                 }
 

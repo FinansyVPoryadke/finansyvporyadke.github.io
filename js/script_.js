@@ -305,14 +305,23 @@ $(document).ready(function() {
 
     var videoHTML;
     
-    videos[0].vPlayer.load();
+
+
+    $.each(videos, function () {
+        if(this.vPlayer.readyState() < 2){
+        this.vPlayer.load();
+        }
+    });
+
     $.each(videos, function () {
  //       var videoData = this;
         var player = this.vPlayer;
 
+
+
         player.ready(function(){
-        this.load();
-        this.pause();
+        //this.load();
+        //this.pause();
         
 
         var isSet = false;

@@ -5,12 +5,12 @@ var fps = 30;
 var timeForChoice, timeForGame;
 
 var money = [
-{scene: 1, amount: 200, hasChange: false, isCurrent: true, isFirstPlayScene: true},
-{scene: 2, amount: 1500, isCurrent: false, isFirstPlayScene: true, ch_1: -1500, ch_2: 0, hasChange: false, choice: 0, game: 0},
-{scene: 3, amount: 250, isCurrent: false, isFirstPlayScene: true, ch_1: -200, ch_2: -200 , hasChange: false, choice: 0, game: 0},
-{scene: 4, amount: 300, isCurrent: false, isFirstPlayScene: true, ch_1: 0, ch_2: 0 , hasChange: false, choice: 0, game: 0},
-{scene: 5, amount: 350, isCurrent: false, isFirstPlayScene: true, ch_1: 0, ch_2: -300, hasChange: false, choice: 0, game: 0},
-{scene: 6, amount: 100, isCurrent: false, isFirstPlayScene: true, hasChange: false},
+{scene: 1, amount: 200, hasChange: false, isCurrent: true, isFirstPlayScene: true, isLoaded: false},
+{scene: 2, amount: 1500, isCurrent: false, isFirstPlayScene: true, ch_1: -1500, ch_2: 0, hasChange: false, choice: 0, game: 0, isLoaded: false},
+{scene: 3, amount: 250, isCurrent: false, isFirstPlayScene: true, ch_1: -200, ch_2: -200 , hasChange: false, choice: 0, game: 0, isLoaded: false},
+{scene: 4, amount: 300, isCurrent: false, isFirstPlayScene: true, ch_1: 0, ch_2: 0 , hasChange: false, choice: 0, game: 0, isLoaded: false},
+{scene: 5, amount: 350, isCurrent: false, isFirstPlayScene: true, ch_1: 0, ch_2: -300, hasChange: false, choice: 0, game: 0, isLoaded: false},
+{scene: 6, amount: 100, isCurrent: false, isFirstPlayScene: true, hasChange: false, isLoaded: false},
 ];
 
 var totalMoney = 0;
@@ -23,6 +23,7 @@ function videoCreate(videoJQuery) {
     vHTML: '',
     vJQuery: '',
     vPlayer: videojsCreate(videoJQuery.get(0)),
+    isLoaded: false
 };
     
     video.id = video.vPlayer.id();
@@ -63,7 +64,9 @@ function videojsCreate(video){
             'fullscreenToggle': false,
             'pictureInPictureToggle': false,
             'remainingTimeDisplay': true,
-            "preload": "auto"
+            "preload": "auto",
+            'fill': true,
+            'responsive': true
         
       }, "fluid": true
     });
@@ -75,26 +78,25 @@ function videojsCreate(video){
 
 function playVideo(video, lastVideo) {
 
-    $.each(videos, function () {
-        var player = this.vPlayer;
-        if(this.id == video.attr('id')){
-            nextVideo = this.vPlayer;
-        }
-    });
+    
+
+    var nextVideo = findVideoById(video.attr('id')).vPlayer;
 
     $('.choice').fadeOut(0);
 
-    lastVideo.removeClass('active');
-    lastVideo.addClass('hide');
+    lastVideo.removeClass('active').trigger('classChanged');
+    lastVideo.addClass('hide').trigger('classChanged');
+
 
     lastVideo.parent().find('.timer_line').finish();
     lastVideo.parent().find('.timer_line').css('width', 0);
 
-    video.removeClass('hide');
-    video.addClass('active');
+    video.removeClass('hide').trigger('classChanged');
+    video.addClass('active').trigger('classChanged');
 
-    nextVideo.load();
-    nextVideo.play();
+    //if(loading(nextVideo)){
+       // nextVideo.play();
+    //}
 }
 
 function changeTotalMoney(amount, isShow){
@@ -139,6 +141,16 @@ function findObjByJQ(array, JQ){
     return obj;
 }
 
+function findVideoByJquery(JQ){
+    var obj;
+    $.each(videos, function(){
+        if(this.vJQuery.is(JQ)){
+            obj = this;
+        }
+    });
+    return obj;
+}
+
 function random(min,max){
     return Math.round(Math.random() * (max-min) + min);
 }
@@ -172,16 +184,17 @@ function playScene(scene){
         else if(totalMoney>400) nextVideo = findVideoBySceneAndType(scene, 'v_3');
         else nextVideo = findVideoBySceneAndType(scene, 'v_4');
     }
-    
+    $('.loading').fadein(0);
 
     nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active');    
 
-    nextVideo.vJQuery.removeClass('hide');
-    nextVideo.vJQuery.addClass('active');
+    nextVideo.vJQuery.removeClass('hide').trigger('classChanged');
+    nextVideo.vJQuery.addClass('active').trigger('classChanged');
 
-    //nextVideo.load();
-    nextVideo.vPlayer.play();
+    //if(loading(nextVideo.vPlayer)){
+       // nextVideo.vPlayer.play();
+    //}
 }
 
 function showGameEndWindow(game, text){
@@ -233,8 +246,8 @@ function resumeGame() {
         money[i].game = parseInt(localStorage["scene." + (i+1) + ".game"]);
 
         if(money[i].isCurrent){
-            $('.active').addClass('hide');
-            $('.active').removeClass('aclive');
+            $('.active').addClass('hide').trigger('classChanged');
+            $('.active').removeClass('aclive').trigger('classChanged');
             playScene('scene_'+(i+1));
         }
     }
@@ -258,19 +271,38 @@ function startNewGame(){
         money[i].game = 0;
         money[i].choice = 0;
         money[i].isCurrent = false;
-        console.log(money[i]);
+
     }
     money[0].isCurrent = true;
-    console.log(money);
+
     return money;
 }
+
+function loading(video) {
+    var t = video;
+    if(t.readyState()>3){
+                    $('.loading').fadeOut(0);
+                    console.log(t, t.readyState());
+                    t.play();
+
+                     t.off('loadeddata');
+                     var videoIndex = videos.indexOf(findVideoById(t.id()));
+                if(videoIndex != -1 && videoIndex<videos.length-1){
+
+                videos[videoIndex+1].vPlayer.load();
+            }
+        }
+
+}
+
+var timeInterval = 100;
 
 $(document).ready(function() {
 
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
-    timeForGame = 30;
+    timeForGame = 10;
 
     videojsPlayers = [];
     videos = [];
@@ -286,6 +318,7 @@ $(document).ready(function() {
         choice = true;
 
         var id = '.'+ $(this).attr('class').replace(/ch/,'v');
+        console.log(id);
         var video = $(this).parent().parent().parent().find(id);
         var lastVideo = $(this).parent().parent().parent().find('.v_main');
         playVideo(video, lastVideo);
@@ -293,16 +326,45 @@ $(document).ready(function() {
 
 
 
-
+videos[0].vPlayer.load();
     $('.button_start').click(function(){
-        fullScreen(document.documentElement);
+        //fullScreen(document.documentElement);
         //document.onkeydown = goFullscreen;
         money = startNewGame();
-        console.log(money);
-        $('.start_box').fadeOut();
-        var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
-        firstVideo.vPlayer.play();
-        if(saveGameState()) console.log(localStorage);
+                $('.start_box').fadeOut();
+        //var interval = setInterval(function(){
+
+            //var isLoaded = loading(videos[0].vPlayer);
+            //console.log(isLoaded);
+            //if(isLoaded){
+
+                var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
+                if(videos[0].vPlayer.readyState()>3){
+                    $('.loading').fadeOut(0);
+                    //console.log(this, this.readyState());
+                    videos[0].vPlayer.play();
+
+
+                videos[1].vPlayer.load();
+            
+                }
+                /*
+                    console.log(videos[0].vPlayer, videos[0].vPlayer.readyState());
+                        videos[0].vPlayer.on('ready loadeddata', function(){
+                            console.log(this, this.readyState());
+                if(this.readyState()>3){
+                    $('.loading').fadeOut(0);
+                    console.log(this, this.readyState());
+                    this.play();
+                }*/
+           // });
+                  
+                //firstVideo.vPlayer.play();
+                if(saveGameState()) console.log(localStorage);
+               // clearInterval(interval);
+           // }
+        //}, timeInterval);
+
     });
 
     var videoHTML;
@@ -320,8 +382,28 @@ $(document).ready(function() {
                 i++;
         }
         },100);*/
+var loadingScene2 = 0;
 
-  videos[0].vPlayer.load();
+
+        $('.video-js').on('classChanged', function(){
+            //console.log('!!!',this);
+            video = findVideoByJquery($(this));
+            if(video.vPlayer.hasClass('active') && video.isLoaded) {
+                $('.loading').fadeOut(0);
+                var sceneVideos = videos.filter(x => x.scene === video.scene);
+                    video.vPlayer.play();
+                    var lastInScene = sceneVideos[sceneVideos.length-1];
+                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
+                    
+                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
+                    console.log(lastInScene, nextSceneVideo);
+                    nextSceneVideo.vPlayer.load();
+                }
+                }
+        });
+
+
+$('.loading').fadeIn(0);
 
     $.each(videos, function () {
  //       var videoData = this;
@@ -336,12 +418,44 @@ $(document).ready(function() {
 
         var isSet = false;
         var videoData = findVideoById(this.id());
+
+
+            this.on('canplay', function(){
+                
+                var video = findVideoById(this.id());
+                video.isLoaded = true;
+                var sceneVideos = videos.filter(x => x.scene === video.scene);
+                $.each(sceneVideos, function () {
+                    if(!this.isLoaded){
+                        this.vPlayer.load();
+                    }
+                });
+                //console.log(this, sceneVideos);
+                if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
+                
+                //console.log(this);
+
+                if(this.hasClass('active') && video.isLoaded) {
+                    this.play();
+                    var lastInScene = sceneVideos[sceneVideos.length-1];
+                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
+                    
+                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
+                    //console.log(this, lastInScene, nextSceneVideo);
+                    nextSceneVideo.vPlayer.load();
+                }
+                }
+                
+
+            }
+            });
+
+
             this.on('play', function(){
                 isSet = false;
-                if(videos.indexOf(videoData) != -1){
-                videos[videos.indexOf(videoData)+1].vPlayer.load();
-            }
+
                 
+                                    
                 $('.navigation > div > .'+ videoData.scene).removeClass('lock');
                 var currentScene = Number(videoData.scene.slice(6,7));
                 $.each(money, function () {
@@ -378,7 +492,7 @@ $(document).ready(function() {
 
                 
                 if((this.hasClass('v_main')) && !money[currentScene-1].hasChange){
-                    console.log('!!',this)
+
                     if($('#'+this.id()).parent().hasClass('scene_2')){
                         if(this.currentTime() > 8){
                             money[currentScene-1].hasChange = true;
@@ -413,6 +527,12 @@ $(document).ready(function() {
 
             this.on('ended', function(){
 
+                var videoIndex = videos.indexOf(findVideoById(this.id()));
+                if(videoIndex != -1 && videoIndex<videos.length-1){
+
+                videos[videoIndex+1].vPlayer.load();
+            }
+
                 if(saveGameState()) console.log(localStorage);
 
                 isSet = false;
@@ -445,8 +565,8 @@ $(document).ready(function() {
                     var lastVideo = $('#'+this.id());
                     var lastVideoConteiner = lastVideo.parent();
 
-                    lastVideo.removeClass('active');
-                    lastVideo.addClass('hide');
+                    lastVideo.removeClass('active').trigger('classChanged');
+                    lastVideo.addClass('hide').trigger('classChanged');
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
@@ -463,17 +583,20 @@ $(document).ready(function() {
                     nextVideoContainer.addClass('active');
                     nextVideoContainer.removeClass('hide');
                         
-                    nextVideo.addClass('active');
-                    nextVideo.removeClass('hide');
+                    nextVideo.addClass('active').trigger('classChanged');
+                    nextVideo.removeClass('hide').trigger('classChanged');
                         
-                    nextVideoJS.load();
-                    nextVideoJS.play();
+
+                    //nextVideoJS.play();
+                        
+
+                    //});
                         
                     }
                     
                 } 
                 else if(videoHTML.parent().hasClass('scene_6')){
-                    $('.end_box').fadeIn(0);
+                    //$('.end_box').fadeIn(0);
 
                 }
                 else if(this.hasClass('v_1') || this.hasClass('v_2')){
@@ -483,8 +606,8 @@ $(document).ready(function() {
                     var lastVideo = $('#'+this.id());
                     var lastVideoConteiner = lastVideo.parent();
 
-                    lastVideo.removeClass('active');
-                    lastVideo.addClass('hide');
+                    lastVideo.removeClass('active').trigger('classChanged');
+                    lastVideo.addClass('hide').trigger('classChanged');
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
@@ -601,8 +724,8 @@ $(document).ready(function() {
                         currentVideo.vPlayer.pause();
                         currentVideo.vPlayer.currentTime(0);
 
-                        currentVideo.vJQuery.removeClass('active');
-                        currentVideo.vJQuery.addClass('hide');
+                        currentVideo.vJQuery.removeClass('active').trigger('classChanged');
+                        currentVideo.vJQuery.addClass('hide').trigger('classChanged');
 
                         var currentScene = $('.videos > .active');
 
@@ -613,10 +736,14 @@ $(document).ready(function() {
                     scene.removeClass('hide');
                     scene.addClass('active');
 
-                    nextVideo.vJQuery.removeClass('hide');
-                    nextVideo.vJQuery.addClass('active');
-                    nextVideo.vPlayer.load();
-                    nextVideo.vPlayer.play();
+                    nextVideo.vJQuery.removeClass('hide').trigger('classChanged');
+                    nextVideo.vJQuery.addClass('active').trigger('classChanged');
+
+                        //nextVideo.vPlayer.play();
+                        
+
+
+
                 }
         }
         else if(sClass.slice(0,4) == 'game'){
@@ -624,11 +751,11 @@ $(document).ready(function() {
             if(Number(sClass.slice(5,6)) == 2) startSecondGame();
             if(Number(sClass.slice(5,6)) == 3) startThirdGame();
             if(Number(sClass.slice(5,6)) == 4) startFourthGame();
-            $('.active').addClass('hide');
-            $('.active').removeClass('active');
+            $('.active').addClass('hide').trigger('classChanged');
+            $('.active').removeClass('active').trigger('classChanged');
         }
             $(this).parent().parent().parent().hide();
             }
         
-    })
+    });
 });        

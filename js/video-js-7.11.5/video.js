@@ -24581,7 +24581,7 @@
 
 
       this.addClass(idClass);
-      setTextContent(this.styleEl_, "\n      ." + idClass + " {\n        width: " + width + "px;\n        height: " + height + "px;\n      }\n\n      ." + idClass + ".vjs-fluid {\n        padding-top: " + ratioMultiplier * 100 + "%;\n      }\n    ");
+      //setTextContent(this.styleEl_, "\n      ." + idClass + " {\n        width: " + width + "px;\n        height: " + height + "px;\n      }\n\n      ." + idClass + ".vjs-fluid {\n        padding-top: " + ratioMultiplier * 100 + "%;\n      }\n    ");
     }
     /**
      * Load/Create an instance of playback {@link Tech} including element
@@ -29619,7 +29619,7 @@
         head.insertBefore(style, head.firstChild);
       }
 
-      setTextContent(style, "\n      .video-js {\n        width: 300px;\n        height: 150px;\n      }\n\n      .vjs-fluid {\n        padding-top: 56.25%\n      }\n    ");
+      //setTextContent(style, "\n      .video-js {\n        width: 300px;\n        height: 150px;\n      }\n\n      .vjs-fluid {\n        padding-top: 56.25%\n      }\n    ");
     }
   } // Run Auto-load players
   // You have to wait at least once in case this script is loaded after your

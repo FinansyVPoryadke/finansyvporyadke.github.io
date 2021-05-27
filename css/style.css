@@ -27,17 +27,6 @@
 
 
 
-.videos {
-    position: relative;
-    height: 100%;
-    margin: 0 auto;
-}
-
-.videos video {
-    width: 100%;
-    height: auto;
-}
-
 
 body{
 	height: 100%;

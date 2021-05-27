@@ -250,8 +250,8 @@ $(document).ready(function() {
 
     choice = false;
     autoChoice = false;
-    timeForChoice = 5;
-    timeForGame = 1;
+    timeForChoice = 20;
+    timeForGame = 30;
 
     videojsPlayers = [];
     videos = [];

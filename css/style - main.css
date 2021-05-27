@@ -267,42 +267,7 @@ border-radius: 2.6vw;
 
 
 
-$primary-foreground-color: #fff; // #fff default
 
-$blue: var(--blue);  // #2B333F default
-
-$center-big-play-button: true; // true default
-
-.video-js {
-  font-size: 4em;
-  color: $primary-foreground-color;
-}
-
-.vjs-default-skin .vjs-big-play-button {
-  font-size: 5em;
-
-  $big-play-width: 3em; 
-  $big-play-height: 1.5em;
-
-  line-height: $big-play-height;
-  height: $big-play-height;
-  width: $big-play-width;
-
-  border: 0.06666em solid $primary-foreground-color;
-  border-radius: 0.3em;
-
-  @if $center-big-play-button {
-    /* Align center */
-    left: 50%;
-    top: 50%;
-    margin-left: -($big-play-width / 2);
-    margin-top: -($big-play-height / 2);   
-  } @else {
-    /* Align top left. 0.5em = 15px default */
-    left: 0.5em;
-    top: 0.5em;
-  }
-}
 
 
 .video-js .vjs-control-bar,

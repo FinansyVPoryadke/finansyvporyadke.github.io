@@ -191,6 +191,7 @@ function showGameEndWindow(game, text){
 }
 
 function fullScreen(element) {
+        window.scrollTo(0,1);
           if(element.requestFullscreen) {
             element.requestFullscreen();
           } else if(element.webkitrequestFullscreen) {

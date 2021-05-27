@@ -53,7 +53,7 @@ function findVideoBySceneAndType(scene, type){
 
 function videojsCreate(video){
     var videoj = videojs(video, {
-      "autoplay": true,
+      "autoplay": false,
       controlBar: {
             'playToggle': true,
             'volumeMenuButton': { 'inline': false },
@@ -258,9 +258,11 @@ function startNewGame(){
         money[i].game = 0;
         money[i].choice = 0;
         money[i].isCurrent = false;
+        console.log(money[i]);
     }
     money[0].isCurrent = true;
-
+    console.log(money);
+    return money;
 }
 
 $(document).ready(function() {
@@ -293,9 +295,9 @@ $(document).ready(function() {
 
 
     $('.button_start').click(function(){
-        fullScreen(document.documentElement);
+        //fullScreen(document.documentElement);
         //document.onkeydown = goFullscreen;
-        startNewGame();
+        money = startNewGame();
         console.log(money);
         $('.start_box').fadeOut();
         var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
@@ -307,11 +309,19 @@ $(document).ready(function() {
     
 
 
-    $.each(videos, function () {
-        if(this.vPlayer.readyState() < 2){
-        this.vPlayer.load();
+    var i = 0;
+    /*
+    while(i < videos.length){
+        videos[i].vPlayer.load();
+        console.log(i, videos[i], videos[i].vPlayer.readyState);
+        i++;
+        /*setInterval(function(){
+            if(videos[i].vPlayer.readyState() > 1){
+                i++;
         }
-    });
+        },100);*/
+
+  
 
     $.each(videos, function () {
  //       var videoData = this;
@@ -327,14 +337,18 @@ $(document).ready(function() {
         var isSet = false;
         var videoData = findVideoById(this.id());
             this.on('play', function(){
-
+                isSet = false;
+                if(videos.indexOf(videoData) != -1){
+                videos[videos.indexOf(videoData)+1].vPlayer.load();
+            }
+                
                 $('.navigation > div > .'+ videoData.scene).removeClass('lock');
                 var currentScene = Number(videoData.scene.slice(6,7));
                 $.each(money, function () {
                     this.isCurrent = false;
                 });
                 money[currentScene-1].isCurrent = true;
-                var isSet = false;
+                
 
             });
 
@@ -342,6 +356,8 @@ $(document).ready(function() {
                 videoHTML = $('#'+this.id());
 
                 var currentScene = Number(videoData.scene.slice(6,7));
+
+                if(videoHTML.hasClass('active')){
 
                 if(videoHTML.parent().hasClass('scene_6')){
                     return;
@@ -362,6 +378,7 @@ $(document).ready(function() {
 
                 
                 if((this.hasClass('v_main')) && !money[currentScene-1].hasChange){
+                    console.log('!!',this)
                     if($('#'+this.id()).parent().hasClass('scene_2')){
                         if(this.currentTime() > 8){
                             money[currentScene-1].hasChange = true;
@@ -374,7 +391,7 @@ $(document).ready(function() {
                 }
 
             
-                if(money[currentScene-1].choice == false){
+                if(money[currentScene-1].choice == 0){
                     if(this.hasClass('v_1')){
                         changeTotalMoney(money[currentScene-1].ch_1, true);
                         money[currentScene-1].choice = 1;
@@ -391,6 +408,7 @@ $(document).ready(function() {
                         }
                     }
                 }
+            }
             });
 
             this.on('ended', function(){

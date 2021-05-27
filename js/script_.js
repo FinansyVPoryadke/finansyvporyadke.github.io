@@ -93,7 +93,7 @@ function playVideo(video, lastVideo) {
     video.removeClass('hide');
     video.addClass('active');
 
-    //nextVideo.load();
+    nextVideo.load();
     nextVideo.play();
 }
 
@@ -466,6 +466,7 @@ $(document).ready(function() {
                     nextVideo.addClass('active');
                     nextVideo.removeClass('hide');
                         
+                    nextVideoJS.load();
                     nextVideoJS.play();
                         
                     }
@@ -602,6 +603,7 @@ $(document).ready(function() {
 
                     nextVideo.vJQuery.removeClass('hide');
                     nextVideo.vJQuery.addClass('active');
+                    nextVideo.vPlayer.load();
                     nextVideo.vPlayer.play();
                 }
         }

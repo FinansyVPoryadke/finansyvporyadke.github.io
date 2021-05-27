@@ -1,0 +1,539 @@
+
+
+
+
+
+:root {
+  --dark-blue: #072344;
+  --blue: #0D3B7A;
+  --light-blue: #99DBFF;
+
+  --dark-red: #CC553D;
+  --red: #e64a4a;
+  --light-red: #F7CDCD;
+
+  --white: #fff;
+
+  --dark-gray: #373737;
+  --gray: #CCCCCC;
+  --light-gray: #f2f2f2;
+
+  --light-yellow: #FFE299;
+  --yellow: #FFD24C;
+
+  --light-green: #79C29E;
+  --green: #2C7550;
+}
+
+
+
+.videos {
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.videos video {
+    width: 100%;
+    height: auto;
+}
+
+
+body{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: fixed;
+	background: var(--white);
+    font-size: 40px;
+  line-height: 60px;
+}
+
+body::backdrop {
+  background: var(--white);
+}
+
+
+
+
+
+
+
+.game_1, .game_2, .game_3, .game_4{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  padding: 0;
+  top: 0;
+  background: var(--white);
+}
+
+.game_1_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 34.38vw;
+
+
+  overflow: hidden;
+}
+
+.game_1_box img{
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 0;
+}
+
+.money_box{
+  width: 10.42vw;
+  height: 5.21vw;
+  position: relative;
+  bottom: 7.3vw;
+  left: 31.25vw;
+}
+
+.money_box img {
+  height: 100%;
+}
+
+.floor_line{
+  width: 100%;
+  height: 2.08vw;
+  position: relative;
+  bottom: 0;
+}
+
+.coins_box{
+  width: 73.96vw;
+  height: 30.21vw;
+  overflow: hidden;
+  position: relative;
+  background: var(--light-green);
+}
+
+.coins_all{
+  width: 73.96vw;
+  height: 30.21vw;
+}
+
+.coin{
+    width: 5.21vw;
+  height: 5.21vw;
+  position: relative;
+  top: 0;
+  cursor: pointer;
+  z-index:100;
+  transform: translateY(0);
+}
+
+.money_100 {
+    width: 5.21vw;
+  height: 5.21vw;
+}
+
+.coin img{
+  width: 100%;
+}
+
+.game_title{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  color: var(--blue);
+  font-family: Montserrat-SemiBold;
+  font-size: 1.25em;
+  line-height: 1.16em;
+  text-align: center;
+  width: 67.71vw;
+  height: 5.21vw;
+  margin-top: 6.77vw;
+  margin-bottom: 0;
+}
+
+.game_1 .game_title{
+    color: var(--green);
+}
+
+.game_1 {
+      background-color: var(--light-green);
+}
+
+.game_2 .game_title{
+    color: var(--dark-red);
+}
+
+.game_2 {
+      background-color: var(--light-yellow);
+}
+
+.game_3 .game_title{
+    color: var(--blue);
+}
+
+.game_3 {
+      background-color: var(--light-blue);
+}
+
+
+.game_4 .game_title{
+    color: var(--green);
+}
+
+.game_4 {
+      background-color: var(--light-red);
+}
+
+.game_2_box{
+  width: 100%;
+  height: 34.38vw;
+  background: var(--dark-gray);
+}
+
+.buy_total_box{
+  width: 20.83vw;
+  position: absolute;
+  margin-top: 23.96vw;
+  right: 0;
+  z-index: 2;
+}
+
+.buy_total{
+  position: absolute;
+  top: 0;
+  display: flex;
+  width: 10.42vw;
+  height: 4.17vw;
+
+  margin-top: 2.6vw;
+  color: var(--white);
+  font-family: Montserrat-Bold;
+  font-size: 1.25em;
+  line-height: 0.75em;
+  text-align: right;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.purchases_all{
+  width: 100%;
+  height: 34.38vw;
+  background: var(--dark-gray);
+  position: absolute;
+  left: 0;
+}
+
+.purchases_all img{
+  width: 100%;
+  text-align: center;
+}
+
+
+.purchases_box{
+  width: 100vw;
+  height: 30.21vw;
+  position: absolute;
+  top: 2.08vw;
+  overflow: hidden;
+}
+
+.buy_line{
+  width: 2.08vw;
+  height: 100%;
+  position: absolute;
+  right: 10.94vw;
+  z-index: 0;
+  top: 0;
+}
+
+.purchase{
+  
+  width: 10.42vw;
+  height:10.42vw;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+  z-index:100;
+  border: 0.0vw solid var(--red);
+  border-radius: 5.21vw;
+  transform: translateX(-10vw);
+}
+
+.unnecessary {
+  border-color: var(--yellow);
+
+}
+
+.purchase img{
+  width: 100%;
+  text-align: center;
+}
+
+.purchase_price{
+  position: absolute;
+  bottom: 1.04vw;
+  right: 1.56vw;
+  background-color: var(--dark-gray);
+  width: 2.6vw;
+  height: 2.6vw;
+  border: 0.16vw solid var(--white);
+  border-radius: 2.6vw;
+  color: var(--white);
+  font-family: Montserrat-Medium;
+  font-size: 0.75em;
+  line-height: 0.75em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game_3_box{
+  width: 100vw;
+  height: 30.21vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.goal_bg{
+  width: 22.40vw;
+  height: 22.40vw;
+  overflow: hidden;
+  border: 1.56vw solid var(--white);
+  border-radius: 15vw;
+  background: var(--white);
+}
+
+.goals_all{
+  position: absolute;
+  overflow: hidden;
+    width: 100vw;
+  height: 30.21vw;
+
+}
+
+.goal_bg img{
+  width: 100%;
+  text-align: center;
+    position: relative;
+  top: -8.5vw;
+}
+
+.goal_text{
+  width: 100%;
+  height: 8.33vw;
+  background: var(--white);
+  color: var(--blue);
+  font-family: Montserrat-SemiBold;
+  font-size: 1.75em;
+  line-height: 0.75em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: 7.81vw;
+}
+
+.svg_box{
+  width: 25vw;
+  height: 25vw;
+  position: relative;
+  top: -25.26vw;
+  left: 0.26vw;
+  z-index: 10;
+}
+
+.part_of_circle{
+  fill:none;
+  stroke: var(--blue);
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width: 0.8vw;
+    stroke-dasharray: 1000%;
+  stroke-dashoffset: 1000%;
+  animation: dash 5s linear forwards;
+  }
+
+.goal {
+    width: 25.5vw;
+  height: 25.5vw;
+      transition-duration: 1s;
+      transition-property: transform, opacity;
+}
+
+.formulated {
+  transform: scale(0.75);
+  opacity: 0.75;
+}
+
+.next_goal {
+  transform: scale(0.75);
+  opacity: 0.75;
+}
+
+@keyframes dash2 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+.goals {
+    position: relative;
+    height: 26vw;
+    width: 500vw;
+    overflow: hidden;
+    margin: 0;
+    padding:0;
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+    transform: translateX(37.5vw);
+      transition-duration: 1s;
+      transition-property: transform;
+      margin-top: 1vw;
+}
+
+
+.goals li {  
+    float:left;
+    opacity: 1;
+    margin: 0 0vw;
+}
+
+
+.button_formulate{
+  width: 11.46vw;
+  height: 5.21vw;
+  background-color: var(--blue);
+  position: relative;
+  bottom: 0;
+    border-radius: 2.6vw;
+}
+
+.button_formulate img{
+  height: 100%;
+  text-align: center;
+}
+
+.game_4_box{
+  width: 100vw;
+  height: 30.21vw;
+  overflow: hidden;
+
+}
+
+.notes_all{
+  width: 100vw;
+  height: 30.21vw;
+  position: absolute;
+}
+
+.note{
+  width: 20.83vw;
+  height: 11.46vw;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform: scale(1);
+  opacity: 1;
+  transition-duration: 1s;
+  transition-property: transform, opacity;
+}
+
+@keyframes appear{
+    from{
+        transform:scale(0);
+        opacity: 0;
+    }
+    to{
+      opacity: 1;
+        transform:scale(1);
+    }
+}
+
+@keyframes disappear{
+    from{
+        transform:scale(1);
+        opacity: 1;
+    }
+    to{
+      opacity: 0;
+        transform:scale(0);
+    }
+}
+
+.appear_animation {
+    transform: scale(0);
+  opacity: 0;
+  animation: appear 1s;
+}
+
+.disappear_animation {
+    transform: scale(1);
+  opacity: 1;
+  animation: disappear 1s;
+}
+
+.note_text{
+  width: 16.83vw;
+  height: 2.38vw;
+  background-color: var(--red);
+  border-radius: 2.6vw;
+  color: var(--white);
+  font-family: Montserrat-Medium;
+  font-size: 0.75em;
+  line-height: 0.75em;
+  padding: 3vw 2vw;
+}
+
+.note_amount{
+  width: 10.42vw;
+  height: 5.21vw;
+  background-color: var(--white);
+  border: 0.16vw solid var(--red);
+  border-radius: 2.6vw;
+  color: var(--red);
+  position: absolute;
+  bottom: 0;
+    font-family: Montserrat-SemiBold;
+  font-size: 1em;
+  line-height: 0.75em;
+    display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.income .note_text{
+    background-color: var(--green);
+}
+
+.income .note_amount{
+  border-color: var(--green);
+  color: var(--green);
+}
+
+
+
+.move{
+   transform:translateY(120vh);
+}
+
+.hide {
+    display: none;
+}
+
+.active {
+    display: block;
+}

@@ -98,7 +98,6 @@ function playVideo(video, lastVideo) {
 }
 
 function changeTotalMoney(amount, isShow){
-console.log(amount);
     var changeMoney = $('.change_money');
 
     if(amount==0) isShow = false;
@@ -300,6 +299,7 @@ $(document).ready(function() {
         $('.start_box').fadeOut();
         var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
         firstVideo.vPlayer.play();
+        if(saveGameState()) console.log(localStorage);
     });
 
     var videoHTML;
@@ -311,7 +311,7 @@ $(document).ready(function() {
 
         player.ready(function(){
         this.load();
-        //this.pause();
+        this.pause();
         
 
         var isSet = false;
@@ -337,7 +337,6 @@ $(document).ready(function() {
                     return;
                 }
                 if(!isSet && !money[currentScene-1].isFirstPlayScene && this.hasClass('v_main')){
-                    console.log(currentScene, money[currentScene-1].amount)
                     if(currentScene == 1 || currentScene == 6){
                         if(money[currentScene-1].hasChange) changeTotalMoney(-(money[currentScene-1].amount), false);
                     } else{
@@ -353,7 +352,6 @@ $(document).ready(function() {
 
                 
                 if((this.hasClass('v_main')) && !money[currentScene-1].hasChange){
-                    console.log(this)
                     if($('#'+this.id()).parent().hasClass('scene_2')){
                         if(this.currentTime() > 8){
                             money[currentScene-1].hasChange = true;
@@ -538,10 +536,10 @@ $(document).ready(function() {
 
             choice = false;
             var sClass = $(this).attr('class').split(' ')[0];
-            console.log(sClass, sClass.slice(6,7), sClass.slice(5,6), sClass.slice(1,5), sClass.slice(1,6));
+    
             if(sClass.slice(0,5) == 'scene'){
                 var scene = $('.videos').find('.'+ sClass);
-                console.log(sClass);
+
                 var nextVideo;
                 if(sClass != 'scene_6') {
                     nextVideo = findVideoBySceneAndType(sClass, 'v_main');
@@ -554,7 +552,6 @@ $(document).ready(function() {
                 }
                 var currentVideo = findVideoById($('.active > .active').attr('id'));
                 if(currentVideo){
-                    console.log(currentVideo.scene, sClass);
                     if(currentVideo.scene == sClass){
                         $(this).parent().parent().hide();
                         currentVideo.vPlayer.play();

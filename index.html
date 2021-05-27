@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Интерактивное видео</title>
+
+        <link href="css/reset.css" rel="stylesheet">
+        <link href="js/video-js-7.11.5/video-js.css" rel="stylesheet">
+        <!--<link href="js/video-js-4.12.11/video-js.css" rel="stylesheet">-->
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style - main.css" rel="stylesheet">
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/video-js-7.11.5/video.js"></script>
+        <script src="js/jquery.ui.touch-punch.min.js"></script>
+        <!--<script src="js/video-js-4.12.11/video.js"></script>-->
+        <script src="js/game 1.js"></script>
+        <script src="js/game 2.js"></script>
+        <script src="js/game 3.js"></script>
+        <script src="js/game 4.js"></script>
+        <script src="js/script_.js"></script>
+
+
+    </head>
+    <body id="main">
+        <div class="start_box">
+            <div class="type">Интерактивный обучающий продукт</div>
+            <div class="title">Финансы в порядке</div>
+            <div class="description">Девочка Ася попадает в разные ситуации и познает мир финансов.</br></br>Помоги ей принять решение и позаботься о сумме в кошельке</div>
+            <div class="button_start">Начать</div>
+            <div class="button_continue" style="display: none;">Продолжить</div>
+        </div>
+        <div class="end_box" style="display: none;">
+            <div class="type">Результаты</div>
+            <div class="title">Финансы в порядке</div>
+            <div class="description">Девочка Ася попадает в разные ситуации и познает мир финансов.</br></br>Помоги ей принять решение и позаботься о сумме в кошельке</div>
+            <div class="button_start">Начать заново</div>
+            
+        </div>
+        <div class="videos" >
+            <div class = "scene_1 active">
+                <video class ="v_main active" controls>
+                    <source src="media/Scene_1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class ="scene_2 hide">
+                <video class ="v_main hide" autoplay="autoplay" controls>
+                    <source src="media/Scene_2.mp4" type="video/mp4">
+                </video>
+                <video class ="v_1 hide" controls>
+                    <source src="media/Scene_2-1.mp4" type="video/mp4">
+                </video>
+                <video class ="v_2 hide" controls>
+                    <source src="media/Scene_2-2.mp4" type="video/mp4">
+                </video>
+                <div class ="choice" style="display: none;">
+                    <div class = "ch_title">Что сдалать Асе с подаренными деньгами?</div>
+                    <div class = "ch_buttons">
+                        <div class ="ch_1">
+                            <div class = "ch_img"><img src="media/png/Scene_2-1.png"></div>
+                            <div class = "ch_text">Купить новую часть</br>любимой игры</div>
+                        </div>
+                        <div class ="ch_2">
+                            <div class = "ch_img"><img src="media/png/Scene_2-2.png"></div>
+                            <div class = "ch_text">Отложить всю сумму</br>на графический планшет</div>
+                        </div>
+                    </div>
+                    <div class="timer"><div class="timer_line"></div></div>
+                    <div class = "white_box"></div>
+                </div>
+            </div>
+            <div class ="scene_3 hide">
+                <video class ="v_main hide" autoplay="autoplay" controls>
+                    <source src="media/Scene_3.mp4" type="video/mp4">
+                </video>
+                <video class ="v_1 hide" controls>
+                    <source src="media/Scene_3-1.mp4" type="video/mp4">
+                </video>
+                <video class ="v_2 hide" controls>
+                    <source src="media/Scene_3-2.mp4" type="video/mp4">
+                </video>
+                <div class ="choice" style="display: none;">
+                    <div class = "ch_title">Что Асе купить в такой ситуации?</div>
+                    <div class = "ch_buttons">
+                        <div class ="ch_2">
+                            <div class = "ch_img"><img src="media/png/Scene_3-2.png"></div>
+                            <div class = "ch_text">Набор красок для рисования</div>
+                        </div>
+                        <div class ="ch_1">
+                            <div class = "ch_img"><img src="media/png/Scene_3-1.png"></div>
+                            <div class = "ch_text">Красивый блокнот</div>
+                        </div>
+                    </div>
+                    <div class="timer"><div class="timer_line"></div></div>
+                    <div class = "white_box"></div>
+                </div>     
+            </div>
+            <div class ="scene_4 hide">
+                <video class ="v_main hide" autoplay="autoplay" controls>
+                    <source src="media/Scene_4.mp4" type="video/mp4">
+                </video>
+                <video class ="v_1 hide" controls>
+                    <source src="media/Scene_4-1.mp4" type="video/mp4">
+                </video>
+                <video class ="v_2 hide" controls>
+                    <source src="media/Scene_4-2.mp4" type="video/mp4">
+                </video>
+                <div class ="choice" style="display: none;">
+                    <div class = "ch_title">Какую цель Асе выбрать наиболее важной?</div>
+                    <div class = "ch_buttons">
+                        <div class ="ch_1">
+                            <div class = "ch_img"><img src="media/png/Scene_4-1.png"></div>
+                            <div class = "ch_text">4. Электросамокат</div>
+                        </div>
+                        <div class ="ch_2">
+                            <div class = "ch_img"><img src="media/png/Scene_4-2.png"></div>
+                            <div class = "ch_text">6. Набор профессиональных маркеров</div>
+                        </div>
+                    </div>
+                    <div class="timer"><div class="timer_line"></div></div>
+                    <div class = "white_box"></div>
+                </div>         
+            </div>
+            <div class ="scene_5 hide">
+                <video class ="v_main hide" autoplay="autoplay" controls>
+                    <source src="media/Scene_5.mp4" type="video/mp4">
+                </video>
+                <video class ="v_1 hide" controls>
+                    <source src="media/Scene_5-1.mp4" type="video/mp4">
+                </video>
+                <video class ="v_2 hide" controls>
+                    <source src="media/Scene_5-2.mp4" type="video/mp4">
+                </video>
+                <div class ="choice" style="display: none;">
+                    <div class = "ch_title">Как Асе поступить?</div>
+                    <div class = "ch_buttons">
+                        <div class ="ch_1">
+                            <div class = "ch_img"><img src="media/png/Scene_5-1.png"></div>
+                            <div class = "ch_text">Посчитать все доходы и расходы,</br>а потом принять решение</div>
+                        </div>
+                        <div class ="ch_2">
+                            <div class = "ch_img"><img src="media/png/Scene_5-2.png"></div>
+                            <div class = "ch_text">Проверить сумму в кошельке и купить, если денег достаточно</div>
+                        </div>
+                    </div>
+                    <div class="timer"><div class="timer_line"></div></div>
+                    <div class = "white_box"></div>
+                </div>       
+            </div>
+            <div class ="scene_6 hide">
+                <video class ="v_1 hide" controls>
+                    <source src="media/Scene_6-1.mp4" type="video/mp4">
+                </video>
+                <video class ="v_2 hide" controls>
+                    <source src="media/Scene_6-2.mp4" type="video/mp4">
+                </video>
+                <video class ="v_3 hide" controls>
+                    <source src="media/Scene_6-3.mp4" type="video/mp4">
+                </video>
+                <video class ="v_4 hide" controls>
+                    <source src="media/Scene_6-4.mp4" type="video/mp4">
+                </video>   
+            </div>
+        </div>
+        <div class="button_scenes">
+            <img src="media/svg/scenes_icon.svg">
+        </div>
+        <div class="money">
+            <div class="total_money">0</div>
+            <div class="change_money">+100</div>
+            <img class="wallet_icon" src="media/svg/wallet_icon.svg">
+        </div>
+
+        <div class="navigation_box" style="display: none;">
+            <div class="navigation">
+                <div class="title">Сцены</div>
+                <div class="navigation_part">
+                    <div class ="scene_1 lock">Сцена 1
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                    </div>
+                    <div class ="scene_2 lock">Сцена 2<p>Накопления</p>
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                    </div>
+                    <div class ="game_1 lock">Мини-игра
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                    <div class ="scene_3 lock">Сцена 3<p>Обдуманные траты</p>
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                    </div>
+                    <div class ="game_2 lock">Мини-игра
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+                <div class="navigation_part">
+                    <div class ="scene_4 lock">Сцена 4<p>Список целей</p>
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                    </div>
+                    <div class ="game_3 lock">Мини-игра
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                    <div class ="scene_5 lock">Сцена 5<p>Доходы и расходы</p>
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                    </div>
+                    <div class ="game_4 lock">Мини-игра
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                    <div class ="scene_6 lock">Сцена 6
+                        <div class="lock_box">
+                            <img src="media/svg/padlock.svg">
+                        </div>
+                    </div>
+                 </div>
+             </div>
+             <div class="close"><img src="media/svg/close_icon.svg"></div>
+        </div> 
+        <div class="button_info">
+            <img src="media/svg/info_icon.svg">
+        </div>
+        <div class="game_1" style="display: none;">
+            <div class = "game_title">Собери деньги в конверт</div>
+            <div class = "game_1_box" style="background-image: url(media/svg/game_1_bg.svg);">
+                
+             
+                <div class="coins_all">
+
+
+                    <div class="coins_box"></div>
+                    <div class="floor_line"></div>
+                                         <div class="money_box"><img src="media/svg/money_box.svg"></div>  
+                </div>
+            </div>
+            <div class="timer"><div class="timer_line"></div></div>
+            <div class = "white_box"></div>
+        </div>
+        <div class="game_2" style="display: none;">
+            <div class = "game_title">Купи художественные товары на 1000 рублей</div>
+            <div class = "game_2_box">
+                <div class="buy_line"></div>
+                <div class="purchases_all">
+                    <img src="media/svg/game_2_bg.svg">
+                    <div class="purchases_box"></div>
+                </div>
+                <div class="buy_total_box">
+                    <img src="media/svg/buy_total_bg.svg">
+                    <div class="buy_total">0.00</div>
+                </div>
+            </div>
+            <div class="timer"><div class="timer_line"></div></div>
+            <div class = "white_box"></div>
+        </div>
+        <div class="game_3" style="display: none;">
+            <div class = "game_title">Сформулируй цели</div>
+            <div class = "game_3_box">
+                <div class="goals_all">
+                    <ul class="goals"></ul>
+                </div>
+            </div>
+            <div class="button_formulate"><img src="media/svg/formulate_icon.svg"></div>
+            <div class="timer"><div class="timer_line"></div></div>
+            <div class = "white_box"></div>
+        </div>
+        <div class="game_4" style="display: none;">
+            <div class = "game_title">Зафиксируй все доходы и расходы</div>
+            <div class = "game_4_box">
+                <div class="notes_all"></div>
+            </div>
+            <div class="timer"><div class="timer_line"></div></div>
+            <div class = "white_box"></div>
+        </div>
+        <div class="game_end" style="display: none;">
+            <div class="game_window">
+                <div class="title">Мини-игра завершена</div>
+                <div class="text">За время игры ты собрал 1100 руб.</div>
+                <div class="buttons">
+                    <div class="button_game_again"><img src="media/svg/again_icon.svg"></div>
+                    <div class="button_game_continue">Продолжить</div>
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>

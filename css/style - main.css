@@ -95,7 +95,7 @@ div {
   margin: 0 1.04vw;
 }
 
-.title {
+.start_box .title {
   height: 11.46vw;
   width: 36.46vw;
   color: var(--blue);

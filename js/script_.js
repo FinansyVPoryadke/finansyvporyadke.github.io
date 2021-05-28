@@ -387,6 +387,42 @@ $('.loading').hide();*/
             }
         });
 
+            $('video').on('progress', function(){
+                
+                var video = findVideoByJquery($(this).parent());
+                
+                if(video.vPlayer.readyState()>3 && video.vPlayer.bufferedPercent()>0.9){
+console.log(video.vPlayer, video.vPlayer.readyState(), video.vPlayer.bufferedPercent());
+                video.isLoaded = true;
+                var sceneVideos = videos.filter(x => x.scene === video.scene);
+                $.each(sceneVideos, function () {
+                    if(!this.isLoaded){
+                        this.vPlayer.load();
+                        this.vPlayer.play();
+                        this.vPlayer.pause();
+                        this.vPlayer.currentTime(0);
+                    }
+                });
+                //console.log(this, sceneVideos);
+                if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
+                
+                //console.log(this);
+
+                if(video.vPlayer.hasClass('active') && video.isLoaded) {
+                    video.vPlayer.play();
+                    var lastInScene = sceneVideos[sceneVideos.length-1];
+                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
+                    
+                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
+                    //console.log(this, lastInScene, nextSceneVideo);
+                    nextSceneVideo.vPlayer.load();
+                }
+                }
+                }
+                
+
+            }
+            });
 
 
 
@@ -405,42 +441,7 @@ $('.loading').hide();*/
         var videoData = findVideoById(this.id());
 
 
-            this.on('canplaythrough', function(){
-                
-                var video = findVideoById(this.id());
-                
-                if(this.readyState()>3 && this.bufferedPercent()>0.9){
-console.log(this, this.readyState(), this.bufferedPercent());
-                video.isLoaded = true;
-                var sceneVideos = videos.filter(x => x.scene === video.scene);
-                $.each(sceneVideos, function () {
-                    if(!this.isLoaded){
-                        this.vPlayer.load();
-                        this.vPlayer.play();
-                        this.vPlayer.pause();
-                        this.vPlayer.currentTime(0);
-                    }
-                });
-                //console.log(this, sceneVideos);
-                if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
-                
-                //console.log(this);
 
-                if(this.hasClass('active') && video.isLoaded) {
-                    this.play();
-                    var lastInScene = sceneVideos[sceneVideos.length-1];
-                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
-                    
-                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
-                    //console.log(this, lastInScene, nextSceneVideo);
-                    nextSceneVideo.vPlayer.load();
-                }
-                }
-                }
-                
-
-            }
-            });
 
 
             this.on('play', function(){

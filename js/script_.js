@@ -424,10 +424,12 @@ var loadingScene2 = 0;
         var videoData = findVideoById(this.id());
 
 
-            this.on('canplaythrough', function(){
+            this.on('progress canplaythrough', function(){
                 
                 var video = findVideoById(this.id());
-                if(this.readyState()>3){
+                console.log(this, this.vPlayer.readyState(), this.bufferedPercent());
+                if(this.readyState()>3 && this.bufferedPercent()>0.9){
+
                 video.isLoaded = true;
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 $.each(sceneVideos, function () {

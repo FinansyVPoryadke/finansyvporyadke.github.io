@@ -86,6 +86,7 @@ body::backdrop {
   position: relative;
   bottom: 7.3vw;
   left: 31.25vw;
+  cursor: pointer;
 }
 
 .money_box img {
@@ -117,10 +118,18 @@ body::backdrop {
   height: 5.21vw;
   position: relative;
   top: 0;
-  cursor: pointer;
   z-index:100;
+<<<<<<< Updated upstream
   transform: translateY(0);
 }
+=======
+  transform: translateY(-100%);
+        transition-duration: 12s;
+      transition-property: transform;
+      transition-timing-function: linear;
+}
+
+>>>>>>> Stashed changes
 
 .money_100 {
     width: 5.21vw;
@@ -251,8 +260,18 @@ body::backdrop {
   z-index:100;
   border: 0.0vw solid var(--red);
   border-radius: 5.21vw;
-  transform: translateX(-10vw);
+  transform: translateX(-100%);
+        transition-duration: 20s;
+      transition-property: transform;
+      transition-timing-function: linear;
 }
+
+.no_transition {
+  transition-duration: 0s;
+  transition-property: transform;
+  opacity: 0;
+}
+
 
 .unnecessary {
   border-color: var(--yellow);

@@ -363,9 +363,9 @@ $('.start_box').hide();
 $('.loading').hide();*/
 
         $('.video-js').on('classchanged', function(){
-            console.log('!!!',this);
             video = findVideoByJquery($(this));
             if(video.vPlayer.hasClass('active') && video.isLoaded) {
+                console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
                 $('.loading').fadeOut(1000);
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
@@ -414,9 +414,9 @@ console.log(this, this.readyState(), this.bufferedPercent());
                 $.each(sceneVideos, function () {
                     if(!this.isLoaded){
                         this.vPlayer.load();
-                        //this.vPlayer.play();
-                        //this.vPlayer.pause();
-                        //this.vPlayer.currentTime(0);
+                        this.vPlayer.play();
+                        this.vPlayer.pause();
+                        this.vPlayer.currentTime(0);
                     }
                 });
                 //console.log(this, sceneVideos);

@@ -97,37 +97,6 @@ function recreateCoin(coin){
     
     coin.width = coin.JQ.width();
     coin.height = coin.JQ.height();
-<<<<<<< Updated upstream
-   
-    countOfRecreate++;
-    
-=======
->>>>>>> Stashed changes
-    var prev = coins[coins.length - 1];
-
-<<<<<<< Updated upstream
-} else{
-    coin.top = prev.top - coin.JQ.height()*betweenCoins/coin.JQ.width()*100;
-}
-
-
-//coin.top2 = coin.top;
-    coin.JQ.addClass('no_transition');
-    coin.JQ.css('transform', 'translateY('+coin.top2+'%)');
-    coin.left = ((($('.coins_box').width()-numberCoinsInWidth*coin.JQ.width())*leftNumber)/(numberCoinsInWidth+1) + coin.width*(leftNumber-1))/$('.coins_box').width()*100;
-    coin.JQ.css('left', coin.left+'%');
-
-    setTimeout(function(){
-                    coin.top += coin.speed;
-    var parent = coin.JQ.parent();
-    var coinTop = coin.top*coin.JQ.width()/100;
-    coin.JQ.removeClass('no_transition');
-    coin.JQ.css('transform', 'translateY('+coin.top+'%)');
-    console.log(coin)
-},100);
-
-
-=======
 
 countOfRecreate++;
 var leftNumber;
@@ -170,7 +139,7 @@ coin.JQ.addClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
     //console.log(coin)
     console.log(coin.topStart, coin.topEnd);
->>>>>>> Stashed changes
+
     return coin;
 }
 

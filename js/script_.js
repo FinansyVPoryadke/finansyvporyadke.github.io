@@ -386,7 +386,7 @@ $('.loading').hide();*/
                 }
             }
         });
-
+$('video')[0].load();
             $('video').on('progress', function(){
                 
                 var video = findVideoByJquery($(this).parent());

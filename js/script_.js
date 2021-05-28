@@ -427,9 +427,9 @@ var loadingScene2 = 0;
             this.on('progress', function(){
                 
                 var video = findVideoById(this.id());
-                console.log(this, this.readyState(), this.bufferedPercent());
+                
                 if(this.readyState()>3 && this.bufferedPercent()>0.9){
-
+console.log(this, this.readyState(), this.bufferedPercent());
                 video.isLoaded = true;
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 $.each(sceneVideos, function () {

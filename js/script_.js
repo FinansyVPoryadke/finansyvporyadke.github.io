@@ -64,7 +64,7 @@ function videojsCreate(video){
             'fullscreenToggle': false,
             'pictureInPictureToggle': false,
             'remainingTimeDisplay': true,
-            "preload": "metadata",
+            "preload": "auto",
             'fill': true,
             'responsive': true
         

@@ -341,6 +341,8 @@ videos[0].vPlayer.load();
             //if(isLoaded){
 
                 var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
+                firstVideo.vPlayer.load();
+                firstVideo.vPlayer.play();
                 $('.active').addClass('aclive').trigger('classchanged');
                 //if(videos[0].vPlayer.readyState()>3){
                     $('.loading').fadeOut(0);
@@ -391,7 +393,7 @@ $('.loading').hide();*/
         });
 
 
-document.querySelector("video").load();
+
 
     $.each(videos, function () {
  //       var videoData = this;
@@ -408,7 +410,7 @@ document.querySelector("video").load();
         var videoData = findVideoById(this.id());
 
 
-            this.on('progress canplay canplaythrough', function(){
+            this.on('progress', function(){
                 
                 var video = findVideoById(this.id());
                 var sceneVideos = videos.filter(x => x.scene === video.scene);

@@ -435,6 +435,9 @@ var loadingScene2 = 0;
                 $.each(sceneVideos, function () {
                     if(!this.isLoaded){
                         this.vPlayer.load();
+                        this.vPlayer.play();
+                        this.vPlayer.pause();
+                        this.vPlayer.currentTime(0);
                     }
                 });
                 //console.log(this, sceneVideos);

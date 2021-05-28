@@ -406,6 +406,69 @@ border-radius: 2.6vw;
 
 }
 
+.vjs-loading-spinner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  opacity: 1;
+  text-align: left;
+  border: 6px solid rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  background-clip: padding-box;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  visibility: hidden;
+  stroke-linecap: round;
+}
+
+.vjs-loading-spinner:before,
+.vjs-loading-spinner:after {
+  content: "";
+  position: absolute;
+  margin: -6px;
+  box-sizing: inherit;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  opacity: 1;
+  border: inherit;
+  border-color: transparent;
+  border-top-color: var(--blue);
+  
+}
+
+@keyframes vjs-spinner-fade {
+  0% {
+    border-top-color: var(--blue);
+    opacity: 1;
+  }
+  50% {
+    border-top-color: var(--blue);
+    opacity: 0.5;
+  }
+  100% {
+    border-top-color: var(--blue);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes vjs-spinner-fade {
+  0% {
+    border-top-color: var(--blue);
+    opacity: 1;
+  }
+  50% {
+    border-top-color: var(--light-blue);
+    opacity: 0.5;
+  }
+  100% {
+    border-top-color: var(--blue);
+    opacity: 1;
+  }
+}
+
 .game_end, .navigation_box{
   background-color: rgba(204, 204, 204, 0.75);
   width: 100%;

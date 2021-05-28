@@ -298,10 +298,7 @@ function loading(video) {
 var timeInterval = 100;
 
 $(document).ready(function() {
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
     choice = false;
     autoChoice = false;
@@ -415,9 +412,9 @@ console.log(this, this.readyState(), this.bufferedPercent());
                 $.each(sceneVideos, function () {
                     if(!this.isLoaded){
                         this.vPlayer.load();
-                        this.vPlayer.play();
-                        this.vPlayer.pause();
-                        this.vPlayer.currentTime(0);
+                        //this.vPlayer.play();
+                        //this.vPlayer.pause();
+                        //this.vPlayer.currentTime(0);
                     }
                 });
                 //console.log(this, sceneVideos);

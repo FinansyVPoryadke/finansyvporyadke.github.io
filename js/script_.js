@@ -340,15 +340,16 @@ videos[0].vPlayer.load();
             //if(isLoaded){
 
                 var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
-                if(videos[0].vPlayer.readyState()>3){
+                $('.active').addClass('aclive').trigger('classchanged');
+                //if(videos[0].vPlayer.readyState()>3){
                     $('.loading').fadeOut(0);
                     //console.log(this, this.readyState());
-                    videos[0].vPlayer.play();
+                    //videos[0].vPlayer.play();
 
 
-                videos[1].vPlayer.load();
+                //videos[1].vPlayer.load();
             
-                }
+                //}
 
                 if(saveGameState()) console.log(localStorage);
 
@@ -366,9 +367,10 @@ $('.loading').hide();*/
             video = findVideoByJquery($(this));
             if(video.vPlayer.hasClass('active') && video.isLoaded) {
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
-                $('.loading').fadeOut(1000);
+                
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
+                    $('.loading').fadeOut(1000);
                 console.log(video.vPlayer.readyState(), video.isLoaded);
                 $.each(sceneVideos, function () {
                     console.log(this.vPlayer.readyState(), this.isLoaded);

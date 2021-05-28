@@ -423,6 +423,7 @@ $('.loading').fadeIn(0);
             this.on('canplaythrough', function(){
                 
                 var video = findVideoById(this.id());
+                if(this.readyState()>3){
                 video.isLoaded = true;
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 $.each(sceneVideos, function () {
@@ -443,6 +444,7 @@ $('.loading').fadeIn(0);
                     var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
                     //console.log(this, lastInScene, nextSceneVideo);
                     nextSceneVideo.vPlayer.load();
+                }
                 }
                 }
                 

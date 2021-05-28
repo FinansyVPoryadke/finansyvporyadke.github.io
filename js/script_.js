@@ -84,15 +84,15 @@ function playVideo(video, lastVideo) {
 
     $('.choice').fadeOut(0);
 
-    lastVideo.removeClass('active').trigger('classChanged');
-    lastVideo.addClass('hide').trigger('classChanged');
+    lastVideo.removeClass('active').trigger('classchanged');
+    lastVideo.addClass('hide').trigger('classchanged');
 
 
     lastVideo.parent().find('.timer_line').finish();
     lastVideo.parent().find('.timer_line').css('width', 0);
 
-    video.removeClass('hide').trigger('classChanged');
-    video.addClass('active').trigger('classChanged');
+    video.removeClass('hide').trigger('classchanged');
+    video.addClass('active').trigger('classchanged');
 
     //if(loading(nextVideo)){
        // nextVideo.play();
@@ -189,8 +189,8 @@ function playScene(scene){
     nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active');    
 
-    nextVideo.vJQuery.removeClass('hide').trigger('classChanged');
-    nextVideo.vJQuery.addClass('active').trigger('classChanged');
+    nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
+    nextVideo.vJQuery.addClass('active').trigger('classchanged');
 
     //if(loading(nextVideo.vPlayer)){
        // nextVideo.vPlayer.play();
@@ -246,8 +246,8 @@ function resumeGame() {
         money[i].game = parseInt(localStorage["scene." + (i+1) + ".game"]);
 
         if(money[i].isCurrent){
-            $('.active').addClass('hide').trigger('classChanged');
-            $('.active').removeClass('aclive').trigger('classChanged');
+            $('.active').addClass('hide').trigger('classchanged');
+            $('.active').removeClass('aclive').trigger('classchanged');
             playScene('scene_'+(i+1));
         }
     }
@@ -385,8 +385,8 @@ videos[0].vPlayer.load();
 var loadingScene2 = 0;
 
 
-        $('.video-js').on('classChanged', function(){
-            //console.log('!!!',this);
+        $('.video-js').on('classchanged', function(){
+            console.log('!!!',this);
             video = findVideoByJquery($(this));
             if(video.vPlayer.hasClass('active') && video.isLoaded) {
                 $('.loading').fadeOut(1000);
@@ -576,8 +576,8 @@ console.log(this, this.readyState(), this.bufferedPercent());
                     var lastVideo = $('#'+this.id());
                     var lastVideoConteiner = lastVideo.parent();
 
-                    lastVideo.removeClass('active').trigger('classChanged');
-                    lastVideo.addClass('hide').trigger('classChanged');
+                    lastVideo.removeClass('active').trigger('classchanged');
+                    lastVideo.addClass('hide').trigger('classchanged');
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
@@ -594,8 +594,8 @@ console.log(this, this.readyState(), this.bufferedPercent());
                     nextVideoContainer.addClass('active');
                     nextVideoContainer.removeClass('hide');
                         
-                    nextVideo.addClass('active').trigger('classChanged');
-                    nextVideo.removeClass('hide').trigger('classChanged');
+                    nextVideo.addClass('active').trigger('classchanged');
+                    nextVideo.removeClass('hide').trigger('classchanged');
                         
 
                     //nextVideoJS.play();
@@ -617,8 +617,8 @@ console.log(this, this.readyState(), this.bufferedPercent());
                     var lastVideo = $('#'+this.id());
                     var lastVideoConteiner = lastVideo.parent();
 
-                    lastVideo.removeClass('active').trigger('classChanged');
-                    lastVideo.addClass('hide').trigger('classChanged');
+                    lastVideo.removeClass('active').trigger('classchanged');
+                    lastVideo.addClass('hide').trigger('classchanged');
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
@@ -737,8 +737,8 @@ console.log(this, this.readyState(), this.bufferedPercent());
                         currentVideo.vPlayer.pause();
                         currentVideo.vPlayer.currentTime(0);
 
-                        currentVideo.vJQuery.removeClass('active').trigger('classChanged');
-                        currentVideo.vJQuery.addClass('hide').trigger('classChanged');
+                        currentVideo.vJQuery.removeClass('active').trigger('classchanged');
+                        currentVideo.vJQuery.addClass('hide').trigger('classchanged');
 
                         var currentScene = $('.videos > .active');
 
@@ -749,8 +749,8 @@ console.log(this, this.readyState(), this.bufferedPercent());
                     scene.removeClass('hide');
                     scene.addClass('active');
 
-                    nextVideo.vJQuery.removeClass('hide').trigger('classChanged');
-                    nextVideo.vJQuery.addClass('active').trigger('classChanged');
+                    nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
+                    nextVideo.vJQuery.addClass('active').trigger('classchanged');
 
                         //nextVideo.vPlayer.play();
                         
@@ -764,8 +764,8 @@ console.log(this, this.readyState(), this.bufferedPercent());
             if(Number(sClass.slice(5,6)) == 2) startSecondGame();
             if(Number(sClass.slice(5,6)) == 3) startThirdGame();
             if(Number(sClass.slice(5,6)) == 4) startFourthGame();
-            $('.active').addClass('hide').trigger('classChanged');
-            $('.active').removeClass('active').trigger('classChanged');
+            $('.active').addClass('hide').trigger('classchanged');
+            $('.active').removeClass('active').trigger('classchanged');
         }
             $(this).parent().parent().parent().hide();
             }

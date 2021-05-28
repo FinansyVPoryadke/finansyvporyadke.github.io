@@ -415,7 +415,7 @@ document.querySelector("video").load();
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.vPlayer.bufferedPercent());
                 //if(this.readyState()<4) this.currentTime(this.duration()/2);;
                 //if(this.readyState()>3 && this.bufferedPercent()>0.5){
-                    if(this.readyState()>3 && this.bufferedPercent()>0.5){
+                    if(this.readyState()>3){
 console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 video.isLoaded = true;
                 
@@ -427,13 +427,7 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                         this.vPlayer.currentTime(0);
                     }
                 });
-            } else {
-                //this.currentTime(this.duration()/2);
-                this.play();
-                this.pause();
-                this.currentTime(0);
-                console.log('####', this.currentTime())
-            }
+            } 
                 //console.log(this, sceneVideos);
                 if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
                 

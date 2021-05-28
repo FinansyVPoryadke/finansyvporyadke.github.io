@@ -298,11 +298,15 @@ function loading(video) {
 var timeInterval = 100;
 
 $(document).ready(function() {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
-    timeForGame = 10;
+    timeForGame = 30;
 
     videojsPlayers = [];
     videos = [];
@@ -348,42 +352,18 @@ videos[0].vPlayer.load();
                 videos[1].vPlayer.load();
             
                 }
-                /*
-                    console.log(videos[0].vPlayer, videos[0].vPlayer.readyState());
-                        videos[0].vPlayer.on('ready loadeddata', function(){
-                            console.log(this, this.readyState());
-                if(this.readyState()>3){
-                    $('.loading').fadeOut(0);
-                    console.log(this, this.readyState());
-                    this.play();
-                }*/
-           // });
-                  
-                //firstVideo.vPlayer.play();
+
                 if(saveGameState()) console.log(localStorage);
-               // clearInterval(interval);
-           // }
-        //}, timeInterval);
 
     });
 
     var videoHTML;
     
-
-
-    var i = 0;
-    /*
-    while(i < videos.length){
-        videos[i].vPlayer.load();
-        console.log(i, videos[i], videos[i].vPlayer.readyState);
-        i++;
-        /*setInterval(function(){
-            if(videos[i].vPlayer.readyState() > 1){
-                i++;
-        }
-        },100);*/
 var loadingScene2 = 0;
-
+/*
+startSecondGame();
+$('.start_box').hide();
+$('.loading').hide();*/
 
         $('.video-js').on('classchanged', function(){
             console.log('!!!',this);

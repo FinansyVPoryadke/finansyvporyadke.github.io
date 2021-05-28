@@ -186,11 +186,13 @@ function playScene(scene){
     }
 
 
-    nextVideo.vJQuery.parent().removeClass('hide');
-    nextVideo.vJQuery.parent().addClass('active');    
+   
 
     nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
     nextVideo.vJQuery.addClass('active').trigger('classchanged');
+
+        nextVideo.vJQuery.parent().removeClass('hide');
+    nextVideo.vJQuery.parent().addClass('active'); 
 
     //if(loading(nextVideo.vPlayer)){
        // nextVideo.vPlayer.play();
@@ -408,9 +410,6 @@ $('.loading').hide();*/
 
         var isSet = false;
         var videoData = findVideoById(this.id());
-            this.on('waiting' , function() {
-                $('.loading').fadeIn(0);
-            })
 
             this.on('progress', function(){
                 
@@ -470,7 +469,6 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
             });
 
            this.on('timeupdate', function(){
-            $('.loading').fadeOut(0);
                 videoHTML = $('#'+this.id());
 
                 var currentScene = Number(videoData.scene.slice(6,7));
@@ -584,11 +582,13 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
 
                     var nextVideoJS = findVideoById(nextVideo.attr('id')).vPlayer;
 
-                    nextVideoContainer.addClass('active');
-                    nextVideoContainer.removeClass('hide');
+                    
                         
                     nextVideo.addClass('active').trigger('classchanged');
                     nextVideo.removeClass('hide').trigger('classchanged');
+
+                    nextVideoContainer.addClass('active');
+                    nextVideoContainer.removeClass('hide');
                         
 
                     //nextVideoJS.play();
@@ -739,11 +739,13 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                         currentScene.addClass('hide');
                     }
 
-                    scene.removeClass('hide');
-                    scene.addClass('active');
+                    
 
                     nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
                     nextVideo.vJQuery.addClass('active').trigger('classchanged');
+
+                    scene.removeClass('hide');
+                    scene.addClass('active');
 
                         //nextVideo.vPlayer.play();
                         

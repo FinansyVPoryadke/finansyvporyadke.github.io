@@ -424,10 +424,10 @@ var loadingScene2 = 0;
         var videoData = findVideoById(this.id());
 
 
-            this.on('progress canplaythrough', function(){
+            this.on('progress', function(){
                 
                 var video = findVideoById(this.id());
-                console.log(this, this.vPlayer.readyState(), this.bufferedPercent());
+                console.log(this, this.readyState(), this.bufferedPercent());
                 if(this.readyState()>3 && this.bufferedPercent()>0.9){
 
                 video.isLoaded = true;

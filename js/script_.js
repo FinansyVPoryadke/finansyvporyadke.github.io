@@ -413,7 +413,7 @@ document.querySelector("video").load();
                 var video = findVideoById(this.id());
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.vPlayer.bufferedPercent());
-                if(this.readyState()<4) this.currentTime(this.duration()/2);;
+                //if(this.readyState()<4) this.currentTime(this.duration()/2);;
                 if(this.readyState()>3 && this.bufferedPercent()>0.5){
 console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 video.isLoaded = true;

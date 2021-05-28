@@ -368,6 +368,7 @@ $('.loading').hide();*/
             if(video.vPlayer.hasClass('active') && video.isLoaded) {
                 $('.loading').fadeOut(1000);
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
+                if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
                 console.log(video.vPlayer.readyState(), video.isLoaded);
                 $.each(sceneVideos, function () {
                     console.log(this.vPlayer.readyState(), this.isLoaded);
@@ -381,6 +382,7 @@ $('.loading').hide();*/
                     nextSceneVideo.vPlayer.load();
                 }
                 }
+            }
         });
 
 

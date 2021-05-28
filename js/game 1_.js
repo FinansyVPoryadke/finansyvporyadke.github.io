@@ -78,13 +78,14 @@ do{
 coin.JQ.addClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topStart+'%)');
 
-       // setTimeout(function(){
+       setTimeout(function(){
                     coin.topEnd = coin.topStart + coin.speed*coin.JQ.height();
-    coin.JQ.removeClass('no_transition');
+    
     coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
+    coin.JQ.removeClass('no_transition');
     //console.log(coin)
     console.log(coin.topStart, coin.topEnd);
-//},2000);
+},100);
 
     return coin;
 }
@@ -97,7 +98,7 @@ function recreateCoin(coin){
     
     coin.width = coin.JQ.width();
     coin.height = coin.JQ.height();
-
+var prev = coins[coins.length - 1];
 countOfRecreate++;
 var leftNumber;
 do{

@@ -119,17 +119,15 @@ body::backdrop {
   position: relative;
   top: 0;
   z-index:100;
-<<<<<<< Updated upstream
+
   transform: translateY(0);
-}
-=======
-  transform: translateY(-100%);
+
         transition-duration: 12s;
       transition-property: transform;
       transition-timing-function: linear;
 }
 
->>>>>>> Stashed changes
+
 
 .money_100 {
     width: 5.21vw;
@@ -269,7 +267,7 @@ body::backdrop {
 .no_transition {
   transition-duration: 0s;
   transition-property: transform;
-  opacity: 0;
+
 }
 
 

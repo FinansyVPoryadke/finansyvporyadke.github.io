@@ -303,7 +303,7 @@ $(document).ready(function() {
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
-    timeForGame = 30;
+    timeForGame = 5;
 
     videojsPlayers = [];
     videos = [];
@@ -323,6 +323,7 @@ $('.loading').fadeIn(0);
         var video = $(this).parent().parent().parent().find(id);
         var lastVideo = $(this).parent().parent().parent().find('.v_main');
         playVideo(video, lastVideo);
+        //$('.loading').fadeIn(0);
     });
 
 
@@ -367,28 +368,30 @@ $('.loading').hide();*/
             video = findVideoByJquery($(this));
             if(video.vPlayer.hasClass('active') && video.isLoaded) {
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
-                
+                $('.loading').fadeOut(1000);
+                video.vPlayer.play();
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
+                var lastInScene = sceneVideos[sceneVideos.length-1];
+                if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
+                    
+                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
+                    nextSceneVideo.vPlayer.load();
+                }
+                
                 if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
-                    $('.loading').fadeOut(1000);
+                    //$('.loading').fadeOut(1000);
                 console.log(video.vPlayer.readyState(), video.isLoaded);
                 $.each(sceneVideos, function () {
                     console.log(this.vPlayer.readyState(), this.isLoaded);
                 });
-                    video.vPlayer.play();
-                    var lastInScene = sceneVideos[sceneVideos.length-1];
-                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
-                    
-                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
-                    //console.log(lastInScene, nextSceneVideo);
-                    nextSceneVideo.vPlayer.load();
-                }
+                    //video.vPlayer.play();
+
                 }
             }
         });
 
 
-
+document.querySelector("video").load();
 
     $.each(videos, function () {
  //       var videoData = this;
@@ -408,24 +411,26 @@ $('.loading').hide();*/
             this.on('progress', function(){
                 
                 var video = findVideoById(this.id());
+                var sceneVideos = videos.filter(x => x.scene === video.scene);
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.vPlayer.bufferedPercent());
                 if(this.readyState()<4) this.currentTime(this.duration()/2);;
                 if(this.readyState()>3 && this.bufferedPercent()>0.5){
 console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 video.isLoaded = true;
-                var sceneVideos = videos.filter(x => x.scene === video.scene);
+                
                 $.each(sceneVideos, function () {
-                    if(!this.isLoaded && this.vPlayer.bufferedPercent<0.1){
+                    if(!this.isLoaded && this.vPlayer.bufferedPercent()<0.1){
                         this.vPlayer.load();
                         //this.vPlayer.play();
                         //this.vPlayer.pause();
                         this.vPlayer.currentTime(0);
                     }
                 });
+            }
                 //console.log(this, sceneVideos);
                 if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
                 
-                //console.log(this);
+                console.log(this);
 
                 if(this.hasClass('active') && video.isLoaded) {
                     this.play();
@@ -440,7 +445,7 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 }
                 
 
-            }
+            
             });
 
 

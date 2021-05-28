@@ -391,12 +391,16 @@ var loadingScene2 = 0;
             if(video.vPlayer.hasClass('active') && video.isLoaded) {
                 $('.loading').fadeOut(1000);
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
+                console.log(video.vPlayer.readyState(), video.isLoaded);
+                $.each(sceneVideos, function () {
+                    console.log(this.vPlayer.readyState(), this.isLoaded);
+                });
                     video.vPlayer.play();
                     var lastInScene = sceneVideos[sceneVideos.length-1];
                                     if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
                     
                     var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
-                    console.log(lastInScene, nextSceneVideo);
+                    //console.log(lastInScene, nextSceneVideo);
                     nextSceneVideo.vPlayer.load();
                 }
                 }

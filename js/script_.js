@@ -421,10 +421,10 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 
                 $.each(sceneVideos, function () {
                     if(!this.isLoaded && this.vPlayer.bufferedPercent()<0.1){
-                        this.vPlayer.load();
+                        //this.vPlayer.load();
                         //this.vPlayer.play();
                         //this.vPlayer.pause();
-                        this.vPlayer.currentTime(0);
+                        //this.vPlayer.currentTime(0);
                     }
                 });
             } 

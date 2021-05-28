@@ -430,7 +430,7 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
             } else {
                 this.currentTime(this.duration()/2);
                 
-                this.vPlayer.pause();
+                this.pause();
                 console.log('####', this.currentTime())
             }
                 //console.log(this, sceneVideos);

@@ -408,7 +408,9 @@ $('.loading').hide();*/
 
         var isSet = false;
         var videoData = findVideoById(this.id());
-
+            this.on('waiting' , function() {
+                $('.loading').fadeIn(0);
+            })
 
             this.on('progress', function(){
                 
@@ -468,6 +470,7 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
             });
 
            this.on('timeupdate', function(){
+            $('.loading').fadeOut(0);
                 videoHTML = $('#'+this.id());
 
                 var currentScene = Number(videoData.scene.slice(6,7));

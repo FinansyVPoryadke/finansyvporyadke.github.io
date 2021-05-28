@@ -309,7 +309,7 @@ $(document).ready(function() {
 
     videojsPlayers = [];
     videos = [];
-$('.loading').fadeIn(0);
+//$('.loading').fadeIn(0);
    $.each($('video'), function(){
         $(this).addClass('video-js vjs-default-skin');
 
@@ -376,7 +376,7 @@ $('.loading').hide();*/
                 video.vPlayer.play();
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 var lastInScene = sceneVideos[sceneVideos.length-1];
-                if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
+                if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length && video.scene!='scene_6'){
                     
                     var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
                     nextSceneVideo.vPlayer.load();
@@ -439,7 +439,7 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 if(this.hasClass('active') && video.isLoaded) {
                     this.play();
                     var lastInScene = sceneVideos[sceneVideos.length-1];
-                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length){
+                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length && video.scene!='scene_6'){
                     
                     var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
                     //console.log(this, lastInScene, nextSceneVideo);
@@ -455,7 +455,10 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
 
             this.on('play', function(){
                 isSet = false;
-
+                var video = findVideoById(this.id());
+                if(videos.indexOf(video)!=-1 && videos.indexOf(video)<videos.length-1){
+                videos[videos.indexOf(video)+1].vPlayer.load();
+            }
                 
                                     
                 $('.navigation > div > .'+ videoData.scene).removeClass('lock');
@@ -659,7 +662,7 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
     });
 
     $('.button_game_continue').click(function(){
-            $('.loading').fadeIn(0);
+           // $('.loading').fadeIn(0);
         var gameEndID = $('.game_end').attr('id');
 
         if(gameEndID == 'game_1') {

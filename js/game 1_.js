@@ -1,7 +1,7 @@
 //Игра - Собери монетки в копилку
 
 var moneyBox;
-var numberCoinsInWidth = 6, betweenCoins = 2, percent10 = 75, coinSpeed = 3, countCoins = 15, numberCollect10, numberCollect100;
+var numberCoinsInWidth = 6, betweenCoins = 2, percent10 = 75, coinSpeed = 2000, countCoins = 15, numberCollect10, numberCollect100;
 var coins = [];
 var coinsData = [{price: 100, url: 'media/svg/money_100.svg'},
     {price: 10, url: 'media/svg/money_10.svg'}];
@@ -18,7 +18,8 @@ function createCoin(){
         speed: 0,
         price: 0,
         url: '',
-        JQ: ''
+        JQ: '',
+        top2: 0
     };
 
     coin.price = coinsData[coin.is10].price;
@@ -31,7 +32,7 @@ function createCoin(){
     coin.width = coin.JQ.width();
     coin.height = coin.JQ.height();
 
-    coin.JQ.css('transform', 'translateY(-100%)');
+    coin.JQ.css('transform', 'translateY(-200%)');
     var prev;
     if(coins.length){
         prev = coins[coins.length-1];
@@ -60,9 +61,18 @@ do{
         coin.top = (coin.JQ.position().top - coins.length*coin.height*betweenCoins)/coin.width*100;
     }
 
+coin.top2=coin.top;
+coin.JQ.addClass('no_transition');
+    coin.JQ.css('transform', 'translateY('+coin.top2+'%)');
 
-
-    coin.JQ.css('transform', 'translateY('+coin.top+'%)');
+        setTimeout(function(){
+                    coin.top2 += coin.speed;
+    var parent = coin.JQ.parent();
+    var coinTop = coin.top2*coin.JQ.width()/100;
+    coin.JQ.removeClass('no_transition');
+    coin.JQ.css('transform', 'translateY('+coin.top2+'%)');
+    console.log(coin)
+},100);
 
     return coin;
 }
@@ -77,19 +87,47 @@ function recreateCoin(coin){
     coin.height = coin.JQ.height();
    
     countOfRecreate++;
+    /*
     var prev = coins[coins.length - 1];
     if(countOfRecreate == 1 || countOfRecreate == countCoins+1 || countOfRecreate == 2*countCoins+1) {
-        coin.top = -coin.top - 100 - coin.height*betweenCoins/coin.width*100;
+         - 100 - coin.height*betweenCoins/coin.width*100;
         console.log(coin.top);
 
 } else{
     coin.top = prev.top - coin.JQ.height()*betweenCoins/coin.JQ.width()*100;
-}
-    coin.JQ.css('transitionDuration', '0');
-    coin.JQ.css('transform', 'translateY('+coin.top+'%)');
+}*/
+
+    var prev;
+    if(coins.length){
+        prev = coins[coins.length-1];
+        prevNumber = prev.number;
+    } else {
+        prevNumber = numberCoinsInWidth/2;
+    }
+    if(coins.length>1){
+       //if((Math.abs(coin.number - prev.number)>1 || prev.number%2 == coin.number%2) && coins[coins.length-2].top!=prev.top){
+           // coin.top = prev.top;
+        //} else {
+            coin.top = prev.top - coin.height*betweenCoins/coin.width*100;
+       // }
+    } else {
+        coin.top = coin.top - (coins.length*coin.height*betweenCoins)/coin.width*100;
+    }
+    coin.top2 = -coin.top;
+//coin.top2 = coin.top;
+    coin.JQ.addClass('no_transition');
+    coin.JQ.css('transform', 'translateY('+coin.top2+'%)');
     coin.left = ((($('.coins_box').width()-numberCoinsInWidth*coin.JQ.width())*leftNumber)/(numberCoinsInWidth+1) + coin.width*(leftNumber-1))/$('.coins_box').width()*100;
     coin.JQ.css('left', coin.left+'%');
 
+    setTimeout(function(){
+                    coin.top2 += coin.speed;
+    var parent = coin.JQ.parent();
+    var coinTop = coin.top2*coin.JQ.width()/100;
+    coin.JQ.removeClass('no_transition');
+    coin.JQ.css('transform', 'translateY('+coin.top2+'%)');
+    console.log(coin)
+},100);
 
 
     return coin;
@@ -125,7 +163,8 @@ function checkCoinTouchFloor(coin) {
     return false;
 }
 
-function startFirstGame(){
+
+function startFirstGame_2(){
 
     changeTotalMoney(-money[1].game, false);
     money[1].game = 0;
@@ -139,7 +178,7 @@ function startFirstGame(){
         position: $('.money_box').position().left,
         top: $('.money_box').position().top 
     }
-
+var the_game;
     var isPlaying = true;
     money[1].game = 0;
     numberCollect10 = 0;
@@ -160,8 +199,9 @@ function startFirstGame(){
         timer.finish();
         timer.css('width', 0);
         isPlaying = false;
-        cancelAnimationFrame(anim_id);
-        showGameEndWindow('game_1', 'За время игры ты собрал '+money[1].game+' руб.</br></br>Положив в конверт монет по 10 рублей: '+numberCollect10+' шт.</br>и купюр по 100 рублей: '+numberCollect100+' шт.');
+        clearInterval(theGame);
+        //cancelAnimationFrame(anim_id);
+        //showGameEndWindow('game_1', 'За время игры ты собрал '+money[1].game+' руб.</br></br>Положив в конверт монет по 10 рублей: '+numberCollect10+' шт.</br>и купюр по 100 рублей: '+numberCollect100+' шт.');
     }, timeForGame*1000);
 
 
@@ -171,11 +211,13 @@ function startFirstGame(){
     }
     console.log(coins);
 
-    var the_game = 0;
-    the_game = function () {
+    //coinSpeed = 500;
+    setInterval(function(){
     $.each(coins, function(){
         var coin = this;
-        coinDown(coin);
+        //coinDown(coin);
+
+//console.log(coin);
 
         if (checkCoinTouchMoneybox(coin)) {
             if(!coin.isCollect){
@@ -202,11 +244,11 @@ function startFirstGame(){
             return;
         }
         });
-        if(isPlaying) requestAnimationFrame(the_game);
-    };
+        //if(isPlaying) clearInterval(the_game);
+    },20);
 
 
-    anim_id = requestAnimationFrame(the_game);
+    //anim_id = requestAnimationFrame(the_game);
 
     $('.money_box').draggable({
         axis: "x",
@@ -223,4 +265,3 @@ function startFirstGame(){
         }
     });
 }
-

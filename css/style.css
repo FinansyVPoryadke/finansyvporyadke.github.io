@@ -119,7 +119,15 @@ body::backdrop {
   top: 0;
   cursor: pointer;
   z-index:100;
-  transform: translateY(0);
+  transform: translateY(-100%);
+        transition-duration: 10s;
+      transition-property: transform;
+      transition-timing-function: linear;
+}
+
+.no_transition {
+  transition-duration: 0s;
+  transition-property: transform;
 }
 
 .money_100 {

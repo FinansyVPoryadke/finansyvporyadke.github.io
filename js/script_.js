@@ -184,7 +184,7 @@ function playScene(scene){
         else if(totalMoney>400) nextVideo = findVideoBySceneAndType(scene, 'v_3');
         else nextVideo = findVideoBySceneAndType(scene, 'v_4');
     }
-    $('.loading').fadein(0);
+    $('.loading').fadeIn(0);
 
     nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active');    
@@ -298,6 +298,10 @@ function loading(video) {
 var timeInterval = 100;
 
 $(document).ready(function() {
+    $('.start_box').hide();
+startFirstGame_2();
+
+$('.loading').fadeOut(0);
 
     choice = false;
     autoChoice = false;
@@ -403,7 +407,7 @@ var loadingScene2 = 0;
         });
 
 
-$('.loading').fadeIn(0);
+
 
     $.each(videos, function () {
  //       var videoData = this;

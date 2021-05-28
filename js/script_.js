@@ -420,7 +420,7 @@ $('.loading').fadeIn(0);
         var videoData = findVideoById(this.id());
 
 
-            this.on('canplay', function(){
+            this.on('canplaythrough', function(){
                 
                 var video = findVideoById(this.id());
                 video.isLoaded = true;

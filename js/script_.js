@@ -368,7 +368,7 @@ $('.loading').hide();*/
 
         $('.video-js').on('classchanged', function(){
             video = findVideoByJquery($(this));
-            if(video.vPlayer.hasClass('active') && video.isLoaded) {
+            if(video.vPlayer.hasClass('active') && video.vPlayer.readyState()>3) {
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
                 $('.loading').fadeOut(1000);
                 video.vPlayer.play();

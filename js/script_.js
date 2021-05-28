@@ -408,7 +408,7 @@ document.querySelector("video").load();
         var videoData = findVideoById(this.id());
 
 
-            this.on('progress', function(){
+            this.on('progress canplay canplaythrough', function(){
                 
                 var video = findVideoById(this.id());
                 var sceneVideos = videos.filter(x => x.scene === video.scene);

@@ -415,10 +415,10 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                 video.isLoaded = true;
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 $.each(sceneVideos, function () {
-                    if(!this.isLoaded){
+                    if(!this.isLoaded && this.vPlayer.bufferedPercent<0.1){
                         this.vPlayer.load();
-                        this.vPlayer.play();
-                        this.vPlayer.pause();
+                        //this.vPlayer.play();
+                        //this.vPlayer.pause();
                         this.vPlayer.currentTime(0);
                     }
                 });

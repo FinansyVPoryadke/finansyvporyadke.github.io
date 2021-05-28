@@ -184,7 +184,7 @@ function playScene(scene){
         else if(totalMoney>400) nextVideo = findVideoBySceneAndType(scene, 'v_3');
         else nextVideo = findVideoBySceneAndType(scene, 'v_4');
     }
-    $('.loading').fadein(0);
+    $('.loading').fadeIn(0);
 
     nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active');    

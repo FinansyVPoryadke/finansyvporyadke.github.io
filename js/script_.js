@@ -428,9 +428,10 @@ console.log('!!1', this, this.readyState(), this.bufferedPercent());
                     }
                 });
             } else {
-                this.currentTime(this.duration()/2);
-                
+                //this.currentTime(this.duration()/2);
+                this.play();
                 this.pause();
+                this.currentTime(0);
                 console.log('####', this.currentTime())
             }
                 //console.log(this, sceneVideos);

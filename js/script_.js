@@ -424,7 +424,7 @@ var loadingScene2 = 0;
         var videoData = findVideoById(this.id());
 
 
-            this.on('progress', function(){
+            this.on('canplaythrough', function(){
                 
                 var video = findVideoById(this.id());
                 

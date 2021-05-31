@@ -59,6 +59,7 @@ body::backdrop {
   padding: 0;
   top: 0;
   background: var(--white);
+  z-index: 5;
 }
 
 .game_1_box{

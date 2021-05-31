@@ -46,6 +46,18 @@ font-style: normal;
 
 }
 
+@font-face{
+
+font-family: Montserrat-Regular;
+
+src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+
+font-weight: normal;
+
+font-style: normal;
+
+}
+
 
 body{
   height: 100%;
@@ -72,17 +84,21 @@ div {
   z-index: 2;
 }
 
-.start_box{
+.start_box, .end_box{
   width: 100%;
   height: 100%;
   background-color: var(--light-yellow);
   position: absolute;
   top: 0;
-  z-index: 10;
+  z-index: 7;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.end_box{
+  z-index: 4;
 }
 
 .type{
@@ -114,7 +130,7 @@ div {
   padding: 3.13vw;
 }
 
-.button_start{
+.button_start, .button_continue{
   height: 5.21vw;
   width: 23.96vw;
   background-color: var(--white);
@@ -126,9 +142,90 @@ div {
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-top: 1.04vw;
+  cursor: pointer;
 }
 
+.button_continue{
+  background-color: var(--yellow);
+}
 
+.img_bg{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content:space-between;
+  position: absolute;
+  top: 0;
+}
+
+.img_bg img{
+  height: 100%;
+}
+
+.reflect {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.end_box .title {
+  height: 5.21vw;
+  width: 36.46vw;
+  color: var(--blue);
+  font-family: Montserrat-Black;
+  font-size: 2.33em;
+  line-height: 5.21vw;
+}
+
+.total_result {
+  height: 3.13vw;
+  width: 55.21vw;
+  color: var(--blue);
+  font-family: Montserrat-SemiBold;
+  font-size: 1.33em;
+  line-height: 3.13vw;
+}
+
+.total_result b{
+  font-family: Montserrat-Bold;
+}
+
+.results {
+  height: 14.58vw;
+  width: 36.46vw;
+  color: var(--blue);
+  font-family: Montserrat-Medium;
+  font-size: 1.17em;
+  line-height: 2em;
+  padding: 3.13vw;
+  background-color: var(--white);
+  border-radius: 2.6vw;
+  text-align: left;
+  margin: 1.04vw 0;
+}
+
+.results p{
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+}
+
+.results b{
+  text-align: right;
+  color:  var(--green);
+  font-family: Montserrat-Bold;
+  position: relative;
+  right: 0;
+}
+
+.phrase {
+  height: 5.21vw;
+  width: 55.21vw;
+  color: var(--green);
+  font-family: Montserrat-SemiBold;
+  font-size: 1.33em;
+  line-height: 5.21vw;
+}
 
 .choice {
     display: flex;
@@ -141,6 +238,7 @@ div {
     padding: 0;
     top: 0;
     background-color: var(--light-blue);
+    z-index: 5;
 }
 
 .ch_title{
@@ -149,8 +247,8 @@ div {
     justify-content: center;
   color: var(--blue);
   font-family: Montserrat-SemiBold;
-  font-size: 1.25em;
-  line-height: 1.16em;
+  font-size: 1.67em;
+  line-height: 1.25em;
   text-align: center;
   width: 42.71%;
   height: 11.11%;
@@ -203,8 +301,8 @@ div {
   height: 7.74vh;
   background: var(--white);
   font-family: Montserrat-Medium;
-  font-size: 0.75em;
-  line-height: 1.16em;
+  font-size:1em;
+  line-height: 1.25em;
   border-radius: 2.6vw;
   padding: 1.11vh 1.51vw;
 }
@@ -383,7 +481,7 @@ border-radius: 2.6vw;
   font-size: 1vw;
 }
 
-.video-js .vjs-play-progress:before {
+.video-js .vjs-play-progress:before, .video-js .vjs-volume-level:before {
   font-size: 1vw;
   position: absolute;
   right: -0.5em;
@@ -440,6 +538,24 @@ border-radius: 2.6vw;
   
 }
 
+.video-js .vjs-volume-level {
+    background-color: var(--blue);
+}
+
+.video-js .vjs-volume-bar {
+    margin: 1.35vw 0.45em;
+}
+
+
+
+.vjs-slider-horizontal .vjs-volume-level {
+    height: 0.31vw;
+}
+
+.vjs-volume-bar.vjs-slider-horizontal {
+  height: 0.31vw;
+  }
+
 @keyframes vjs-spinner-fade {
   0% {
     border-top-color: var(--blue);
@@ -469,7 +585,7 @@ border-radius: 2.6vw;
   }
 }
 
-.game_end, .navigation_box{
+.game_end, .navigation_box, .info_box{
   background-color: rgba(204, 204, 204, 0.75);
   width: 100%;
   height: 100%;
@@ -551,7 +667,7 @@ border-radius: 2.6vw;
 }
 
 
-.navigation {
+.navigation, .info {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -559,14 +675,14 @@ border-radius: 2.6vw;
     position: absolute;
     background-color: var(--white);
 
-  width: 76.04vw;
-  height: 32.29vw;
+  width: 80.21vw;
+  height: 36.46vw;
   color: var(--blue);
     font-size: 0.75em;
   line-height: 0.75em;
   text-align: center;
     border-radius: 2.6vw;
-    padding: 5.21vw;
+    padding: 3.13vw;
 
 
 }
@@ -658,9 +774,10 @@ border-radius: 2.6vw;
 .close {
   width: 3.13vw;
   height: 3.13vw;
-  position: absolute;
-  top: 6.77vw;
-  right: 3.13vw;
+  position: inherit;
+  margin: 2.08vw;
+  top: 0;
+  right: 0;
 
   cursor: pointer;
   z-index: 10;
@@ -669,6 +786,92 @@ border-radius: 2.6vw;
 .close img{
   width: 100%
 }
+
+
+.info_content{
+  height: 31.25vw;
+  width: 73.96vw;
+  padding: 0 3.13vw;
+
+
+overflow: hidden;
+
+}
+
+.info_titles{
+  height: 5.21vw;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.info_titles div{
+  width: 14.59vw;
+  height: 5.21vw;
+  font-family: Montserrat-SemiBold;
+  font-size: 1.5em;
+  color: var(--blue);
+  line-height: 1.25em;
+  text-align: center;
+  background-color: var(--light-blue);
+  border-radius: 2.6vw 2.6vw 0 0;
+  margin-right: 0.26vw;
+  padding: 0 2.08vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.info_titles .current{
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.gradient{
+  height: 2.08vw;
+  width: 100%;
+  background: linear-gradient(to bottom, white 0%, transparent 100%);
+  position: inherit;
+  top: 8.33vw;
+  z-index: 3;
+}
+
+.gradient_{
+  height: 2.08vw;
+  width: 100%;
+  background: linear-gradient(to top, white 0%, transparent 100%);
+  position: inherit;
+  bottom: 3.13vw;
+  z-index: 3;
+}
+
+.jspDrag, .jspVerticalBar{
+  z-index: 4;
+}
+
+.info_content h2 {
+  font-family: Montserrat-SemiBold;
+  font-size: 1.75em;
+  color: var(--blue);
+  line-height: 1.25em;
+  text-align: center;
+  margin-top: 1.04vw;
+}
+
+.info_content p {
+  font-family: Montserrat-Regular;
+  font-size: 1.25em;
+  color: var(--dark-blue);
+  line-height: 1.5em;
+  text-align: left;
+  margin-top: 1.04vw;
+}
+
+
+
+
 
 .button_scenes, .button_info{
   display: flex;
@@ -683,6 +886,11 @@ border-radius: 2.6vw;
   cursor: pointer;
   color: var(--blue);
   border-radius: 5.21vw 5.21vw 0 5.21vw;
+  z-index: 4;
+  opacity: 1;
+  transition-duration: 1s;
+  transition-property: opacity;
+  transition-timing-function: linear;
 }
 
 .button_info{
@@ -703,7 +911,7 @@ border-radius: 2.6vw;
   top: 0;
   right: 0;
   color: var(--white);
-  z-index: 3;
+  z-index: 6;
   pointer-events: none;
 }
 
@@ -771,3 +979,5 @@ border-radius: 2.6vw;
   position: absolute;
   top: 0;
 }
+
+

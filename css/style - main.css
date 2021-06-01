@@ -218,6 +218,10 @@ div {
   right: 0;
 }
 
+b.spend{
+  color: var(--red);
+}
+
 .phrase {
   height: 5.21vw;
   width: 55.21vw;
@@ -694,7 +698,7 @@ border-radius: 2.6vw;
   font-size: 2.25em;
   line-height: 2em;
   margin-bottom: 1.04vw;
-
+  margin-top: 2.08vw;
 
 }
 

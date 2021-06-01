@@ -9,7 +9,7 @@
   --light-blue: #99DBFF;
 
   --dark-red: #CC553D;
-  --red: #e64a4a;
+  --red: #ED5B41;
   --light-red: #F7CDCD;
 
   --white: #fff;
@@ -123,7 +123,7 @@ body::backdrop {
 
   transform: translateY(0);
 
-        transition-duration: 12s;
+        transition-duration: 13s;
       transition-property: transform;
       transition-timing-function: linear;
 }
@@ -140,13 +140,13 @@ body::backdrop {
 }
 
 .game_title{
-  display: flex;
+ 
     align-items: center;
     justify-content: center;
   color: var(--blue);
   font-family: Montserrat-SemiBold;
   font-size: 1.25em;
-  line-height: 1.16em;
+  line-height: 1.4em;
   text-align: center;
   width: 67.71vw;
   height: 5.21vw;
@@ -164,6 +164,13 @@ body::backdrop {
 
 .game_2 .game_title{
     color: var(--dark-red);
+    margin-bottom: 0.5vw;
+}
+
+.game_2 span{
+  color: var(--red);
+  background-color: var(--dark-gray);
+  padding: 0 0.5vw;
 }
 
 .game_2 {

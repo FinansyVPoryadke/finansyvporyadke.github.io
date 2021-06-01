@@ -10,7 +10,7 @@ var money = [
 {scene: 3, amount: 250, isCurrent: false, isFirstPlayScene: true, ch_1: -200, ch_2: -200 , hasChange: false, choice: 0, game: 0, isLoaded: false},
 {scene: 4, amount: 300, isCurrent: false, isFirstPlayScene: true, ch_1: 0, ch_2: 0 , hasChange: false, choice: 0, game: 0, isLoaded: false},
 {scene: 5, amount: 350, isCurrent: false, isFirstPlayScene: true, ch_1: 0, ch_2: -300, hasChange: false, choice: 0, game: 0, isLoaded: false},
-{scene: 6, amount: 100, isCurrent: false, isFirstPlayScene: true, hasChange: false, isLoaded: false},
+{scene: 6, amount: 0, isCurrent: false, isFirstPlayScene: true, hasChange: false, isLoaded: false},
 ];
 
 var totalMoney = 0;
@@ -316,7 +316,7 @@ $(document).ready(function() {
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
-    timeForGame = 5;
+    timeForGame = 10;
 
     videojsPlayers = [];
     videos = [];
@@ -330,7 +330,6 @@ var jsp = $('.info_content').jScrollPane({
 
 });
         $('.info_content').data('jsp').reinitialise();
-
 
 
 
@@ -372,7 +371,7 @@ var jsp = $('.info_content').jScrollPane({
 
 videos[0].vPlayer.load();
     $('.button_start').click(function(){
-        //fullScreen(document.documentElement);
+        fullScreen(document.documentElement);
         //document.onkeydown = goFullscreen;
         money = startNewGame();
         console.log(money)
@@ -790,22 +789,7 @@ $('.loading').hide();*/
 
             choice = false;
             var sClass = $(this).attr('class').split(' ')[0];
-    
-            if(sClass.slice(0,5) == 'scene'){
-                $('.loading').fadeIn(0);
-                var scene = $('.videos').find('.'+ sClass);
-
-                var nextVideo;
-                if(sClass != 'scene_6') {
-                    nextVideo = findVideoBySceneAndType(sClass, 'v_main');
-                } else{
-                    if(totalMoney>5000) nextVideo = findVideoBySceneAndType(sClass, 'v_1');
-                    else if(totalMoney>2000) nextVideo = findVideoBySceneAndType(sClass, 'v_2');
-                    else if(totalMoney>400) nextVideo = findVideoBySceneAndType(sClass, 'v_3');
-                    else nextVideo = findVideoBySceneAndType(sClass, 'v_4');
-                    
-                }
-                var currentVideo = findVideoById($('.active > .active').attr('id'));
+            var currentVideo = findVideoById($('.active > .active').attr('id'));
                 if(currentVideo){
                     if(currentVideo.scene == sClass){
                         $(this).parent().parent().parent().hide();
@@ -825,15 +809,33 @@ $('.loading').hide();*/
                     }
                 }
 
-                    nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
-                    nextVideo.vJQuery.addClass('active').trigger('classchanged');
+            if(sClass.slice(0,5) == 'scene'){
+                
+                var scene = $('.videos').find('.'+ sClass);
+                if(currentVideo && currentVideo.scene != sClass){
 
-                    loading(nextVideo.vPlayer);
+                    $('.loading').fadeIn(0);
+                    var nextVideo;
+                    if(sClass != 'scene_6') {
+                        nextVideo = findVideoBySceneAndType(sClass, 'v_main');
+                    } else{
+                        if(totalMoney>5000) nextVideo = findVideoBySceneAndType(sClass, 'v_1');
+                        else if(totalMoney>2000) nextVideo = findVideoBySceneAndType(sClass, 'v_2');
+                        else if(totalMoney>400) nextVideo = findVideoBySceneAndType(sClass, 'v_3');
+                        else nextVideo = findVideoBySceneAndType(sClass, 'v_4');
+                        
+                    }
 
-                    scene.removeClass('hide');
-                    scene.addClass('active');
+                        nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
+                        nextVideo.vJQuery.addClass('active').trigger('classchanged');
 
-                        //nextVideo.vPlayer.play();
+                        loading(nextVideo.vPlayer);
+
+                        scene.removeClass('hide');
+                        scene.addClass('active');
+
+                            //nextVideo.vPlayer.play();
+                }
             }
             else if(sClass.slice(0,4) == 'game'){
                 if(Number(sClass.slice(5,6)) == 1) startFirstGame();

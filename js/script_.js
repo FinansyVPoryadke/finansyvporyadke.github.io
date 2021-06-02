@@ -84,16 +84,17 @@ function playVideo(video, lastVideo) {
 
     $('.choice').fadeOut(0);
 
-    lastVideo.removeClass('active').trigger('classchanged');
-    lastVideo.addClass('hide').trigger('classchanged');
+
 
 
     lastVideo.parent().find('.timer_line').finish();
     lastVideo.parent().find('.timer_line').css('width', 0);
 
-    video.removeClass('hide').trigger('classchanged');
-    video.addClass('active').trigger('classchanged');
+    video.removeClass('hide');
+    video.addClass('active');
 
+    lastVideo.removeClass('active');
+    lastVideo.addClass('hide');
     
     nextVideo.play();
     
@@ -191,13 +192,13 @@ function playScene(scene){
 
     nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
     nextVideo.vJQuery.addClass('active').trigger('classchanged');
-    loading(nextVideo.vPlayer);
+    //loading(nextVideo.vPlayer);
 
         nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active'); 
 
     //if(loading(nextVideo.vPlayer)){
-       // nextVideo.vPlayer.play();
+       nextVideo.vPlayer.play();
     //}
 }
 

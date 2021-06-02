@@ -371,6 +371,10 @@ border-radius: 2.6vw;
     height: 100%;
 }
 
+.video-js{
+  background-color: var(--light-yellow);
+}
+
 .video-js .vjs-tech {
   
   position: absolute;

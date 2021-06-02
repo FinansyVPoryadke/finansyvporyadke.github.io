@@ -82,7 +82,7 @@ function playVideo(video, lastVideo) {
 
     var nextVideo = findVideoById(video.attr('id')).vPlayer;
 
-    $('.choice').fadeOut(0);
+    
 
 
 
@@ -95,6 +95,7 @@ function playVideo(video, lastVideo) {
 
     lastVideo.removeClass('active');
     lastVideo.addClass('hide');
+    $('.choice').fadeOut(0);
     
     nextVideo.play();
     
@@ -197,6 +198,7 @@ function playScene(scene){
         nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active'); 
 
+//$('.loading').fadeOut(0);
     //if(loading(nextVideo.vPlayer)){
        nextVideo.vPlayer.play();
     //}
@@ -290,10 +292,10 @@ function loading(video) {
     //video.load();
     video.on('canplaythrough', function(){
             if(this.readyState()>3 && this.hasClass('active')){
-                    $('.loading').fadeOut(0);
+                    //$('.loading').fadeOut(0);
                     //console.log(t, t.readyState());
                     this.play();
-                    $('.loading').fadeOut(1000);
+                    //$('.loading').fadeOut(1000);
                      var videoIndex = videos.indexOf(findVideoById(this.id()));
                 if(videoIndex != -1 && videoIndex<videos.length-1){
 
@@ -390,7 +392,7 @@ var jsp = $('.info_content').jScrollPane({
                 firstVideo.vJQuery.parent().addClass('active');
                 firstVideo.vJQuery.addClass('active').trigger('classchanged');
                 //if(videos[0].vPlayer.readyState()>3){
-                $('.loading').fadeOut(0);
+                //$('.loading').fadeOut(0);
                     //console.log(this, this.readyState());
                     //videos[0].vPlayer.play();
                 //videos[1].vPlayer.load();
@@ -414,7 +416,7 @@ var jsp = $('.info_content').jScrollPane({
 
 
                 //if(videos[0].vPlayer.readyState()>3){
-                $('.loading').fadeOut(0);
+               // $('.loading').fadeOut(0);
                     //console.log(this, this.readyState());
                     //videos[0].vPlayer.play();
                 //videos[1].vPlayer.load();
@@ -437,7 +439,7 @@ $('.loading').hide();*/
             console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
             if(video.vPlayer.hasClass('active') && video.vPlayer.readyState()>3) {
                 console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
-                $('.loading').fadeOut(1000);
+                //$('.loading').fadeOut(1000);
                 video.vPlayer.play();
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                 var lastInScene = sceneVideos[sceneVideos.length-1];
@@ -663,7 +665,7 @@ $('.loading').hide();*/
                 }
 
                 if(videoHTML.parent().hasClass('scene_1')){
-                    $('.loading').fadeIn(0);
+                    //$('.loading').fadeIn(0);
                     choice = false;
                     
                     var lastVideo = $('#'+this.id());
@@ -754,7 +756,7 @@ $('.loading').hide();*/
     });
 
     $('.button_game_continue').click(function(){
-           $('.loading').fadeIn(0);
+           //$('.loading').fadeIn(0);
         var gameEndID = $('.game_end').attr('id');
 
         if(gameEndID == 'game_1') {
@@ -836,7 +838,7 @@ $('.loading').hide();*/
                 var scene = $('.videos').find('.'+ sClass);
                 if(currentVideo && currentVideo.scene != sClass){
 
-                    $('.loading').fadeIn(0);
+                    //$('.loading').fadeIn(0);
                     var nextVideo;
                     if(sClass != 'scene_6') {
                         nextVideo = findVideoBySceneAndType(sClass, 'v_main');

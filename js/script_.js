@@ -474,6 +474,7 @@ $('.loading').hide();*/
     $.each(videos, function () {
  //       var videoData = this;
         var player = this.vPlayer;
+        /*
         var videoData = this;
         console.log(videoData)
         var video = document.getElementById(player.id()+'_html5_api');
@@ -489,13 +490,15 @@ $('.loading').hide();*/
 
     } else if(videos[videos.indexOf(videoData)-1].isLoaded){
                 video.load();
+                video.pause();
         video.addEventListener('progress', function(){
             if(this.buffered.end(0) > 0.9*this.duration)
             {
                 videoData.isLoaded = true;
             }
         });
-    }
+    }*/
+    if(videos.indexOf(this) == 0) this.vPlayer.load();
 
         player.ready(function(){
         //this.load();

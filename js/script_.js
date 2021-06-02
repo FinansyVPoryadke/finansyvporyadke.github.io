@@ -474,13 +474,13 @@ $('.loading').hide();*/
     $.each(videos, function () {
  //       var videoData = this;
         var player = this.vPlayer;
-        /*
+        
         var videoData = this;
         console.log(videoData)
         var video = document.getElementById(player.id()+'_html5_api');
         if(videos.indexOf(videoData) == 0){
         video.load();
-        video.pause();
+       // video.pause();
         video.addEventListener('progress', function(){
             if(this.buffered.end(0) > 0.9*this.duration)
             {
@@ -490,14 +490,14 @@ $('.loading').hide();*/
 
     } else if(videos[videos.indexOf(videoData)-1].isLoaded){
                 video.load();
-                video.pause();
+               // video.pause();
         video.addEventListener('progress', function(){
             if(this.buffered.end(0) > 0.9*this.duration)
             {
                 videoData.isLoaded = true;
             }
         });
-    }*/
+    }
     if(videos.indexOf(this) == 0) this.vPlayer.load();
 
         player.ready(function(){
@@ -509,7 +509,7 @@ $('.loading').hide();*/
         var videoData = findVideoById(this.id());
 
             this.on('progress', function(){
-                
+                /*
                 var video = findVideoById(this.id());
                 var sceneVideos = videos.filter(x => x.scene === video.scene);
                //console.log(video.vPlayer, video.vPlayer.readyState(), video.vPlayer.bufferedPercent());
@@ -545,7 +545,7 @@ $('.loading').hide();*/
                 }
                 }
                 
-
+*/
             
             });
             this.on('useractive', function(){

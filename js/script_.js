@@ -822,25 +822,16 @@ $('.loading').hide();*/
             choice = false;
             var sClass = $(this).attr('class').split(' ')[0];
             var currentVideo = findVideoById($('.active > .active').attr('id'));
-                if(currentVideo){
+
+                            if(currentVideo){
                     if(currentVideo.scene == sClass){
                         $(this).parent().parent().parent().hide();
                         currentVideo.vPlayer.play();
                     } else{
 
-                        currentVideo.vPlayer.pause();
-                        currentVideo.vPlayer.currentTime(0);
-
-                        currentVideo.vJQuery.removeClass('active');
-                        currentVideo.vJQuery.addClass('hide');
-
-                        var currentScene = $('.videos > .active');
-
-                        currentScene.removeClass('active');
-                        currentScene.addClass('hide');
+                        
                     }
                 }
-
             if(sClass.slice(0,5) == 'scene'){
                 
                 var scene = $('.videos').find('.'+ sClass);
@@ -857,11 +848,23 @@ $('.loading').hide();*/
                         else nextVideo = findVideoBySceneAndType(sClass, 'v_4');
                         
                     }
+                    currentVideo.vPlayer.pause();
+                        currentVideo.vPlayer.currentTime(0);
+
+                        loading(nextVideo.vPlayer);
+
+                        currentVideo.vJQuery.removeClass('active');
+                        currentVideo.vJQuery.addClass('hide');
+
+                        var currentScene = $('.videos > .active');
+
+                        currentScene.removeClass('active');
+                        currentScene.addClass('hide');
+
+                    
 
                         nextVideo.vJQuery.removeClass('hide');
                         nextVideo.vJQuery.addClass('active');
-
-                        loading(nextVideo.vPlayer);
 
                         scene.removeClass('hide');
                         scene.addClass('active');
@@ -876,7 +879,10 @@ $('.loading').hide();*/
                 if(Number(sClass.slice(5,6)) == 4) startFourthGame();
                 $('.active').addClass('hide');
                 $('.active').removeClass('active');
+                currentVideo.vPlayer.pause();
+                        currentVideo.vPlayer.currentTime(0);
             }
+
             $(this).parent().parent().parent().hide();
             $('.end_box').hide();
         }

@@ -318,6 +318,7 @@ $(window).resize( function(){
 $(document).ready(function() {
 
 
+
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
@@ -336,6 +337,11 @@ var jsp = $('.info_content').jScrollPane({
 });
         $('.info_content').data('jsp').reinitialise();
 
+
+if (supportsLocalStorage()) { 
+    if(parseInt(localStorage["total.money"])!=0) $('.button_continue').show(); 
+}
+    
 
 
    $.each($('video'), function(){

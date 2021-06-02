@@ -90,11 +90,13 @@ function playVideo(video, lastVideo) {
     lastVideo.parent().find('.timer_line').finish();
     lastVideo.parent().find('.timer_line').css('width', 0);
 
+    lastVideo.removeClass('active');
+    lastVideo.addClass('hide');
+
     video.removeClass('hide');
     video.addClass('active');
 
-    lastVideo.removeClass('active');
-    lastVideo.addClass('hide');
+
     $('.choice').fadeOut(0);
     
     nextVideo.play();
@@ -189,14 +191,14 @@ function playScene(scene){
 
 
    //nextVideo.vPlayer.load();
-
-
-    nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
-    nextVideo.vJQuery.addClass('active').trigger('classchanged');
-    //loading(nextVideo.vPlayer);
-
         nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active'); 
+
+    nextVideo.vJQuery.removeClass('hide');
+    nextVideo.vJQuery.addClass('active');
+    //loading(nextVideo.vPlayer);
+
+
 
 //$('.loading').fadeOut(0);
     //if(loading(nextVideo.vPlayer)){
@@ -289,7 +291,7 @@ function startNewGame(){
 }
 
 function loading(video) {
-    //video.load();
+    video.load();
     video.on('canplaythrough', function(){
             if(this.readyState()>3 && this.hasClass('active')){
                     //$('.loading').fadeOut(0);
@@ -390,7 +392,7 @@ var jsp = $('.info_content').jScrollPane({
                 //if(firstVideo.vPlayer.load();
                 firstVideo.vPlayer.play();
                 firstVideo.vJQuery.parent().addClass('active');
-                firstVideo.vJQuery.addClass('active').trigger('classchanged');
+                firstVideo.vJQuery.addClass('active');
                 //if(videos[0].vPlayer.readyState()>3){
                 //$('.loading').fadeOut(0);
                     //console.log(this, this.readyState());
@@ -671,8 +673,8 @@ $('.loading').hide();*/
                     var lastVideo = $('#'+this.id());
                     var lastVideoConteiner = lastVideo.parent();
 
-                    lastVideo.removeClass('active').trigger('classchanged');
-                    lastVideo.addClass('hide').trigger('classchanged');
+                    lastVideo.removeClass('active');
+                    lastVideo.addClass('hide');
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
@@ -707,8 +709,8 @@ $('.loading').hide();*/
                     var lastVideo = $('#'+this.id());
                     var lastVideoConteiner = lastVideo.parent();
 
-                    lastVideo.removeClass('active').trigger('classchanged');
-                    lastVideo.addClass('hide').trigger('classchanged');
+                    lastVideo.removeClass('active');
+                    lastVideo.addClass('hide');
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
@@ -823,8 +825,8 @@ $('.loading').hide();*/
                         currentVideo.vPlayer.pause();
                         currentVideo.vPlayer.currentTime(0);
 
-                        currentVideo.vJQuery.removeClass('active').trigger('classchanged');
-                        currentVideo.vJQuery.addClass('hide').trigger('classchanged');
+                        currentVideo.vJQuery.removeClass('active');
+                        currentVideo.vJQuery.addClass('hide');
 
                         var currentScene = $('.videos > .active');
 
@@ -850,8 +852,8 @@ $('.loading').hide();*/
                         
                     }
 
-                        nextVideo.vJQuery.removeClass('hide').trigger('classchanged');
-                        nextVideo.vJQuery.addClass('active').trigger('classchanged');
+                        nextVideo.vJQuery.removeClass('hide');
+                        nextVideo.vJQuery.addClass('active');
 
                         loading(nextVideo.vPlayer);
 
@@ -866,8 +868,8 @@ $('.loading').hide();*/
                 if(Number(sClass.slice(5,6)) == 2) startSecondGame();
                 if(Number(sClass.slice(5,6)) == 3) startThirdGame();
                 if(Number(sClass.slice(5,6)) == 4) startFourthGame();
-                $('.active').addClass('hide').trigger('classchanged');
-                $('.active').removeClass('active').trigger('classchanged');
+                $('.active').addClass('hide');
+                $('.active').removeClass('active');
             }
             $(this).parent().parent().parent().hide();
             $('.end_box').hide();

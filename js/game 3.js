@@ -66,6 +66,7 @@ function startThirdGame(){
         timer.finish();
         timer.css('width', 0);
         showGameEndWindow('game_3', 'За время игры ты сформулировал целей: '+(currentGoalNumber-1)+' шт.</br><br>В качестве награды ты заработал '+money[3].game+' руб.');
+        if(saveGameState()) console.log(localStorage);
         isPlaying3 = false;
     }, timeForGame*1000);
 

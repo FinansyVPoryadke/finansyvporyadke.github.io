@@ -209,6 +209,7 @@ var theInterval = setInterval(function () {
                             isPlaying = false;
                             clearInterval(theInterval);
                              showGameEndWindow('game_2', 'Закончились все деньги в кошельке.</br></br>За время игры ты купил художественных</br>товаров на '+(buyTotal+money[2].game)+' из 1000 рублей: '+countNecessary+' шт.</br></br>А также других товаров на '+(-money[2].game)+' руб.');
+                             if(saveGameState()) console.log(localStorage);
                         }
                         changeTotalMoney(-purchase.price, true);
                         money[2].game-=purchase.price;
@@ -238,6 +239,7 @@ var theInterval = setInterval(function () {
         isPlaying = false;
             clearInterval(theInterval);
             showGameEndWindow('game_2', 'За время игры ты купил художественных</br>товаров на '+(buyTotal+money[2].game)+' из 1000 рублей: '+countNecessary+' шт.</br></br>А также других товаров на '+(-money[2].game)+' руб.');
+            if(saveGameState()) console.log(localStorage);
         }
     }, timeForGame*1000);
 

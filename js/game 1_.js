@@ -267,6 +267,7 @@ console.log('&&&&', coin.topStart, coin.topEnd, coin.JQ.position().top/coin.JQ.h
         clearInterval(theInterval);
         //cancelAnimationFrame(anim_id);
         showGameEndWindow('game_1', 'За время игры ты собрал '+money[1].game+' руб.</br></br>Положив в конверт монет по 10 рублей: '+numberCollect10+' шт.</br>и купюр по 100 рублей: '+numberCollect100+' шт.');
+        if(saveGameState()) console.log(localStorage);
     }, timeForGame*1000);
 
 

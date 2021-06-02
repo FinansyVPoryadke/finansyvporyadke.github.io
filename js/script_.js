@@ -479,6 +479,7 @@ $('.loading').hide();*/
         var video = document.getElementById(player.id()+'_html5_api');
         if(videos.indexOf(videoData) == 0){
         video.load();
+        video.pause();
         video.addEventListener('progress', function(){
             if(this.buffered.end(0) > 0.9*this.duration)
             {

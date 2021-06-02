@@ -219,6 +219,7 @@ function startFourthGame(){
         isPlaying4 = false;
         $('.notes_all > div').off('click');
         showGameEndWindow('game_4', 'За время игры ты зафиксировал</br>доходов: '+numberCollectIncome+' шт. и расходов: '+numberCollectCost+' шт.</br></br>В качестве награды ты заработал '+money[4].game+' руб.');
+        if(saveGameState()) console.log(localStorage);
     }, timeForGame*1000);
 
 

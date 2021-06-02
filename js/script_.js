@@ -1,7 +1,6 @@
 var videoActiveJS, choice, autoChoice;
-var videojsPlayers;
 var videos;
-var fps = 30;
+
 var timeForChoice, timeForGame;
 
 var money = [
@@ -324,7 +323,6 @@ $(document).ready(function() {
     timeForChoice = 20;
     timeForGame = 10;
 
-    videojsPlayers = [];
     videos = [];
 
 var jsp = $('.info_content').jScrollPane({
@@ -823,14 +821,14 @@ $('.loading').hide();*/
             var sClass = $(this).attr('class').split(' ')[0];
             var currentVideo = findVideoById($('.active > .active').attr('id'));
 
-                            if(currentVideo){
+                    if(currentVideo){
                     if(currentVideo.scene == sClass){
                         $(this).parent().parent().parent().hide();
                         currentVideo.vPlayer.play();
-                    } else{
-
-                        
-                    }
+                    } 
+                }
+                else{
+                    currentVideo = videos[videos.length-1];
                 }
             if(sClass.slice(0,5) == 'scene'){
                 

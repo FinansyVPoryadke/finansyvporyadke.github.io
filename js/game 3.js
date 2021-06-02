@@ -1,26 +1,6 @@
 //Игра - сформулируй цели
 var countGoals = 20, numberClicks = 10, prizeGoal = 50;
 var goals = [];
-var notesData = [
-[{text: 'Набор карандашей', amount: -100},
-    {text: 'Мороженое и сок', amount: -100},
-    {text: 'Шоколадка', amount: -50},
-    {text: 'Стикеры', amount: -50},
-    {text: 'Перекусы в школе', amount: -200}]
-,
-    [{text: 'Карманные деньги', amount: 250},
-    {text: 'От бабушки', amount: 100},
-    {text: 'На школьные обеды', amount: 300},
-    {text: 'За помощь по дому', amount: 150}]
-];
-
-var cellsData = [
-    {top: 0, left: 130},
-    {top: 0, left: 690},
-    {top: 0, left: 1250},
-    {top: 340, left: 130},
-    {top: 340, left: 690},
-    {top: 340, left: 1250}];
 
 function createGoal(number){
     var goal = {

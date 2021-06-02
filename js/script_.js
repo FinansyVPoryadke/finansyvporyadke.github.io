@@ -94,9 +94,9 @@ function playVideo(video, lastVideo) {
     video.removeClass('hide').trigger('classchanged');
     video.addClass('active').trigger('classchanged');
 
-    //if(loading(nextVideo)){
-       // nextVideo.play();
-    //}
+    
+    nextVideo.play();
+    
 }
 
 function changeTotalMoney(amount, isShow){

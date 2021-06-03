@@ -321,7 +321,7 @@ $(document).ready(function() {
     choice = false;
     autoChoice = false;
     timeForChoice = 20;
-    timeForGame = 10;
+    timeForGame = 30;
 
     videos = [];
 
@@ -467,8 +467,6 @@ $('.loading').hide();*/
                 }
             }
         });
-
-
 
 
     $.each(videos, function () {

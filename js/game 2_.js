@@ -185,6 +185,7 @@ function startSecondGame(){
     purchases = [];
     purchaseSpeed = 0.2;
     $('.purchases_box').empty();
+    $('.buy_total').html(buyTotal+'.00');
 
     var anim_id;
 var theInterval = setInterval(function () {

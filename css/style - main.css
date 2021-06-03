@@ -336,7 +336,7 @@ border-radius: 2.6vw;
 }
 
 .game_2 .timer_line{
-  background: var(--yellow);
+  background: var(--gray);
 }
 
 .game_3 .timer_line{

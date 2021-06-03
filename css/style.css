@@ -18,6 +18,7 @@
   --gray: #CCCCCC;
   --light-gray: #f2f2f2;
 
+  --dark-yellow: #FFBC2E;
   --light-yellow: #FFE299;
   --yellow: #FFD24C;
 
@@ -163,18 +164,14 @@ body::backdrop {
 }
 
 .game_2 .game_title{
-    color: var(--dark-red);
+    color: var(--dark-gray);
     margin-bottom: 0.5vw;
 }
 
-.game_2 span{
-  color: var(--red);
-  background-color: var(--dark-gray);
-  padding: 0 0.5vw;
-}
+
 
 .game_2 {
-      background-color: var(--light-yellow);
+      background-color: var(--light-gray);
 }
 
 .game_3 .game_title{

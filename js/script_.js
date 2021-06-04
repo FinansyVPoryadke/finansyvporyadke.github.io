@@ -68,7 +68,10 @@ function videojsCreate(video){
             'fill': true,
             'responsive': true
         
-      }, 'fluid': true
+      }, 'fluid': true,
+      userActions: {
+        'doubleClick': false
+        }
     });
     videoj.dimensions(window.width, window.height);
 
@@ -806,29 +809,26 @@ $('.loading').hide();*/
     });
 
     $('.button_scenes').click(function() {
-        var button = $(this);
-        clickAnimation(button);
-        setTimeout(function(){
+
+
             $('.navigation_box').fadeIn(0);
             var currentVideo = findVideoById($('.active > .active').attr('id'));
             if(currentVideo){
                 
                 currentVideo.vPlayer.pause();
             }
-        }, timeClickAnimation);
+
     });
 
     $('.button_info').click(function() {
-        var button = $(this);
-        clickAnimation(button);
-        setTimeout(function(){
+
             $('.info_box').fadeIn(0);
             $('.info_content').data('jsp').reinitialise();
             var currentVideo = findVideoById($('.active > .active').attr('id'));
             if(currentVideo){
                 currentVideo.vPlayer.pause();
             }
-        }, timeClickAnimation);
+
     });
 
     $('.close').click(function() {

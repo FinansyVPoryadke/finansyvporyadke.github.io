@@ -885,25 +885,31 @@ overflow: hidden;
   display: flex;
     align-items: center;
     justify-content: center;
-  width: 6.77vw;
-  height: 6.77vw;
+  /*width: 6.77vw;
+  height: 6.77vw;*/
+  width: 5.21vw;
+  height: 5.21vw;
   position: absolute;
   bottom: 0;
   right: 0;
-  background: var(--white);
+  /*background: var(--white);*/
+  background: rgba(255,255,255, 0.5);
   cursor: pointer;
   color: var(--blue);
-  border-radius: 5.21vw 5.21vw 0 5.21vw;
+  /*border-radius: 5.21vw 5.21vw 0 5.21vw;*/
+  border-radius: 5.21vw;
   z-index: 4;
   opacity: 1;
   transition-duration: 1s;
   transition-property: opacity;
   transition-timing-function: linear;
+  margin: 0.52vw 1.56vw;
 }
 
 .button_info{
   left: 0;
-    border-radius: 5.21vw 5.21vw 5.21vw 0;
+    /*border-radius: 5.21vw 5.21vw 5.21vw 0;*/
+    border-radius: 5.21vw;
 }
 
 .button_scenes img, .button_info img{

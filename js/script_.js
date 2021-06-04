@@ -337,7 +337,14 @@ var jsp = $('.info_content').jScrollPane({
 
 
 if (supportsLocalStorage()) { 
-    if(parseInt(localStorage["total.money"])!=0) $('.button_continue').show(); 
+    //localStorage.clear();
+    console.log(localStorage);
+    if(localStorage.length==0) {
+        $('.button_continue').hide(); 
+    }
+    if(localStorage.length>0 && parseInt(localStorage["total.money"])!=0) {
+        $('.button_continue').show(); 
+    }
 }
     
 

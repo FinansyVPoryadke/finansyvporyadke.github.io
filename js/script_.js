@@ -340,7 +340,7 @@ function clickAnimation(button){
 
 $(document).ready(function() {
 
-$(window).on('load', function() {
+$('.start_box').ready(function() {
     $('.start_box_prev').fadeOut(100);
 });
 

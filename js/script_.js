@@ -313,6 +313,17 @@ var timeInterval = 100;
 $(window).resize( function(){
     $('.info_content').data('jsp').reinitialise();
 });
+/*
+$(document).ready(function() {
+    //document.addEventListener('fullscreenchange webkitfullscreenchange', function() {
+        window.addEventListener('fullscreenchange', function(){
+        console.log("Change");
+        $('body').on('click', function(){
+            fullScreen(document.documentElement);
+        })
+        
+    });
+});*/
 
 $(document).ready(function() {
 

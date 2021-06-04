@@ -29,7 +29,7 @@ function createCoin(){
     coin.price = coinsData[coin.is10].price;
     coin.url = coinsData[coin.is10].url;
     coin.JQ = $('<div class="coin"><img src="'+coin.url+'"></div>');
-    coinSpeed = countCoins*betweenCoins*2.5;
+    coinSpeed = countCoins*betweenCoins*2.5*100;
     coin.speed = coinSpeed;
     if(!coin.is10) coin.JQ.addClass('money_100');
 
@@ -79,12 +79,12 @@ coin.JQ.addClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topStart+'%)');
 
        setTimeout(function(){
-                    coin.topEnd = coin.topStart + coin.speed*coin.JQ.height();
+                    coin.topEnd = coin.topStart + coin.speed;
     
     coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
     coin.JQ.removeClass('no_transition');
     //console.log(coin)
-    console.log(coin.topStart, coin.topEnd);
+ 
 },100);
 
     return coin;
@@ -111,7 +111,6 @@ do{
             //console.log(countOfRecreate);
               if(countOfRecreate%countCoins == 1) {
         //coin.topStart =  prev.topEnd - (coin.JQ.height()*betweenCoins)/coin.width*100;
-    console.log(coin.topStart);
        // coin.topStart = coin.JQ.position().top/coin.JQ.width()*100 - coin.topStart + prev.topStart - (coin.height*betweenCoins)/coin.width*100;
         coin.topStart = prev.topStart - (coin.height*betweenCoins)/coin.width*100;
 
@@ -135,11 +134,11 @@ coin.JQ.addClass('no_transition');
     coin.JQ.css('left', coin.left+'%');
 
        // setTimeout(function(){
-                    coin.topEnd = coin.topStart + coin.speed*coin.JQ.height();
+                    coin.topEnd = coin.topStart + coin.speed;
     coin.JQ.removeClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
     //console.log(coin)
-    console.log(coin.topStart, coin.topEnd);
+
 
     return coin;
 }
@@ -205,7 +204,7 @@ function startFirstGame(){
             coins.push(createCoin());
         
     }
-    console.log(coins);
+
 
     var theInterval = setInterval(function(){
     $.each(coins, function(){

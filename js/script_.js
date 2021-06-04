@@ -1,7 +1,7 @@
 var videoActiveJS, choice, autoChoice;
 var videos;
 
-var timeForChoice, timeForGame;
+var timeForChoice, timeForGame, timeClickAnimation = 400;
 
 var money = [
 {scene: 1, amount: 200, hasChange: false, isCurrent: true, isFirstPlayScene: true, isLoaded: false},
@@ -53,7 +53,8 @@ function findVideoBySceneAndType(scene, type){
 
 function videojsCreate(video){
     var videoj = videojs(video, {
-      "autoplay": false,
+      'autoplay': false,
+      'bigPlayButton': false,
       controlBar: {
             'playToggle': true,
             'volumeMenuButton': { 'inline': false },
@@ -67,7 +68,7 @@ function videojsCreate(video){
             'fill': true,
             'responsive': true
         
-      }, "fluid": true
+      }, 'fluid': true
     });
     videoj.dimensions(window.width, window.height);
 
@@ -325,6 +326,16 @@ $(document).ready(function() {
     });
 });*/
 
+function clickAnimation(button){
+    /*var shadow = button.css('box-shadow').split(' ');
+    console.log(shadow, button)
+    button.css('box-shadow', shadow[0]+' 0 '+shadow[2]+' '+shadow[3]);*/
+    button.addClass('click');
+    setTimeout(function(){
+        button.removeClass('click');
+    }, timeClickAnimation/2);
+}
+
 $(document).ready(function() {
 
 
@@ -357,8 +368,6 @@ if (supportsLocalStorage()) {
         $('.button_continue').show(); 
     }
 }
-    
-
 
    $.each($('video'), function(){
         $(this).addClass('video-js vjs-default-skin');
@@ -368,16 +377,21 @@ if (supportsLocalStorage()) {
     });
 
     $('.ch_1, .ch_2').click(function() {
-        choice = true;
+        var button = $(this);
+        clickAnimation(button.find('.ch_text'));
 
-        var id = '.'+ $(this).attr('class').replace(/ch/,'v');
-        console.log(id);
-        var video = $(this).parent().parent().parent().find(id);
-        var lastVideo = $(this).parent().parent().parent().find('.v_main');
-        playVideo(video, lastVideo);
+        setTimeout(function(){
+            choice = true;
 
-        $('.button_scenes, .button_info').show();
-        //$('.loading').fadeIn(0);
+            var id = '.'+ button.attr('class').replace(/ch/,'v');
+            console.log(id);
+            var video = button.parent().parent().parent().find(id);
+            var lastVideo = button.parent().parent().parent().find('.v_main');
+            playVideo(video, lastVideo);
+
+            $('.button_scenes, .button_info').show();
+        }, timeClickAnimation);
+
     });
 
     $('.info_titles > div').click(function(){
@@ -392,61 +406,36 @@ if (supportsLocalStorage()) {
             $('.info_content').data('jsp').scrollTo(0, 0);
 
         }
-    })
-
-
-
+    });
 
 
     $('.button_start').click(function(){
-        fullScreen(document.documentElement);
-        //document.onkeydown = goFullscreen;
-        money = startNewGame();
-        console.log(money)
-                $(this).parent().fadeOut();
-        //var interval = setInterval(function(){
-
-            //var isLoaded = loading(videos[0].vPlayer);
-            //console.log(isLoaded);
-            //if(isLoaded){
-
-                var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
-                //if(firstVideo.vPlayer.load();
-                firstVideo.vPlayer.play();
-                firstVideo.vJQuery.parent().addClass('active');
-                firstVideo.vJQuery.addClass('active');
-                //if(videos[0].vPlayer.readyState()>3){
-                //$('.loading').fadeOut(0);
-                    //console.log(this, this.readyState());
-                    //videos[0].vPlayer.play();
-                //videos[1].vPlayer.load();
-            
-                //}
-                if(saveGameState()) console.log(localStorage);
+        var button = $(this);
+        clickAnimation(button);
+        setTimeout(function(){
+            fullScreen(document.documentElement);
+            money = startNewGame();
+            console.log(money, button)
+            button.parent().fadeOut();
+            var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
+            firstVideo.vPlayer.play();
+            firstVideo.vJQuery.parent().addClass('active');
+            firstVideo.vJQuery.addClass('active');
+            if(saveGameState()) console.log(localStorage);
+        }, timeClickAnimation);
 
     });
 
     $('.button_continue').click(function(){
-        //fullScreen(document.documentElement);
-        //document.onkeydown = goFullscreen;
-        money = resumeGame();
-        console.log(money)
-                $(this).parent().fadeOut();
-        //var interval = setInterval(function(){
-
-            //var isLoaded = loading(videos[0].vPlayer);
-            //console.log(isLoaded);
-            //if(isLoaded){
-
-
-                //if(videos[0].vPlayer.readyState()>3){
-               // $('.loading').fadeOut(0);
-                    //console.log(this, this.readyState());
-                    //videos[0].vPlayer.play();
-                //videos[1].vPlayer.load();
-            
-                //}
-                if(saveGameState()) console.log(localStorage);
+        var button = $(this);
+        clickAnimation(button);
+        setTimeout(function(){
+            fullScreen(document.documentElement);
+            money = resumeGame();
+            console.log(money)
+            button.parent().fadeOut();
+            if(saveGameState()) console.log(localStorage);
+        }, timeClickAnimation);
 
     });
 
@@ -765,63 +754,77 @@ $('.loading').hide();*/
 
     
     $('.button_game_again').click(function(){
-        var gameEndID = $('.game_end').attr('id');
-        if(gameEndID == 'game_1') {
-            startFirstGame();
-        }
-        else if(gameEndID == 'game_2') {
-            startSecondGame();
-        }
-        else if(gameEndID == 'game_3') {
-            startThirdGame();
-        }
-        else if(gameEndID == 'game_4') {
-            startFourthGame();
-        }
-        $('.game_end').fadeOut(0);
+        var button = $(this);
+        clickAnimation(button);
+        setTimeout(function(){
+            var gameEndID = $('.game_end').attr('id');
+            if(gameEndID == 'game_1') {
+                startFirstGame();
+            }
+            else if(gameEndID == 'game_2') {
+                startSecondGame();
+            }
+            else if(gameEndID == 'game_3') {
+                startThirdGame();
+            }
+            else if(gameEndID == 'game_4') {
+                startFourthGame();
+            }
+            $('.game_end').fadeOut(0);
+        },timeClickAnimation);
     });
 
     $('.button_game_continue').click(function(){
-           //$('.loading').fadeIn(0);
-        var gameEndID = $('.game_end').attr('id');
+        var button = $(this);
+        clickAnimation(button);
+        setTimeout(function(){
+            var gameEndID = $('.game_end').attr('id');
 
-        if(gameEndID == 'game_1') {
+            if(gameEndID == 'game_1') {
 
-            $('body > .game_1').fadeOut(0);
-            playScene('scene_3');
-        }
-        else if(gameEndID == 'game_2') {
-            $('body > .game_2').fadeOut(0);
-            playScene('scene_4');
-        }
-        else if(gameEndID == 'game_3') {
-            $('body > .game_3').fadeOut(0);
-            playScene('scene_5');
-        }
-        else if(gameEndID == 'game_4') {
-            $('body > .game_4').fadeOut(0);
-            playScene('scene_6');
-        }
-        $('.game_end').fadeOut(0);
+                $('body > .game_1').fadeOut(0);
+                playScene('scene_3');
+            }
+            else if(gameEndID == 'game_2') {
+                $('body > .game_2').fadeOut(0);
+                playScene('scene_4');
+            }
+            else if(gameEndID == 'game_3') {
+                $('body > .game_3').fadeOut(0);
+                playScene('scene_5');
+            }
+            else if(gameEndID == 'game_4') {
+                $('body > .game_4').fadeOut(0);
+                playScene('scene_6');
+            }
+            $('.game_end').fadeOut(0);
+        }, timeClickAnimation);
     });
 
     $('.button_scenes').click(function() {
-        $('.navigation_box').fadeIn(0);
-        var currentVideo = findVideoById($('.active > .active').attr('id'));
-        if(currentVideo){
-            
-            currentVideo.vPlayer.pause();
-        }
+        var button = $(this);
+        clickAnimation(button);
+        setTimeout(function(){
+            $('.navigation_box').fadeIn(0);
+            var currentVideo = findVideoById($('.active > .active').attr('id'));
+            if(currentVideo){
+                
+                currentVideo.vPlayer.pause();
+            }
+        }, timeClickAnimation);
     });
 
     $('.button_info').click(function() {
-
-        $('.info_box').fadeIn(0);
-        $('.info_content').data('jsp').reinitialise();
-        var currentVideo = findVideoById($('.active > .active').attr('id'));
-        if(currentVideo){
-            currentVideo.vPlayer.pause();
-        }
+        var button = $(this);
+        clickAnimation(button);
+        setTimeout(function(){
+            $('.info_box').fadeIn(0);
+            $('.info_content').data('jsp').reinitialise();
+            var currentVideo = findVideoById($('.active > .active').attr('id'));
+            if(currentVideo){
+                currentVideo.vPlayer.pause();
+            }
+        }, timeClickAnimation);
     });
 
     $('.close').click(function() {
@@ -836,73 +839,76 @@ $('.loading').hide();*/
 
     $('.navigation > div > div').click(function() {
         if(!$(this).hasClass('lock')){
+            var button = $(this);
+            clickAnimation(button);
+            setTimeout(function(){
+                choice = false;
+                var sClass = button.attr('class').split(' ')[0];
+                var currentVideo = findVideoById($('.active > .active').attr('id'));
 
-            choice = false;
-            var sClass = $(this).attr('class').split(' ')[0];
-            var currentVideo = findVideoById($('.active > .active').attr('id'));
-
-                    if(currentVideo){
-                    if(currentVideo.scene == sClass){
-                        $(this).parent().parent().parent().hide();
-                        currentVideo.vPlayer.play();
-                    } 
-                }
-                else{
-                    currentVideo = videos[videos.length-1];
-                }
-            if(sClass.slice(0,5) == 'scene'){
-                
-                var scene = $('.videos').find('.'+ sClass);
-                if(currentVideo && currentVideo.scene != sClass){
-
-                    //$('.loading').fadeIn(0);
-                    var nextVideo;
-                    if(sClass != 'scene_6') {
-                        nextVideo = findVideoBySceneAndType(sClass, 'v_main');
-                    } else{
-                        if(totalMoney>5000) nextVideo = findVideoBySceneAndType(sClass, 'v_1');
-                        else if(totalMoney>2000) nextVideo = findVideoBySceneAndType(sClass, 'v_2');
-                        else if(totalMoney>400) nextVideo = findVideoBySceneAndType(sClass, 'v_3');
-                        else nextVideo = findVideoBySceneAndType(sClass, 'v_4');
-                        
+                        if(currentVideo){
+                        if(currentVideo.scene == sClass){
+                            button.parent().parent().parent().hide();
+                            currentVideo.vPlayer.play();
+                        } 
                     }
-                    currentVideo.vPlayer.pause();
-                        currentVideo.vPlayer.currentTime(0);
-
-                        loading(nextVideo.vPlayer);
-
-                        currentVideo.vJQuery.removeClass('active');
-                        currentVideo.vJQuery.addClass('hide');
-
-                        var currentScene = $('.videos > .active');
-
-                        currentScene.removeClass('active');
-                        currentScene.addClass('hide');
-
+                    else{
+                        currentVideo = videos[videos.length-1];
+                    }
+                if(sClass.slice(0,5) == 'scene'){
                     
+                    var scene = $('.videos').find('.'+ sClass);
+                    if(currentVideo && currentVideo.scene != sClass){
 
-                        nextVideo.vJQuery.removeClass('hide');
-                        nextVideo.vJQuery.addClass('active');
+                        //$('.loading').fadeIn(0);
+                        var nextVideo;
+                        if(sClass != 'scene_6') {
+                            nextVideo = findVideoBySceneAndType(sClass, 'v_main');
+                        } else{
+                            if(totalMoney>5000) nextVideo = findVideoBySceneAndType(sClass, 'v_1');
+                            else if(totalMoney>2000) nextVideo = findVideoBySceneAndType(sClass, 'v_2');
+                            else if(totalMoney>400) nextVideo = findVideoBySceneAndType(sClass, 'v_3');
+                            else nextVideo = findVideoBySceneAndType(sClass, 'v_4');
+                            
+                        }
+                        currentVideo.vPlayer.pause();
+                            currentVideo.vPlayer.currentTime(0);
 
-                        scene.removeClass('hide');
-                        scene.addClass('active');
+                            loading(nextVideo.vPlayer);
 
-                            //nextVideo.vPlayer.play();
+                            currentVideo.vJQuery.removeClass('active');
+                            currentVideo.vJQuery.addClass('hide');
+
+                            var currentScene = $('.videos > .active');
+
+                            currentScene.removeClass('active');
+                            currentScene.addClass('hide');
+
+                        
+
+                            nextVideo.vJQuery.removeClass('hide');
+                            nextVideo.vJQuery.addClass('active');
+
+                            scene.removeClass('hide');
+                            scene.addClass('active');
+
+                                //nextVideo.vPlayer.play();
+                    }
                 }
-            }
-            else if(sClass.slice(0,4) == 'game'){
-                if(Number(sClass.slice(5,6)) == 1) startFirstGame();
-                if(Number(sClass.slice(5,6)) == 2) startSecondGame();
-                if(Number(sClass.slice(5,6)) == 3) startThirdGame();
-                if(Number(sClass.slice(5,6)) == 4) startFourthGame();
-                $('.active').addClass('hide');
-                $('.active').removeClass('active');
-                currentVideo.vPlayer.pause();
-                        currentVideo.vPlayer.currentTime(0);
-            }
+                else if(sClass.slice(0,4) == 'game'){
+                    if(Number(sClass.slice(5,6)) == 1) startFirstGame();
+                    if(Number(sClass.slice(5,6)) == 2) startSecondGame();
+                    if(Number(sClass.slice(5,6)) == 3) startThirdGame();
+                    if(Number(sClass.slice(5,6)) == 4) startFourthGame();
+                    $('.active').addClass('hide');
+                    $('.active').removeClass('active');
+                    currentVideo.vPlayer.pause();
+                            currentVideo.vPlayer.currentTime(0);
+                }
 
-            $(this).parent().parent().parent().hide();
-            $('.end_box').hide();
+                button.parent().parent().parent().hide();
+                $('.end_box').hide();
+            }, timeClickAnimation);
         }
         
     });

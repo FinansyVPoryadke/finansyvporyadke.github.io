@@ -7,20 +7,23 @@
   --dark-blue: #072344;
   --blue: #0D3B7A;
   --light-blue: #99DBFF;
+  --light-blue-shadow: #A3DDFF;
 
   --dark-red: #CC553D;
   --red: #ED5B41;
   --light-red: #F7CDCD;
 
   --white: #fff;
+  --white-shadow: #EEEEEE;
 
   --dark-gray: #373737;
   --gray: #CCCCCC;
-  --light-gray: #f2f2f2;
+  --light-gray: #EDEDED;
 
   --dark-yellow: #FFBC2E;
   --light-yellow: #FFE299;
   --yellow: #FFD24C;
+  --light-yellow-shadow: #FFDA87;
 
   --light-green: #79C29E;
   --green: #2C7550;
@@ -124,7 +127,7 @@ body::backdrop {
 
   transform: translateY(0);
 
-        transition-duration: 15s;
+        transition-duration: 20s;
       transition-property: transform;
       transition-timing-function: linear;
 }
@@ -428,7 +431,12 @@ body::backdrop {
   background-color: var(--blue);
   position: relative;
   bottom: 0;
-    border-radius: 2.6vw;
+  border-radius: 2.6vw;
+  cursor: pointer;
+
+  box-shadow: 0 0.52vw 0 var(--light-blue-shadow);
+  transition-duration: 0.1s;
+  transition-property: box-shadow, transform;
 }
 
 .button_formulate img{
@@ -504,7 +512,7 @@ body::backdrop {
   border-radius: 2.6vw;
   color: var(--white);
   font-family: Montserrat-Medium;
-  font-size: 0.75em;
+  font-size: 0.85em;
   line-height: 0.75em;
   padding: 3vw 2vw;
 }
@@ -519,7 +527,7 @@ body::backdrop {
   position: absolute;
   bottom: 0;
     font-family: Montserrat-SemiBold;
-  font-size: 1em;
+  font-size: 1.35em;
   line-height: 0.75em;
     display: flex;
   justify-content: center;

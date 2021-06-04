@@ -68,6 +68,7 @@ body{
     font-size: 1.56vw;
   line-height: 1.5em;
   text-align: center;
+  -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none; 
@@ -144,11 +145,18 @@ div {
   justify-content: center;
   margin-top: 1.04vw;
   cursor: pointer;
+  box-shadow: 0 0.52vw 0 var(--light-yellow-shadow);
+
+  transition-duration: 0.2s;
+  transition-property: box-shadow, transform;
 }
 
 .button_continue{
   background-color: var(--yellow);
+  margin-top: 2.08vw;
 }
+
+
 
 .img_bg{
   width: 100%;
@@ -288,6 +296,8 @@ b.spend{
     border: 0.16vw solid var(--white);
     border-radius: 2.6vw;
     overflow: hidden;
+
+    box-shadow: 0 0.52vw 0 var(--light-blue-shadow);
 }
 
 
@@ -309,8 +319,20 @@ b.spend{
   line-height: 1.25em;
   border-radius: 2.6vw;
   padding: 1.11vh 1.51vw;
+  box-shadow: 0 0.52vw 0 var(--light-blue-shadow);
+
+  transition-duration: 0.2s;
+  transition-property: box-shadow, transform;
 }
 
+.click{
+  box-shadow: 0 0 0 var(--light-yellow-shadow);
+  transform: scale(0.9);
+}
+
+.ch_text.click, .button_formulate.click{
+  box-shadow: 0 0 0 var(--light-blue-shadow);
+}
 
 .timer {
   width: 42.71%;
@@ -354,7 +376,7 @@ border-radius: 2.6vw;
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-color: var(--white);
+  background-color: var(--light-gray);
   mix-blend-mode: soft-light;
 }
 
@@ -651,6 +673,9 @@ border-radius: 2.6vw;
   width: 5.21vw;
   height: 5.21vw;
   cursor: pointer;
+
+  transition-duration: 0.2s;
+  transition-property: transform;
 }
 
 .button_game_again img{
@@ -672,6 +697,9 @@ border-radius: 2.6vw;
   justify-content: center;
   position: relative;
   bottom: 0;
+
+  transition-duration: 0.2s;
+  transition-property: transform;
 }
 
 
@@ -734,6 +762,16 @@ border-radius: 2.6vw;
   font-family: Montserrat-SemiBold;
   font-size: 1.2em;
   line-height: 1.2em;
+
+  box-shadow: 0 0.52vw 0 var(--white-shadow);
+
+  transition-duration: 0.2s;
+  transition-property: box-shadow;
+}
+
+.navigation_part div.click{
+  box-shadow: 0 0 0 var(--white-shadow);
+  transform: scale(1);
 }
 
 .navigation_part div p{
@@ -751,6 +789,8 @@ border-radius: 2.6vw;
   border-radius: 0;
   background-color: var(--light-blue);
   z-index: 1;
+
+  box-shadow: 0 0 0 var(--white-shadow);
 }
 
 .navigation .lock{
@@ -904,6 +944,9 @@ overflow: hidden;
   transition-property: opacity;
   transition-timing-function: linear;
   margin: 0.52vw 1.56vw;
+
+  transition-duration: 0.2s;
+  transition-property: transform;
 }
 
 .button_info{

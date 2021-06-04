@@ -65,7 +65,7 @@ function startThirdGame(){
     setTimeout(function(){
         timer.finish();
         timer.css('width', 0);
-        showGameEndWindow('game_3', 'За время игры ты сформулировал целей: '+(currentGoalNumber-1)+' шт.</br><br>В качестве награды ты заработал '+money[3].game+' руб.');
+        showGameEndWindow('game_3', 'За время игры ты сформулировал</br>целей: '+(currentGoalNumber-1)+' шт.</br><br>В качестве награды ты заработал '+money[3].game+' руб.');
         if(saveGameState()) console.log(localStorage);
         isPlaying3 = false;
     }, timeForGame*1000);
@@ -75,6 +75,12 @@ function startThirdGame(){
 
     $('.button_formulate').click(function(){
         if(isPlaying3){
+            var button = $(this);
+        button.addClass('click');
+    setTimeout(function(){
+        button.removeClass('click');
+    }, timeClickAnimation/4);
+        setTimeout(function(){
         var currentGoal = goals[currentGoalNumber-1];
         currentGoal.JQ.removeClass('next_goal');
         currentGoal.strokeDashoffset -= 150/numberClicks;
@@ -92,7 +98,9 @@ function startThirdGame(){
             $('.goals').css('transform','translateX('+left+'vw)');
             money[3].game += 50;
             changeTotalMoney(50, true);
+
         }
+    },timeClickAnimation/2);
     }else{
         currentGoalNumber = 1;
         return;

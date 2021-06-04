@@ -336,9 +336,13 @@ function clickAnimation(button){
     }, timeClickAnimation/2);
 }
 
+
+
 $(document).ready(function() {
 
-
+$(window).on('load', function() {
+    $('.start_box_prev').fadeOut(100);
+});
 
     choice = false;
     autoChoice = false;

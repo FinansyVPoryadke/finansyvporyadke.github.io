@@ -1,62 +1,4 @@
-@font-face{
 
-font-family: Montserrat-Medium;
-
-src: url('fonts/Montserrat-Medium.ttf') format('truetype');
-
-font-weight: normal;
-
-font-style: normal;
-
-}
-
-@font-face{
-
-font-family: Montserrat-SemiBold;
-
-src: url('fonts/Montserrat-SemiBold.ttf') format('truetype');
-
-font-weight: normal;
-
-font-style: normal;
-
-}
-
-@font-face{
-
-font-family: Montserrat-Bold;
-
-src: url('fonts/Montserrat-Bold.ttf') format('truetype');
-
-font-weight: normal;
-
-font-style: normal;
-
-}
-
-@font-face{
-
-font-family: Montserrat-Black;
-
-src: url('fonts/Montserrat-Black.ttf') format('truetype');
-
-font-weight: normal;
-
-font-style: normal;
-
-}
-
-@font-face{
-
-font-family: Montserrat-Regular;
-
-src: url('fonts/Montserrat-Regular.ttf') format('truetype');
-
-font-weight: normal;
-
-font-style: normal;
-
-}
 
 
 body{
@@ -85,7 +27,7 @@ div {
   z-index: 2;
 }
 
-.start_box, .end_box{
+.start_box, .end_box, .start_box_prev{
   width: 100%;
   height: 100%;
   background-color: var(--light-yellow);

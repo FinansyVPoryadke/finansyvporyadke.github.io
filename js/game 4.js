@@ -131,7 +131,6 @@ function disappearNote(note){
         
         //note.JQ.removeClass('disappear_animation');
         var index = notes.indexOf(note);
-        console.log(index);
         if(index != -1){
         var newNote = recreateNote(note);
         notes[index] = newNote;
@@ -177,7 +176,6 @@ function onClickNote(noteJQ) {
             var note = findObjByJQ(notes, noteJQ);
 if(!note.isDisappeared){
     noteJQ.off('click');
-        console.log("click", note.number);
         disappearNote(note);
             
         if(note.isIncome) numberCollectIncome++;
@@ -226,9 +224,7 @@ function startFourthGame(){
     for(i = 0; i<countNotes; i++){
         $('.notes_all').append($('<div class="note"><div class="note_text"></div><div class="note_amount"></div></div>'));
         notes.push(createNote(i+1));
-          console.log(notes[i]);
     }
-    console.log(notes);
 
     $.each(notes, function(){
         var note = this;

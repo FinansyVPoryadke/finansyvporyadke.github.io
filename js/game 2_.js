@@ -143,7 +143,6 @@ setTimeout(function(){
     purchase.leftEnd = purchase.left + purchaseSpeed;
     purchase.JQ.removeClass('no_transition');
     purchase.JQ.css('transform', 'translateX('+purchase.leftEnd+'%)');
-    console.log(purchase.left, purchase.leftEnd, purchaseSpeed);
 },100);
     return purchase;
 }

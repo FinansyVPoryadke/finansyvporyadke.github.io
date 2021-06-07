@@ -1,7 +1,7 @@
 var videoActiveJS, choice, autoChoice;
 var videos;
 
-var timeForChoice, timeForGame, timeClickAnimation = 400;
+var timeForChoice, timeForGame, timeClickAnimation = 400, volume;
 
 var money = [
 {scene: 1, amount: 200, hasChange: false, isCurrent: true, isFirstPlayScene: true, isLoaded: false},
@@ -313,10 +313,30 @@ function loading(video) {
 }
 
 var timeInterval = 100;
+var curVideo;
+
+function resize(){
+
 
 $(window).resize( function(){
+    
     $('.info_content').data('jsp').reinitialise();
+    if($(window).width()<$(window).height()){
+        if(!curVideo && findVideoByJquery($('.video-js.active'))) {
+            curVideo = findVideoByJquery($('.video-js.active')).vPlayer;
+        console.log(curVideo, findVideoByJquery($('.video-js.active')).vPlayer)
+        $('.flip_screen').fadeIn(0);
+        curVideo.pause();
+        }
+    } else{
+        $('.flip_screen').fadeOut(0);
+        if(curVideo && curVideo.hasClass('active')) {
+            curVideo.play();
+            curVideo = 0;
+        }
+    }
 });
+}
 /*
 $(document).ready(function() {
     //document.addEventListener('fullscreenchange webkitfullscreenchange', function() {
@@ -342,10 +362,10 @@ function clickAnimation(button){
 
 
 $(document).ready(function() {
-
-$('.start_box').ready(function() {
-    $('.start_box_prev').fadeOut(100);
-});
+    resize();
+    $('.start_box').ready(function() {
+        $('.start_box_prev').fadeOut(100);
+    });
 
     choice = false;
     autoChoice = false;
@@ -354,27 +374,27 @@ $('.start_box').ready(function() {
 
     videos = [];
 
-var jsp = $('.info_content').jScrollPane({
-            showArrows: false,
-            maintainPosition: false,
-            verticalGutter: 10,
-            mouseWheelSpeed: 5,
-            horizontalGutter: 0,
+    var jsp = $('.info_content').jScrollPane({
+                showArrows: false,
+                maintainPosition: false,
+                verticalGutter: 10,
+                mouseWheelSpeed: 5,
+                horizontalGutter: 0,
 
-});
+    });
         $('.info_content').data('jsp').reinitialise();
 
 
-if (supportsLocalStorage()) { 
-    //localStorage.clear();
-    console.log(localStorage);
-    if(localStorage.length==0) {
-        $('.button_continue').hide(); 
+    if (supportsLocalStorage()) { 
+        //localStorage.clear();
+        console.log(localStorage);
+        if(localStorage.length==0) {
+            $('.button_continue').hide(); 
+        }
+        if(localStorage.length>0 && parseInt(localStorage["total.money"])!=0) {
+            $('.button_continue').show(); 
+        }
     }
-    if(localStorage.length>0 && parseInt(localStorage["total.money"])!=0) {
-        $('.button_continue').show(); 
-    }
-}
 
    $.each($('video'), function(){
         $(this).addClass('video-js vjs-default-skin');
@@ -424,11 +444,26 @@ if (supportsLocalStorage()) {
             money = startNewGame();
             console.log(money, button)
             button.parent().fadeOut();
-            var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
-            firstVideo.vPlayer.play();
-            firstVideo.vJQuery.parent().addClass('active');
-            firstVideo.vJQuery.addClass('active');
-            if(saveGameState()) console.log(localStorage);
+            if($(window).width()>$(window).height()){
+                $('.flip_screen').fadeOut(0);
+                var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
+                firstVideo.vPlayer.play();
+                firstVideo.vJQuery.parent().addClass('active');
+                firstVideo.vJQuery.addClass('active');
+                if(saveGameState()) console.log(localStorage);
+            } else {
+                $('.flip_screen').fadeIn(0);
+                $(window).one('resize', function(){
+                    if($(window).width()>$(window).height()){
+                        $('.flip_screen').fadeIn(0);
+                        var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
+                        firstVideo.vPlayer.play();
+                        firstVideo.vJQuery.parent().addClass('active');
+                        firstVideo.vJQuery.addClass('active');
+                        if(saveGameState()) console.log(localStorage);
+                    }
+                });
+            }
         }, timeClickAnimation);
 
     });
@@ -438,9 +473,18 @@ if (supportsLocalStorage()) {
         clickAnimation(button);
         setTimeout(function(){
             fullScreen(document.documentElement);
-            money = resumeGame();
-            console.log(money)
             button.parent().fadeOut();
+            if($(window).width()>$(window).height()){
+                $('.flip_screen').fadeOut(0);
+                money = resumeGame();
+            } else {
+                $('.flip_screen').fadeIn(0);
+                $(window).one('resize', function(){
+                    if($(window).width()>$(window).height()){
+                        money = resumeGame();
+                    }
+                });
+            }
             if(saveGameState()) console.log(localStorage);
         }, timeClickAnimation);
 
@@ -504,33 +548,11 @@ $('.loading').hide();*/
 
 
     $.each(videos, function () {
- //       var videoData = this;
+
         var player = this.vPlayer;
         
         var videoData = this;
-        /*
-        console.log(videoData)
-        var video = document.getElementById(player.id()+'_html5_api');
-        if(videos.indexOf(videoData) == 0){
-        video.load();
-       // video.pause();
-        video.addEventListener('progress', function(){
-            if(this.buffered.end(0) > 0.9*this.duration)
-            {
-                videoData.isLoaded = true;
-            }
-        });
 
-    } else if(videos[videos.indexOf(videoData)-1].isLoaded){
-                video.load();
-               // video.pause();
-        video.addEventListener('progress', function(){
-            if(this.buffered.end(0) > 0.9*this.duration)
-            {
-                videoData.isLoaded = true;
-            }
-        });
-    }*/
     if(videos.indexOf(this) == 0) this.vPlayer.load();
 
         player.ready(function(){
@@ -540,6 +562,14 @@ $('.loading').hide();*/
 
         var isSet = false;
         var videoData = findVideoById(this.id());
+
+            this.on('volumechange', function(){
+                volume = this.volume();
+                $.each(videos, function () {
+                    var player = this.vPlayer;
+                    player.volume(volume);
+                });
+            });
 
             this.on('progress', function(){
                 /*
@@ -689,7 +719,8 @@ $('.loading').hide();*/
                 money[currentScene-1].isFirstPlayScene = false;
                 videoHTML = $('#'+this.id());
                 if(this.hasClass('v_main') && !videoHTML.parent().hasClass('scene_1')) {
-
+                    videoHTML.addClass('hide');
+                    videoHTML.removeClass('active');
                     if(!choice) {
                         $('.button_scenes, .button_info').hide();
                         videoHTML.parent().find('.choice').fadeIn(0);

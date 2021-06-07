@@ -184,7 +184,7 @@ b.spend{
 .choice {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
     position: absolute;
     width: 100%;
@@ -205,9 +205,8 @@ b.spend{
   line-height: 1.25em;
   text-align: center;
   width: 42.71%;
-  height: 11.11%;
-  margin-top: 12.04vh;
-  margin-bottom: 7.59vh;
+  height: 6.25vw;
+  margin-bottom: 4.17vw;
 }
 
 
@@ -216,7 +215,7 @@ b.spend{
     align-items: center;
     justify-content: space-between;
     width: 73.96%;
-    height: 51.67%;
+    height: 29.17vw;
 }
 
 .ch_1, .ch_2{
@@ -234,7 +233,7 @@ b.spend{
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 37.04vh;
+    height: 20.83vw;
     border: 0.16vw solid var(--white);
     border-radius: 2.6vw;
     overflow: hidden;
@@ -254,13 +253,13 @@ b.spend{
     justify-content: center;
   color: var(--blue);
   width: 20.83vw;
-  height: 7.74vh;
+  height: 3.65vw;
   background: var(--white);
   font-family: Montserrat-Medium;
   font-size:1em;
   line-height: 1.25em;
   border-radius: 2.6vw;
-  padding: 1.11vh 1.51vw;
+  padding: 0.78vw 1.51vw;
   box-shadow: 0 0.52vw 0 var(--light-blue-shadow);
 
   transition-duration: 0.2s;
@@ -282,14 +281,14 @@ b.spend{
   margin: 0 0;
   background-color: rgba(255, 255, 255, 0.5);
   margin-top: 3.13vw;
-  margin-bottom: 5.73vw;
+
   border-radius: 2.6vw;
   overflow: hidden;
 }
 
 .timer_line {
   width: 0;
-  height: 100%;
+  height: 1.04vw;
   background: var(--light-blue);
   margin: 0;
 border-radius: 2.6vw;
@@ -345,6 +344,12 @@ border-radius: 2.6vw;
   left: auto;
   width: auto;
   height: 100vh;
+}
+
+.video-js .vjs-tech.wide_screen{
+  width: 100vw;
+  height: auto;
+  left: 0;
 }
 
 .video-js.vjs-fluid, .video-js.vjs-16-9, .video-js.vjs-4-3 {

@@ -445,10 +445,30 @@ if (supportsLocalStorage()) {
         }, timeClickAnimation);
 
     });
-
     var videoHTML;
-    
-var loadingScene2 = 0;
+
+          if($(window).width()/16*9>$(window).height()){
+            $('.video-js .vjs-tech').addClass('wide_screen');
+            var deltaTop = ($(this).width()/16*9 - $(this).height())/2/$(this).height()*100;
+            $('.video-js .vjs-tech').css('top', -deltaTop+'vh');
+            var controlBottom = 30/$(this).height()*100;
+            $('.vjs-control-bar').css('bottom', 2*deltaTop+controlBottom+'vh');
+        }
+    $(window).on('resize', function(){
+        if($(this).width()/16*9>$(this).height()){
+            $('.video-js .vjs-tech').addClass('wide_screen');
+            var deltaTop = ($(this).width()/16*9 - $(this).height())/2/$(this).height()*100;
+             
+                $('.video-js .vjs-tech').css('top', -deltaTop+'vh');
+            var controlBottom = 30/$(this).height()*100;
+            $('.vjs-control-bar').css('bottom', 2*deltaTop+controlBottom+'vh');
+        
+        } else{
+            $('.video-js .vjs-tech').removeClass('wide_screen');
+            $('.video-js .vjs-tech').css('top', 0);
+            $('.vjs-control-bar').css('bottom', 1.56+'vw');
+        }
+    });
 /*
 startSecondGame();
 $('.start_box').hide();

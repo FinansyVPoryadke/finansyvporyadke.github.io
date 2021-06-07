@@ -154,7 +154,7 @@ body::backdrop {
   text-align: center;
   width: 67.71vw;
   height: 5.21vw;
-  margin-top: 6.77vw;
+  margin-top: 1.04vw;
   margin-bottom: 0;
 }
 
@@ -267,7 +267,7 @@ body::backdrop {
   border: 0.0vw solid var(--red);
   border-radius: 5.21vw;
   transform: translateX(-100%);
-        transition-duration: 20s;
+        transition-duration: 25s;
       transition-property: transform;
       transition-timing-function: linear;
 }

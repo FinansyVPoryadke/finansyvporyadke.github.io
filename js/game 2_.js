@@ -1,6 +1,6 @@
 //Игра - Очисти ленту от ненужных покупок
 var purchases = [], buyLine;
-var purchaseSpeed, numberPurchasesInHeight = 3, betweenPurchases = 1.5, countPurchases = 12, percentNeccecary = 40;
+var purchaseSpeed, numberPurchasesInHeight = 3, betweenPurchases = 1.5, countPurchases = 12, percentNeccecary = 40, countOfRecreate=0;
 
 var purchasesData = [
     [{price: 50, url: 'media/svg/purchase_n_1.svg'},
@@ -17,7 +17,7 @@ var purchasesData = [
 ];
 
 function createPurchase(){
-    purchaseSpeed = betweenPurchases*countPurchases*150;
+    purchaseSpeed = betweenPurchases*countPurchases*200;
     var purchase = {
         number: 2,
         isUnnecessary: random(0,100) < percentNeccecary ? 0 : 1,
@@ -123,19 +123,17 @@ function recreatePurchase(purchase){
 
 
     prev = purchases[purchases.length-1];
+
+
+
     if(prev.number%2 == purchase.number%2 && prev.number != purchase.number && purchases[purchases.length-2].left != prev.left){
 
-        purchase.left = prev.JQ.position().left/prev.JQ.width()*100;
+        purchase.left =prev.JQ.position().left/prev.JQ.width()*100 ;
     } else {
 
         purchase.left = prev.JQ.position().left/prev.JQ.width()*100 - purchase.width*betweenPurchases/purchase.JQ.width()*100;
     }
-/*
-if(countOfRecreate%countCoins == 1) {
-        //coin.topStart =  prev.topEnd - (coin.JQ.height()*betweenCoins)/coin.width*100;
-    console.log(coin.topStart);
-       // coin.topStart = coin.JQ.position().top/coin.JQ.width()*100 - coin.topStart + prev.topStart - (coin.height*betweenCoins)/coin.width*100;
-        coin.topStart = prev.topStart - (coin.height*betweenCoins)/coin.width*100;*/
+
 
     purchase.JQ.addClass('no_transition');
     purchase.JQ.css('transform', 'translateX('+purchase.left+'%)');
@@ -184,6 +182,7 @@ function startSecondGame(){
     buyTotal = 0;
     purchases = [];
     purchaseSpeed = 0.2;
+    countOfRecreate = 0;
     $('.purchases_box').empty();
     $('.buy_total').html(buyTotal+'.00');
 
@@ -251,7 +250,7 @@ var theInterval = setInterval(function () {
     
 
 
-    $('.purchases_box > div').click(function(){
+    $('.purchases_box > div').on('click mousedown touchstart', function(){
         var purchase = findObjByJQ(purchases, $(this));
         console.log(purchase);    
         purchases.splice(purchases.indexOf(purchase),1);

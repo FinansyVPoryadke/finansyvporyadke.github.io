@@ -293,3 +293,20 @@ console.log('&&&&', coin.topStart, coin.topEnd, coin.JQ.position().top/coin.JQ.h
         }
     });
 }
+
+$(window).on('resize', function(){
+    $('.money_box').draggable({
+        axis: "x",
+        containment: 'parent',
+        stop: function(e, ui) {
+
+            moneyBox.position = ui.position.left / $('body').width() * 100;
+            ui.helper.css('left', moneyBox.position + 'vw');
+            moneyBox.top = ui.offset.top / $('body').width() * 100;
+            //var bottom = 100 - (moneyBox.JQ.height()+ui.offset.top)/ $('body').width() * 100;
+           ui.helper.css('bottom', '7.3vw');
+           ui.helper.css('top', '');
+
+        }
+    });
+});

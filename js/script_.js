@@ -488,6 +488,7 @@ $('.loading').hide();*/
         var player = this.vPlayer;
         
         var videoData = this;
+        /*
         console.log(videoData)
         var video = document.getElementById(player.id()+'_html5_api');
         if(videos.indexOf(videoData) == 0){
@@ -509,7 +510,7 @@ $('.loading').hide();*/
                 videoData.isLoaded = true;
             }
         });
-    }
+    }*/
     if(videos.indexOf(this) == 0) this.vPlayer.load();
 
         player.ready(function(){

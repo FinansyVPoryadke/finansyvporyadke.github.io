@@ -268,6 +268,10 @@ function resumeGame() {
             $('.active').removeClass('active');
 
             playScene('scene_'+(i+1));
+            $('.button_info_box').addClass('appear_info_animation');
+            $('.button_scenes_box > .text, .button_info_box > .text').addClass('appear_text_animation');        
+            $('.button_scenes_box').addClass('appear_button_animation');
+            $('.appear_button_animation, .appear_info_animation, .appear_text_animation').css('animationDuration', '0s');
         }
     }
     return money;
@@ -701,7 +705,7 @@ $('.loading').hide();*/
                                         'marginTop': '0',
                                         'left': '0'
                                     }, 1000, function() {
-                                        
+
                                         changeTotalMoney(money[currentScene-1].amount, false);
                                         changeMoney.animate({
                                             opacity: '0',

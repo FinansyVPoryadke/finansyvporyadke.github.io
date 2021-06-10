@@ -134,6 +134,23 @@ body::backdrop {
       transition-timing-function: linear;
 }
 
+@keyframes coin{
+    0%{
+        transform:translateX(0);
+    }
+    50%{
+        transform:translateX(-20%);
+    }
+    100%{
+        transform:translateX(20%);
+    }
+}
+
+.coin_animation {
+
+
+animation: coin 0.15s;
+}
 
 
 .money_100 {

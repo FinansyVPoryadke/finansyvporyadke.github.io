@@ -220,17 +220,20 @@ function startFirstGame(){
                 money[1].game+=coin.price;
                 if(coin.is10) numberCollect10++;
                 if(!coin.is10) numberCollect100++;
+                
                 setTimeout(function(){
+//coin.JQ.addClass('coin_animation');
                     coin.JQ.animate({
-                        opacity: '0'
-                    }, 200, function(){
-                            
+                        opacity: '0',
+                        
+                    }, 100, function(){
+                            //coin.JQ.removeClass('coin_animation');
                         });
-                }, 200);
+                }, 25);
             } 
 
         }
-        if(checkCoinTouchFloor(coin)){
+        if(checkCoinTouchFloor(coin)){   
             coins.splice(coins.indexOf(coin),1);
             coins.push(recreateCoin(coin));
             coin = coins[coins.length-1];

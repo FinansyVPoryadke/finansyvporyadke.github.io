@@ -614,12 +614,14 @@ $('.loading').hide();*/
             this.on('useractive', function(){
                 console.log('active');
                 $('.button_scenes, .button_info').css('opacity', 1);
+
             });
 
             this.on('userinactive', function(){
                 console.log('inactive');
-                if(!this.paused()){
+                if(!this.paused() && videoData.scene!='scene_1'){
                 $('.button_scenes, .button_info').css('opacity', 0);
+
             }
             });
 
@@ -627,7 +629,7 @@ $('.loading').hide();*/
             this.on('play', function(){
                 $('.button_scenes, .button_info').css('opacity', 1);
                 if(saveGameState()) console.log(localStorage);
-                isSet = false;
+                if(this.currentTime()<0.1) isSet = false;
                 var video = findVideoById(this.id());
                 if(videos.indexOf(video)!=-1 && videos.indexOf(video)<videos.length-1){
                 //videos[videos.indexOf(video)+1].vPlayer.load();
@@ -640,6 +642,15 @@ $('.loading').hide();*/
                     this.isCurrent = false;
                 });
                 money[currentScene-1].isCurrent = true;
+
+                if($('#'+this.id()).parent().hasClass('scene_1')){
+                    $('.button_info_box').addClass('appear_info_animation');
+                    $('.button_info_box > .text').addClass('appear_text_animation');
+                    setTimeout(function(){
+                        $('.button_scenes_box').addClass('appear_button_animation');
+                    $('.button_scenes_box > .text').addClass('appear_text_animation');
+                    },4500);
+                }
                 
 
             });
@@ -656,7 +667,11 @@ $('.loading').hide();*/
                 }
                 if(!isSet && !money[currentScene-1].isFirstPlayScene && this.hasClass('v_main')){
                     if(currentScene == 1 || currentScene == 6){
-                        if(money[currentScene-1].hasChange) changeTotalMoney(-(money[currentScene-1].amount), false);
+
+                        if(money[currentScene-1].hasChange) {
+                            changeTotalMoney(-(money[currentScene-1].amount), false);
+                            
+                        }
                     } else{
                         if(money[currentScene-1].choice == 0 && money[currentScene-1].hasChange) changeTotalMoney(-(money[currentScene-1].amount), false);
                         else if(money[currentScene-1].choice == 1) changeTotalMoney(-(money[currentScene-1].amount+money[currentScene-1].ch_1), false);
@@ -674,12 +689,39 @@ $('.loading').hide();*/
                     if($('#'+this.id()).parent().hasClass('scene_2')){
                         if(this.currentTime() > 8){
                             money[currentScene-1].hasChange = true;
-                            changeTotalMoney(money[currentScene-1].amount, true);
+                            
+                            var changeMoney = $('.change_money');
+                                    changeMoney.html('+'+money[currentScene-1].amount);
+                                    changeMoney.css('marginTop','15vw');
+                                    changeMoney.css('left','-40vw');
+                                    changeMoney.css('position','absolute');
+
+                                    changeMoney.animate({
+                                        opacity: '100%',
+                                        'marginTop': '0',
+                                        'left': '0'
+                                    }, 1000, function() {
+                                        
+                                        changeTotalMoney(money[currentScene-1].amount, false);
+                                        changeMoney.animate({
+                                            opacity: '0',
+
+                                        }, 500, function(){
+                                            changeMoney.css('marginTop','3vw');
+                                            changeMoney.removeClass('spend');
+                                            
+                                        });
+
+                                    });
+
                         }
                     } else{
                         money[currentScene-1].hasChange = true;
                         changeTotalMoney(money[currentScene-1].amount, true);
+                        
+                        
                     }
+
                 }
 
             

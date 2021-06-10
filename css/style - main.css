@@ -45,13 +45,13 @@ div {
 }
 
 .type{
-  height: 2.08vw;
-  width: 36.46vw;
+  height: 3.13vw;
+  width: 46.46vw;
   color: var(--dark-blue);
   font-family: Montserrat-Medium;
   font-size: 0.85em;
-  line-height: 2.08vw;
-  margin: 0 1.04vw;
+  line-height: 1.1em;
+  margin: 1.04vw 0;
 }
 
 .start_box .title {
@@ -68,7 +68,7 @@ div {
   width: 30.21vw;
   color: var(--green);
   font-family: Montserrat-Medium;
-  font-size: 0.85em;
+  font-size: 0.95em;
   line-height: 1.25em;
   padding: 3.13vw;
 }
@@ -856,7 +856,7 @@ border-radius: 2.6vw;
 
 .info_content{
   height: 31.25vw;
-  width: 73.96vw;
+  width: 73vw;
   padding: 0 3.13vw;
 
 
@@ -905,7 +905,7 @@ overflow: hidden;
 }
 
 .gradient_{
-  height: 2.08vw;
+  height: 4.16vw;
   width: 100%;
   background: linear-gradient(to top, white 0%, transparent 100%);
   position: inherit;
@@ -936,7 +936,100 @@ overflow: hidden;
 }
 
 
+.appear_button_animation{
+  animation: appear_button 5s;
+}
 
+.appear_info_animation{
+  animation: appear_button_info 5s;
+}
+
+@keyframes appear_button{
+    0%{
+        background: rgba(255,255,255, 0);
+        right: -9.9vw;
+    }
+    30%, 70%{
+        background: rgba(255,255,255, 0.5);
+        right: 0;
+    }
+    100%{
+        right: -9.9vw;
+        background: rgba(255,255,255, 0);
+    }
+}
+
+@keyframes appear_button_info{
+    0%{
+        background: rgba(255,255,255, 0);
+        left: -9.9vw;
+    }
+    30%, 70%{
+        background: rgba(255,255,255, 0.5);
+        left: 0;
+    }
+    100%{
+        left: -9.9vw;
+        background: rgba(255,255,255, 0);
+    }
+}
+
+.appear_text_animation{
+  animation: appear_text 5s;
+}
+
+@keyframes appear_text{
+    0%{
+        opacity: 0;
+    }
+    30%, 70%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.button_scenes_box, .button_info_box{
+  display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  /*width: 6.77vw;
+  height: 6.77vw;*/
+  width: 15.1vw;
+  height: 5.21vw;
+  position: absolute;
+  bottom: 0.52vw;
+  right: -9.9vw;
+  /*background: var(--white);*/
+  background: rgba(255,255,255, 0);
+  color: var(--blue);
+  /*border-radius: 5.21vw 5.21vw 0 5.21vw;*/
+  border-radius: 5.21vw 0 0 5.21vw;
+  z-index: 4;
+  opacity: 1;
+  padding-right: 1.56vw;
+}
+
+.button_info_box{
+  left: -9.9vw;
+  justify-content: flex-end;
+  border-radius: 0 5.21vw 5.21vw 0;
+  padding-right: 0;
+  padding-left: 1.56vw;
+}
+
+
+.button_scenes_box .text, .button_info_box .text{
+    font-family: Montserrat-SemiBold;
+  font-size: 0.8em;
+  color: var(--blue);
+  line-height: 1.25em;
+  text-align: center;
+  width: 8.33vw;
+  padding: 0 1.04vw;
+  opacity: 0;
+}
 
 
 .button_scenes, .button_info{
@@ -946,8 +1039,8 @@ overflow: hidden;
   /*width: 6.77vw;
   height: 6.77vw;*/
   width: 5.21vw;
+  min-width: 5.21vw;
   height: 5.21vw;
-  position: absolute;
   bottom: 0;
   right: 0;
   /*background: var(--white);*/
@@ -961,7 +1054,7 @@ overflow: hidden;
   transition-duration: 0.75s;
   transition-property: opacity;
   
-  margin: 0.52vw 1.56vw;
+
 }
 
 .button_info{

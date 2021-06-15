@@ -202,14 +202,13 @@ var theInterval = setInterval(function () {
                     purchase.isBought = true;
                     buyTotal += purchase.price;
                     $('.buy_total').html(buyTotal+'.00');
-                    
-                    if(purchase.isUnnecessary){
-                        if(totalMoney-purchase.price<0){
-                            isPlaying = false;
-                            clearInterval(theInterval);
+                    if(totalMoney-purchase.price<0){
+                        isPlaying = false;
+                        clearInterval(theInterval);
                              showGameEndWindow('game_2', 'Закончились все деньги в кошельке.</br></br>За время игры ты купил художественных</br>товаров на '+(buyTotal+money[2].game)+' из 1000 рублей: '+countNecessary+' шт.</br></br>А также других товаров на '+(-money[2].game)+' руб.');
-                             if(saveGameState()) console.log(localStorage);
-                        }
+                        if(saveGameState()) console.log(localStorage);
+                    }
+                    if(purchase.isUnnecessary){
                         changeTotalMoney(-purchase.price, true);
                         money[2].game-=purchase.price;
                     } else {
@@ -222,9 +221,6 @@ var theInterval = setInterval(function () {
                 } 
             }
         });
-        
-
-        
     },50);
     var timer = $('.game_2').find('.timer_line');
     timer.animate({
@@ -245,9 +241,6 @@ var theInterval = setInterval(function () {
     for(i=0; i<countPurchases; i++){
         purchases.push(createPurchase());
     }
-
-    
-
 
     $('.purchases_box > div').on('click mousedown touchstart', function(){
         var purchase = findObjByJQ(purchases, $(this));

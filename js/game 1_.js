@@ -209,9 +209,6 @@ function startFirstGame(){
     var theInterval = setInterval(function(){
     $.each(coins, function(){
         var coin = this;
-        //coinDown(coin);
-
-//console.log(coin);
 
         if (checkCoinTouchMoneybox(coin)) {
             if(!coin.isCollect){
@@ -222,13 +219,9 @@ function startFirstGame(){
                 if(!coin.is10) numberCollect100++;
                 
                 setTimeout(function(){
-//coin.JQ.addClass('coin_animation');
                     coin.JQ.animate({
-                        opacity: '0',
-                        
-                    }, 100, function(){
-                            //coin.JQ.removeClass('coin_animation');
-                        });
+                        opacity: '0', 
+                    }, 100);
                 }, 25);
             } 
 
@@ -240,22 +233,7 @@ function startFirstGame(){
             coin.JQ.css('opacity', '100%');
             return;
         }
-/*
-                if(coin.JQ.position().top/coin.JQ.height()*100 > coin.topEnd - 1 && !coin.recalculated){
-console.log('&&&&', coin.topStart, coin.topEnd, coin.JQ.position().top/coin.JQ.height()*100);
-            coin.topStart = coin.topEnd;
-                        coin.JQ.addClass('no_transition');
-    coin.JQ.css('transform', 'translateY('+coin.topStart+'%)');
-            coin.topEnd = coin.topEnd + coin.speed*coin.JQ.height();
-    coin.JQ.removeClass('no_transition');
-    coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
-    //console.log(coin)
-    console.log('!!!!', coin.topStart, coin.topEnd, coin.JQ.position().top/coin.JQ.height()*100);
-    coin.recalculated = true;
-        }*/
         });
-
-        //if(isPlaying) clearInterval(the_game);
     },100);
 
     var timer = $('.game_1').find('.timer_line');
@@ -267,19 +245,9 @@ console.log('&&&&', coin.topStart, coin.topEnd, coin.JQ.position().top/coin.JQ.h
         timer.css('width', 0);
         isPlaying = false;
         clearInterval(theInterval);
-        //cancelAnimationFrame(anim_id);
         showGameEndWindow('game_1', 'За время игры ты собрал '+money[1].game+' руб.</br></br>Положив в конверт монет по 10 рублей: '+numberCollect10+' шт.</br>и купюр по 100 рублей: '+numberCollect100+' шт.');
         if(saveGameState()) console.log(localStorage);
     }, timeForGame*1000);
-
-
-
-
-    //coinSpeed = 500;
-
-
-
-    //anim_id = requestAnimationFrame(the_game);
 
     $('.money_box').draggable({
         axis: "x",
@@ -306,7 +274,6 @@ $(window).on('resize', function(){
             moneyBox.position = ui.position.left / $('body').width() * 100;
             ui.helper.css('left', moneyBox.position + 'vw');
             moneyBox.top = ui.offset.top / $('body').width() * 100;
-            //var bottom = 100 - (moneyBox.JQ.height()+ui.offset.top)/ $('body').width() * 100;
            ui.helper.css('bottom', '7.3vw');
            ui.helper.css('top', '');
 

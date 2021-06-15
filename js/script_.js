@@ -80,15 +80,7 @@ function videojsCreate(video){
 
 
 function playVideo(video, lastVideo) {
-
-    
-
     var nextVideo = findVideoById(video.attr('id')).vPlayer;
-
-    
-
-
-
 
     lastVideo.parent().find('.timer_line').finish();
     lastVideo.parent().find('.timer_line').css('width', 0);
@@ -99,11 +91,8 @@ function playVideo(video, lastVideo) {
     video.removeClass('hide');
     video.addClass('active');
 
-
     $('.choice').fadeOut(0);
-    
     nextVideo.play();
-    
 }
 
 function changeTotalMoney(amount, isShow){
@@ -192,21 +181,13 @@ function playScene(scene){
         else nextVideo = findVideoBySceneAndType(scene, 'v_4');
     }
 
-
-   //nextVideo.vPlayer.load();
-        nextVideo.vJQuery.parent().removeClass('hide');
+    nextVideo.vJQuery.parent().removeClass('hide');
     nextVideo.vJQuery.parent().addClass('active'); 
 
     nextVideo.vJQuery.removeClass('hide');
     nextVideo.vJQuery.addClass('active');
-    //loading(nextVideo.vPlayer);
 
-
-
-//$('.loading').fadeOut(0);
-    //if(loading(nextVideo.vPlayer)){
-       nextVideo.vPlayer.play();
-    //}
+    nextVideo.vPlayer.play();
 }
 
 function showGameEndWindow(game, text){
@@ -301,14 +282,9 @@ function loading(video) {
     video.load();
     video.on('canplaythrough', function(){
             if(this.readyState()>3 && this.hasClass('active')){
-                    //$('.loading').fadeOut(0);
-                    //console.log(t, t.readyState());
                     this.play();
-                    //$('.loading').fadeOut(1000);
                      var videoIndex = videos.indexOf(findVideoById(this.id()));
                 if(videoIndex != -1 && videoIndex<videos.length-1){
-
-                //videos[videoIndex+1].vPlayer.load();
             }
         }
     })
@@ -341,22 +317,8 @@ $(window).resize( function(){
     }
 });
 }
-/*
-$(document).ready(function() {
-    //document.addEventListener('fullscreenchange webkitfullscreenchange', function() {
-        window.addEventListener('fullscreenchange', function(){
-        console.log("Change");
-        $('body').on('click', function(){
-            fullScreen(document.documentElement);
-        })
-        
-    });
-});*/
 
 function clickAnimation(button){
-    /*var shadow = button.css('box-shadow').split(' ');
-    console.log(shadow, button)
-    button.css('box-shadow', shadow[0]+' 0 '+shadow[2]+' '+shadow[3]);*/
     button.addClass('click');
     setTimeout(function(){
         button.removeClass('click');
@@ -379,18 +341,16 @@ $(document).ready(function() {
     videos = [];
 
     var jsp = $('.info_content').jScrollPane({
-                showArrows: false,
-                maintainPosition: false,
-                verticalGutter: 10,
-                mouseWheelSpeed: 5,
-                horizontalGutter: 0,
-
+        showArrows: false,
+        maintainPosition: false,
+        verticalGutter: 10,
+        mouseWheelSpeed: 5,
+        horizontalGutter: 0,
     });
         $('.info_content').data('jsp').reinitialise();
 
 
     if (supportsLocalStorage()) { 
-        //localStorage.clear();
         console.log(localStorage);
         if(localStorage.length==0) {
             $('.button_continue').hide(); 
@@ -402,9 +362,7 @@ $(document).ready(function() {
 
    $.each($('video'), function(){
         $(this).addClass('video-js vjs-default-skin');
-
         videos.push(videoCreate($(this)));
-
     });
 
     $('.ch_1, .ch_2').click(function() {
@@ -413,13 +371,11 @@ $(document).ready(function() {
 
         setTimeout(function(){
             choice = true;
-
             var id = '.'+ button.attr('class').replace(/ch/,'v');
             console.log(id);
             var video = button.parent().parent().parent().find(id);
             var lastVideo = button.parent().parent().parent().find('.v_main');
             playVideo(video, lastVideo);
-
             $('.button_scenes, .button_info').show();
         }, timeClickAnimation);
 
@@ -429,16 +385,13 @@ $(document).ready(function() {
         if(!$(this).hasClass('current')){
             var prev = $('.current');
             $('.info_content').find('.'+$(this).attr('class')).fadeIn(0);
-
             $(this).addClass('current');
             prev.removeClass('current');
             $('.info_content').find('.'+prev.attr('class')).fadeOut(0);
             $('.info_content').data('jsp').reinitialise();
             $('.info_content').data('jsp').scrollTo(0, 0);
-
         }
     });
-
 
     $('.button_start').click(function(){
         var button = $(this);
@@ -469,7 +422,6 @@ $(document).ready(function() {
                 });
             }
         }, timeClickAnimation);
-
     });
 
     $('.button_continue').click(function(){
@@ -517,55 +469,30 @@ $(document).ready(function() {
             $('.vjs-control-bar').css('bottom', 1.56+'vw');
         }
     });
-/*
-startSecondGame();
-$('.start_box').hide();
-$('.loading').hide();*/
 
-        $('.video-js').on('classchanged', function(){
-            video = findVideoByJquery($(this));
+    $('.video-js').on('classchanged', function(){
+        video = findVideoByJquery($(this));
+        console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
+        if(video.vPlayer.hasClass('active') && video.vPlayer.readyState()>3) {
             console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
-            if(video.vPlayer.hasClass('active') && video.vPlayer.readyState()>3) {
-                console.log(video.vPlayer, video.vPlayer.readyState(), video.isLoaded);
-                //$('.loading').fadeOut(1000);
-                video.vPlayer.play();
-                var sceneVideos = videos.filter(x => x.scene === video.scene);
-                var lastInScene = sceneVideos[sceneVideos.length-1];
-                if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length && video.scene!='scene_6'){
-                    
-                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
-                    //
-                    //nextSceneVideo.vPlayer.load();
-                }
-                
-                if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
-                    //$('.loading').fadeOut(1000);
-                //console.log(video.vPlayer.readyState(), video.isLoaded);
-                $.each(sceneVideos, function () {
-                    //console.log(this.vPlayer.readyState(), this.isLoaded);
-                });
-                    //video.vPlayer.play();
-
-                }
+            video.vPlayer.play();
+            var sceneVideos = videos.filter(x => x.scene === video.scene);
+            var lastInScene = sceneVideos[sceneVideos.length-1];
+            if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length && video.scene!='scene_6'){
+                var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
             }
-        });
-
+        }
+    });
 
     $.each(videos, function () {
-
         var player = this.vPlayer;
-        
         var videoData = this;
 
-    if(videos.indexOf(this) == 0) this.vPlayer.load();
+        if(videos.indexOf(this) == 0) this.vPlayer.load();
 
         player.ready(function(){
-        //this.load();
-        //this.pause();
-        
-
-        var isSet = false;
-        var videoData = findVideoById(this.id());
+            var isSet = false;
+            var videoData = findVideoById(this.id());
 
             this.on('volumechange', function(){
                 volume = this.volume();
@@ -575,46 +502,6 @@ $('.loading').hide();*/
                 });
             });
 
-            this.on('progress', function(){
-                /*
-                var video = findVideoById(this.id());
-                var sceneVideos = videos.filter(x => x.scene === video.scene);
-               //console.log(video.vPlayer, video.vPlayer.readyState(), video.vPlayer.bufferedPercent());
-                //if(this.readyState()<4) this.currentTime(this.duration()/2);;
-                //if(this.readyState()>3 && this.bufferedPercent()>0.5){
-                    if(this.readyState()>3){
-//console.log('!!1', this, this.readyState(), this.bufferedPercent());
-                video.isLoaded = true;
-                
-                $.each(sceneVideos, function () {
-                    if(!this.isLoaded && this.vPlayer.readyState()<4){
-                       // this.vPlayer.load();
-                        //this.vPlayer.play();
-                        //this.vPlayer.pause();
-                        //this.vPlayer.currentTime(0);
-                    }
-                });
-            } 
-                //console.log(this, sceneVideos);
-                if(sceneVideos.length == sceneVideos.filter(x => x.isLoaded === true).length){
-                
-               // console.log(this);
-
-                if(this.hasClass('active') && video.isLoaded) {
-                    this.play();
-                    var lastInScene = sceneVideos[sceneVideos.length-1];
-                                    if(videos.indexOf(lastInScene) != -1 && videos.indexOf(lastInScene)<videos.length && video.scene!='scene_6'){
-                    
-                    var nextSceneVideo = videos[videos.indexOf(lastInScene)+1];
-                    //console.log(this, lastInScene, nextSceneVideo);
-                   // nextSceneVideo.vPlayer.load();
-                }
-                }
-                }
-                
-*/
-            
-            });
             this.on('useractive', function(){
                 console.log('active');
                 $('.button_scenes, .button_info').css('opacity', 1);
@@ -624,22 +511,16 @@ $('.loading').hide();*/
             this.on('userinactive', function(){
                 console.log('inactive');
                 if(!this.paused() && videoData.scene!='scene_1'){
-                $('.button_scenes, .button_info').css('opacity', 0);
-
-            }
+                    $('.button_scenes, .button_info').css('opacity', 0);
+                }
             });
-
 
             this.on('play', function(){
                 $('.button_scenes, .button_info').css('opacity', 1);
                 if(saveGameState()) console.log(localStorage);
                 if(this.currentTime()<0.1) isSet = false;
                 var video = findVideoById(this.id());
-                if(videos.indexOf(video)!=-1 && videos.indexOf(video)<videos.length-1){
-                //videos[videos.indexOf(video)+1].vPlayer.load();
-            }
-                
-                                    
+                                        
                 $('.navigation > div > .'+ videoData.scene).removeClass('lock');
                 var currentScene = Number(videoData.scene.slice(6,7));
                 $.each(money, function () {
@@ -652,11 +533,9 @@ $('.loading').hide();*/
                     $('.button_info_box > .text').addClass('appear_text_animation');
                     setTimeout(function(){
                         $('.button_scenes_box').addClass('appear_button_animation');
-                    $('.button_scenes_box > .text').addClass('appear_text_animation');
+                        $('.button_scenes_box > .text').addClass('appear_text_animation');
                     },4500);
                 }
-                
-
             });
 
            this.on('timeupdate', function(){
@@ -665,97 +544,82 @@ $('.loading').hide();*/
                 var currentScene = Number(videoData.scene.slice(6,7));
 
                 if(videoHTML.hasClass('active')){
-
-                if(videoHTML.parent().hasClass('scene_6')){
-                    return;
-                }
-                if(!isSet && !money[currentScene-1].isFirstPlayScene && this.hasClass('v_main')){
-                    if(currentScene == 1 || currentScene == 6){
-
-                        if(money[currentScene-1].hasChange) {
-                            changeTotalMoney(-(money[currentScene-1].amount), false);
-                            
-                        }
-                    } else{
-                        if(money[currentScene-1].choice == 0 && money[currentScene-1].hasChange) changeTotalMoney(-(money[currentScene-1].amount), false);
-                        else if(money[currentScene-1].choice == 1) changeTotalMoney(-(money[currentScene-1].amount+money[currentScene-1].ch_1), false);
-                        else if(money[currentScene-1].choice == 2) changeTotalMoney(-(money[currentScene-1].amount+money[currentScene-1].ch_2), false);
-                        money[currentScene-1].choice = 0;
+                    if(videoHTML.parent().hasClass('scene_6')){
+                        return;
                     }
-                    isSet = true;
-                    money[currentScene-1].hasChange = false;   
-                }
+                    if(!isSet && !money[currentScene-1].isFirstPlayScene && this.hasClass('v_main')){
+                        if(currentScene == 1 || currentScene == 6){
 
+                            if(money[currentScene-1].hasChange) {
+                                changeTotalMoney(-(money[currentScene-1].amount), false);
+                                
+                            }
+                        } else{
+                            if(money[currentScene-1].choice == 0 && money[currentScene-1].hasChange) changeTotalMoney(-(money[currentScene-1].amount), false);
+                            else if(money[currentScene-1].choice == 1) changeTotalMoney(-(money[currentScene-1].amount+money[currentScene-1].ch_1), false);
+                            else if(money[currentScene-1].choice == 2) changeTotalMoney(-(money[currentScene-1].amount+money[currentScene-1].ch_2), false);
+                            money[currentScene-1].choice = 0;
+                        }
+                        isSet = true;
+                        money[currentScene-1].hasChange = false;   
+                    }
 
-                
-                if((this.hasClass('v_main')) && !money[currentScene-1].hasChange){
+                    if((this.hasClass('v_main')) && !money[currentScene-1].hasChange){
 
-                    if($('#'+this.id()).parent().hasClass('scene_2')){
-                        if(this.currentTime() > 8){
-                            money[currentScene-1].hasChange = true;
-                            
-                            var changeMoney = $('.change_money');
-                                    changeMoney.html('+'+money[currentScene-1].amount);
-                                    changeMoney.css('marginTop','15vw');
-                                    changeMoney.css('left','-40vw');
-                                    changeMoney.css('position','absolute');
+                        if($('#'+this.id()).parent().hasClass('scene_2')){
+                            if(this.currentTime() > 8){
+                                money[currentScene-1].hasChange = true;
+                                
+                                var changeMoney = $('.change_money');
+                                        changeMoney.html('+'+money[currentScene-1].amount);
+                                        changeMoney.css('marginTop','15vw');
+                                        changeMoney.css('left','-40vw');
+                                        changeMoney.css('position','absolute');
 
-                                    changeMoney.animate({
-                                        opacity: '100%',
-                                        'marginTop': '0',
-                                        'left': '0'
-                                    }, 1000, function() {
-
-                                        changeTotalMoney(money[currentScene-1].amount, false);
                                         changeMoney.animate({
-                                            opacity: '0',
+                                            opacity: '100%',
+                                            'marginTop': '0',
+                                            'left': '0'
+                                        }, 1000, function() {
+                                            changeTotalMoney(money[currentScene-1].amount, false);
+                                            changeMoney.animate({
+                                                opacity: '0',
+                                            }, 500, function(){
+                                                changeMoney.css('marginTop','3vw');
+                                                changeMoney.removeClass('spend');
+                                                
+                                            });
 
-                                        }, 500, function(){
-                                            changeMoney.css('marginTop','3vw');
-                                            changeMoney.removeClass('spend');
-                                            
                                         });
-
-                                    });
-
+                            }
+                        } else{
+                            money[currentScene-1].hasChange = true;
+                            changeTotalMoney(money[currentScene-1].amount, true);
                         }
-                    } else{
-                        money[currentScene-1].hasChange = true;
-                        changeTotalMoney(money[currentScene-1].amount, true);
-                        
-                        
                     }
 
-                }
-
-            
-                if(money[currentScene-1].choice == 0){
-                    if(this.hasClass('v_1')){
-                        changeTotalMoney(money[currentScene-1].ch_1, true);
-                        money[currentScene-1].choice = 1;
-                    }
-                    if(this.hasClass('v_2')){
-                        if($('#'+this.id()).parent().hasClass('scene_5')){
-                            if(this.currentTime() > 7){
+                    if(money[currentScene-1].choice == 0){
+                        if(this.hasClass('v_1')){
+                            changeTotalMoney(money[currentScene-1].ch_1, true);
+                            money[currentScene-1].choice = 1;
+                        }
+                        if(this.hasClass('v_2')){
+                            if($('#'+this.id()).parent().hasClass('scene_5')){
+                                if(this.currentTime() > 7){
+                                    changeTotalMoney(money[currentScene-1].ch_2, true);
+                                    money[currentScene-1].choice = 2;
+                                }
+                            } else{
                                 changeTotalMoney(money[currentScene-1].ch_2, true);
                                 money[currentScene-1].choice = 2;
                             }
-                        } else{
-                            changeTotalMoney(money[currentScene-1].ch_2, true);
-                            money[currentScene-1].choice = 2;
                         }
                     }
                 }
-            }
             });
 
             this.on('ended', function(){
-
                 var videoIndex = videos.indexOf(findVideoById(this.id()));
-                if(videoIndex != -1 && videoIndex<videos.length-1){
-
-                //videos[videoIndex+1].vPlayer.load();
-            }
 
                 if(saveGameState()) console.log(localStorage);
 
@@ -785,7 +649,6 @@ $('.loading').hide();*/
                 }
 
                 if(videoHTML.parent().hasClass('scene_1')){
-                    //$('.loading').fadeIn(0);
                     choice = false;
                     
                     var lastVideo = $('#'+this.id());
@@ -796,7 +659,6 @@ $('.loading').hide();*/
 
                     lastVideoConteiner.removeClass('active');
                     lastVideoConteiner.addClass('hide');
-                    //this.pause();
 
                     playScene('scene_2');
                     
@@ -834,26 +696,19 @@ $('.loading').hide();*/
                     lastVideoConteiner.addClass('hide');
 
                     if(lastVideoConteiner.hasClass('scene_2')) {
-                        //findVideoBySceneAndType('scene_3', 'v_main').vPlayer.load();
                         startFirstGame();
                     }
                     if(lastVideoConteiner.hasClass('scene_3')) {
-                        //findVideoBySceneAndType('scene_4', 'v_main').vPlayer.load();
                         startSecondGame();
                     }
                     if(lastVideoConteiner.hasClass('scene_4')) {
-                       // findVideoBySceneAndType('scene_5', 'v_main').vPlayer.load();
                         startThirdGame();
                     }
                     if(lastVideoConteiner.hasClass('scene_5')) {
-                        //findVideoBySceneAndType('scene_6', 'v_2').vPlayer.load();
                         startFourthGame();
                     }
-
                 }
-
             });
-            //return;
         });
     });
 
@@ -907,26 +762,20 @@ $('.loading').hide();*/
     });
 
     $('.button_scenes').click(function() {
-
-
             $('.navigation_box').fadeIn(0);
             var currentVideo = findVideoById($('.active > .active').attr('id'));
-            if(currentVideo){
-                
+            if(currentVideo){  
                 currentVideo.vPlayer.pause();
             }
-
     });
 
     $('.button_info').click(function() {
-
             $('.info_box').fadeIn(0);
             $('.info_content').data('jsp').reinitialise();
             var currentVideo = findVideoById($('.active > .active').attr('id'));
             if(currentVideo){
                 currentVideo.vPlayer.pause();
             }
-
     });
 
     $('.close').click(function() {
@@ -937,8 +786,6 @@ $('.loading').hide();*/
         }
     });
 
-
-
     $('.navigation > div > div').click(function() {
         if(!$(this).hasClass('lock')){
             var button = $(this);
@@ -948,15 +795,15 @@ $('.loading').hide();*/
                 var sClass = button.attr('class').split(' ')[0];
                 var currentVideo = findVideoById($('.active > .active').attr('id'));
 
-                        if(currentVideo){
-                        if(currentVideo.scene == sClass){
-                            button.parent().parent().parent().hide();
-                            currentVideo.vPlayer.play();
-                        } 
-                    }
-                    else{
-                        currentVideo = videos[videos.length-1];
-                    }
+                if(currentVideo){
+                    if(currentVideo.scene == sClass){
+                        button.parent().parent().parent().hide();
+                        currentVideo.vPlayer.play();
+                    } 
+                }
+                else{
+                    currentVideo = videos[videos.length-1];
+                }
                 if(sClass.slice(0,5) == 'scene'){
                     
                     var scene = $('.videos').find('.'+ sClass);
@@ -986,15 +833,11 @@ $('.loading').hide();*/
                             currentScene.removeClass('active');
                             currentScene.addClass('hide');
 
-                        
-
                             nextVideo.vJQuery.removeClass('hide');
                             nextVideo.vJQuery.addClass('active');
 
                             scene.removeClass('hide');
                             scene.addClass('active');
-
-                                //nextVideo.vPlayer.play();
                     }
                 }
                 else if(sClass.slice(0,4) == 'game'){

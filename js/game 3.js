@@ -18,14 +18,11 @@ function createGoal(number){
     goal.JQ.find('.goal_text').html('Цель '+number);
     goal.JQ.addClass('next_goal');
 
-    //goal.JQ.css('strokeDashoffset', '1000%');
-
     goal.width = goal.JQ.width();
     goal.height = goal.JQ.height();
 
     return goal;
 }
-
 
 function startThirdGame(){
 
@@ -53,11 +50,6 @@ function startThirdGame(){
     $('.goals').css('transform','translateX(37.5vw)');
     console.log(goals, goals.length, $('.goals'));
 
-   // setTimeout(function(){
-
-
-
-
     var timer = $('.game_3').find('.timer_line');
     timer.animate({
         width: '100%'
@@ -69,9 +61,6 @@ function startThirdGame(){
         if(saveGameState()) console.log(localStorage);
         isPlaying3 = false;
     }, timeForGame*1000);
-
-
-
 
     $('.button_formulate').click(function(){
         if(isPlaying3){
@@ -86,11 +75,9 @@ function startThirdGame(){
         currentGoal.strokeDashoffset -= 150/numberClicks;
         currentGoal.JQ.find('.part_of_circle').animate({
             'strokeDashoffset':  currentGoal.strokeDashoffset+'%'
-        }, 250, "linear", function(){
+        }, 250, "linear");
 
-        });
-
-                    if(currentGoal.strokeDashoffset == 850){
+        if(currentGoal.strokeDashoffset == 850){
             currentGoal.isFormulated = true;
             currentGoalNumber++;
             currentGoal.JQ.addClass('formulated');
@@ -98,7 +85,6 @@ function startThirdGame(){
             $('.goals').css('transform','translateX('+left+'vw)');
             money[3].game += 50;
             changeTotalMoney(50, true);
-
         }
     },timeClickAnimation/2);
     }else{
@@ -106,5 +92,4 @@ function startThirdGame(){
         return;
     }
     });
-   // },10000);
 }

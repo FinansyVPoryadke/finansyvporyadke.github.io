@@ -116,20 +116,12 @@ function recreateNote(note){
 }
 
 function disappearNote(note){
-    /*
-    console.log("disappear", note.number);
-    note.JQ.removeClass('appear_animation');
-    note.JQ.addClass('disappear_animation');
-    //note.JQ.css('opacity', 0);
-    //note.JQ.css('transform', 'scale(0)');
-    */
+
     note.JQ.css('transform','scale(0)');
     note.JQ.css('opacity', 0);
     note.isDisappeared = true;
     
     setTimeout(function(){
-        
-        //note.JQ.removeClass('disappear_animation');
         var index = notes.indexOf(note);
         if(index != -1){
         var newNote = recreateNote(note);
@@ -145,15 +137,6 @@ function disappearNote(note){
 }
 
 function appearNote(note){
-
-
-/*
-    console.log("appear", note.number);
-    note.JQ.removeClass('disappear_animation');
-    note.JQ.addClass('appear_animation');
-        note.JQ.css('opacity', 1);
-    note.JQ.css('transform', 'scale(1)');
-    */
     note.JQ.css('opacity', 1);
     note.JQ.css('transform', 'scale(1)');
 
@@ -162,12 +145,10 @@ function appearNote(note){
             onClickNote($(this));
         });
         note.isDisappeared = false;
-        //note.JQ.removeClass('appear_animation');
     },750);
     setTimeout(function(){
-
         if(isPlaying4 && !note.isDisappeared){
-        disappearNote(note);
+            disappearNote(note);
         }   
     }, random(3, 5)*1000);
 }
@@ -176,14 +157,11 @@ function onClickNote(noteJQ) {
             var note = findObjByJQ(notes, noteJQ);
 if(!note.isDisappeared){
     noteJQ.off('click');
-        disappearNote(note);
-            
+        disappearNote(note);   
         if(note.isIncome) numberCollectIncome++;
         else numberCollectCost++;
         changeTotalMoney(prize, true);
         money[4].game+=prize;
-        
-
     }
 }
 
@@ -240,5 +218,4 @@ function startFourthGame(){
         
 onClickNote($(this));
     });
-
 }

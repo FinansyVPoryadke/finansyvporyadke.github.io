@@ -1,8 +1,3 @@
-
-
-
-
-
 :root {
   --dark-blue: #072344;
   --blue: #0D3B7A;
@@ -31,9 +26,6 @@
   --portrait-scale: 1.8;
 }
 
-
-
-
 body{
 	height: 100%;
 	width: 100%;
@@ -47,12 +39,6 @@ body{
 body::backdrop {
   background: var(--white);
 }
-
-
-
-
-
-
 
 .game_1, .game_2, .game_3, .game_4{
   display: flex;
@@ -75,8 +61,6 @@ body::backdrop {
   flex-direction: column;
   width: 100%;
   height: 34.38vw;
-
-
   overflow: hidden;
 }
 
@@ -121,17 +105,16 @@ body::backdrop {
 }
 
 .coin{
-    width: 5.21vw;
+  width: 5.21vw;
   height: 5.21vw;
   position: relative;
   top: 0;
   z-index:100;
 
   transform: translateY(0);
-
-        transition-duration: 20s;
-      transition-property: transform;
-      transition-timing-function: linear;
+  transition-duration: 20s;
+  transition-property: transform;
+  transition-timing-function: linear;
 }
 
 @keyframes coin{
@@ -147,14 +130,12 @@ body::backdrop {
 }
 
 .coin_animation {
-
-
-animation: coin 0.15s;
+  animation: coin 0.15s;
 }
 
 
 .money_100 {
-    width: 5.21vw;
+  width: 5.21vw;
   height: 5.21vw;
 }
 
@@ -163,9 +144,8 @@ animation: coin 0.15s;
 }
 
 .game_title{
- 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
   color: var(--blue);
   font-family: Montserrat-SemiBold;
   font-size: 1.25em;
@@ -178,39 +158,36 @@ animation: coin 0.15s;
 }
 
 .game_1 .game_title{
-    color: var(--green);
+  color: var(--green);
 }
 
 .game_1 {
-      background-color: var(--light-green);
+  background-color: var(--light-green);
 }
 
 .game_2 .game_title{
-    color: var(--dark-gray);
-    margin-bottom: 0.5vw;
+  color: var(--dark-gray);
+  margin-bottom: 0.5vw;
 }
 
-
-
 .game_2 {
-      background-color: var(--light-gray);
+  background-color: var(--light-gray);
 }
 
 .game_3 .game_title{
-    color: var(--blue);
+  color: var(--blue);
 }
 
 .game_3 {
-      background-color: var(--light-blue);
+  background-color: var(--light-blue);
 }
 
-
 .game_4 .game_title{
-    color: var(--green);
+  color: var(--green);
 }
 
 .game_4 {
-      background-color: var(--light-red);
+  background-color: var(--light-red);
 }
 
 .game_2_box{
@@ -257,7 +234,6 @@ animation: coin 0.15s;
   text-align: center;
 }
 
-
 .purchases_box{
   width: 100vw;
   height: 30.21vw;
@@ -276,7 +252,6 @@ animation: coin 0.15s;
 }
 
 .purchase{
-  
   width: 10.42vw;
   height:10.42vw;
   position: absolute;
@@ -286,21 +261,18 @@ animation: coin 0.15s;
   border: 0.0vw solid var(--red);
   border-radius: 5.21vw;
   transform: translateX(-100%);
-        transition-duration: 25s;
-      transition-property: transform;
-      transition-timing-function: linear;
+  transition-duration: 25s;
+  transition-property: transform;
+  transition-timing-function: linear;
 }
 
 .no_transition {
   transition-duration: 0s;
   transition-property: transform;
-
 }
-
 
 .unnecessary {
   border-color: var(--yellow);
-
 }
 
 .purchase img{
@@ -333,7 +305,6 @@ animation: coin 0.15s;
   display: flex;
   flex-direction: row;
   justify-content: center;
-
 }
 
 .goal_bg{
@@ -348,15 +319,14 @@ animation: coin 0.15s;
 .goals_all{
   position: absolute;
   overflow: hidden;
-    width: 100vw;
+  width: 100vw;
   height: 30.21vw;
-
 }
 
 .goal_bg img{
   width: 100%;
   text-align: center;
-    position: relative;
+  position: relative;
   top: -8.5vw;
 }
 

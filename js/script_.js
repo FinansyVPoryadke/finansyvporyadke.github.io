@@ -848,7 +848,7 @@ $(document).ready(function() {
                     $('.active').addClass('hide');
                     $('.active').removeClass('active');
                     currentVideo.vPlayer.pause();
-                            currentVideo.vPlayer.currentTime(0);
+                    currentVideo.vPlayer.currentTime(0);
                 }
 
                 button.parent().parent().parent().hide();

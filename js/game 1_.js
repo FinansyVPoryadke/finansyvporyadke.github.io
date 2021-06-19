@@ -23,7 +23,6 @@ function createCoin(){
         JQ: '',
         topEnd: 0,
         recalculated: false
-        
     };
 
     coin.price = coinsData[coin.is10].price;
@@ -46,46 +45,29 @@ function createCoin(){
         prevNumber = numberCoinsInWidth/2;
     }
 
-var leftNumber;
-do{
-    leftNumber = random(1,numberCoinsInWidth);
-    coin.number = leftNumber;
-}while(coin.number == prevNumber);
-    
+    var leftNumber;
+    do{
+        leftNumber = random(1,numberCoinsInWidth);
+        coin.number = leftNumber;
+    }while(coin.number == prevNumber);
+
     coin.left = ((($('.coins_box').width()-numberCoinsInWidth*coin.width)*leftNumber)/(numberCoinsInWidth+1) + coin.width*(leftNumber-1))/$('.coins_box').width()*100;
     coin.JQ.css('left', coin.left+'%');
 
-
-
-
     if(coins.length>1){
-       //if((Math.abs(coin.number - prev.number)>1 || prev.number%2 == coin.number%2) && coins[coins.length-2].top!=prev.top){
-           // coin.top = prev.top;
-        //} else {
-
-            coin.topStart = prev.topStart - (coin.height*betweenCoins)/coin.width*100;
-        
-       // }
+        coin.topStart = prev.topStart - (coin.height*betweenCoins)/coin.width*100;
     } else {
         coin.topStart = (coin.JQ.position().top - coin.height*betweenCoins)/coin.width*100;
     }
     
-
-//coin.top2=coin.top;
-
-
-
-coin.JQ.addClass('no_transition');
+    coin.JQ.addClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topStart+'%)');
 
-       setTimeout(function(){
-                    coin.topEnd = coin.topStart + coin.speed;
-    
-    coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
-    coin.JQ.removeClass('no_transition');
-    //console.log(coin)
- 
-},100);
+    setTimeout(function(){
+        coin.topEnd = coin.topStart + coin.speed;
+        coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
+        coin.JQ.removeClass('no_transition');
+    },100);
 
     return coin;
 }
@@ -105,41 +87,21 @@ do{
     leftNumber = random(1,numberCoinsInWidth);
     coin.number = leftNumber;
 }while(coin.number == prev.number);
-       //if((Math.abs(coin.number - prev.number)>1 || prev.number%2 == coin.number%2) && coins[coins.length-2].top!=prev.top){
-           // coin.top = prev.top;
-        //} else {
-            //console.log(countOfRecreate);
+
               if(countOfRecreate%countCoins == 1) {
-        //coin.topStart =  prev.topEnd - (coin.JQ.height()*betweenCoins)/coin.width*100;
-       // coin.topStart = coin.JQ.position().top/coin.JQ.width()*100 - coin.topStart + prev.topStart - (coin.height*betweenCoins)/coin.width*100;
         coin.topStart = prev.topStart - (coin.height*betweenCoins)/coin.width*100;
 
 } else{
-    //console.log(coin.JQ.position().top/coin.JQ.width()*100, coin.topStart, prev.topStart);
-            //coin.topStart = prev.topStart - (coin.height*betweenCoins)/coin.width*100;
         coin.topStart = coin.topStart - (coin.height*betweenCoins)/coin.width*100;
         }
-        //}
-
-
-    
-
-//coin.top2=coin.top;
-
-
 
 coin.JQ.addClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topStart+'%)');
     coin.left = ((($('.coins_box').width()-numberCoinsInWidth*coin.JQ.width())*leftNumber)/(numberCoinsInWidth+1) + coin.width*(leftNumber-1))/$('.coins_box').width()*100;
     coin.JQ.css('left', coin.left+'%');
-
-       // setTimeout(function(){
-                    coin.topEnd = coin.topStart + coin.speed;
+    coin.topEnd = coin.topStart + coin.speed;
     coin.JQ.removeClass('no_transition');
     coin.JQ.css('transform', 'translateY('+coin.topEnd+'%)');
-    //console.log(coin)
-
-
     return coin;
 }
 
@@ -201,8 +163,7 @@ function startFirstGame(){
 
     var anim_id;
     for(i = 0; i<countCoins; i++){
-            coins.push(createCoin());
-        
+        coins.push(createCoin());
     }
 
 

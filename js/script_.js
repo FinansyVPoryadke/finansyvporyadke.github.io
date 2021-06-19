@@ -592,7 +592,7 @@ $(document).ready(function() {
 
                                         });
                             }
-                        } else{
+                        } else {
                             money[currentScene-1].hasChange = true;
                             changeTotalMoney(money[currentScene-1].amount, true);
                         }

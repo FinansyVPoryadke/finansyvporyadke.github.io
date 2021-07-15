@@ -301,14 +301,17 @@ function resize(){
 $(window).resize( function(){
     
     $('.info_content').data('jsp').reinitialise();
-    if($(window).width()<$(window).height()){
+
+    if($(window).width()<$(window).height() && ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1))){
         if(!curVideo && findVideoByJquery($('.video-js.active'))) {
             curVideo = findVideoByJquery($('.video-js.active')).vPlayer;
-        console.log(curVideo, findVideoByJquery($('.video-js.active')).vPlayer)
+
+        if(!$('.start_box').is(':visible')){
         $('.flip_screen').fadeIn(0);
+    }
         curVideo.pause();
         }
-    } else{
+    } else if ($(window).width()>$(window).height()){
         $('.flip_screen').fadeOut(0);
         if(curVideo && curVideo.hasClass('active')) {
             curVideo.play();
@@ -401,23 +404,26 @@ $(document).ready(function() {
             money = startNewGame();
             console.log(money, button)
             button.parent().fadeOut();
-            if($(window).width()>$(window).height()){
+            if($(window).width()>$(window).height() || !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1))){
                 $('.flip_screen').fadeOut(0);
                 var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
                 firstVideo.vPlayer.play();
                 firstVideo.vJQuery.parent().addClass('active');
                 firstVideo.vJQuery.addClass('active');
                 if(saveGameState()) console.log(localStorage);
-            } else {
+                console.log('123', window.orientation)
+            } else if($(window).width()<$(window).height()){
                 $('.flip_screen').fadeIn(0);
+                console.log('456', window.orientation)
                 $(window).one('resize', function(){
-                    if($(window).width()>$(window).height()){
-                        $('.flip_screen').fadeIn(0);
+                    if($(window).width()>$(window).height() || !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1))){
+                        $('.flip_screen').fadeOut(0);
                         var firstVideo = findVideoById($('.scene_1 > .v_main').attr('id'));
                         firstVideo.vPlayer.play();
                         firstVideo.vJQuery.parent().addClass('active');
                         firstVideo.vJQuery.addClass('active');
                         if(saveGameState()) console.log(localStorage);
+                        console.log('789')
                     }
                 });
             }
@@ -430,10 +436,10 @@ $(document).ready(function() {
         setTimeout(function(){
             fullScreen(document.documentElement);
             button.parent().fadeOut();
-            if($(window).width()>$(window).height() && !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1))){
+            if($(window).width()>$(window).height() || !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1))){
                 $('.flip_screen').fadeOut(0);
                 money = resumeGame();
-            } else {
+            } else if($(window).width()<$(window).height()){
                 $('.flip_screen').fadeIn(0);
                 $(window).one('resize', function(){
                     if($(window).width()>$(window).height()){

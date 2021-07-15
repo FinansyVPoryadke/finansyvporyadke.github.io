@@ -430,7 +430,7 @@ $(document).ready(function() {
         setTimeout(function(){
             fullScreen(document.documentElement);
             button.parent().fadeOut();
-            if($(window).width()>$(window).height()){
+            if($(window).width()>$(window).height() && !((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1))){
                 $('.flip_screen').fadeOut(0);
                 money = resumeGame();
             } else {

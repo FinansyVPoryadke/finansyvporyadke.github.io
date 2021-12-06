@@ -73,7 +73,7 @@ div {
   padding: 3.13vw;
 }
 
-.button_start, .button_continue{
+.button_start, .button_continue, .button_about{
   height: 5.21vw;
   width: 23.96vw;
   background-color: var(--white);
@@ -91,6 +91,15 @@ div {
 
   transition-duration: 0.2s;
   transition-property: box-shadow, transform;
+}
+
+.button_about{
+  background-color: var(--light-yellow);
+  width: 5.21vw;
+  position: absolute;
+  top: 1.56vw;
+  left: 1.56vw;
+    background-color: var(--white);
 }
 
 .button_continue{
@@ -633,7 +642,7 @@ border-radius: 2.6vw;
   }
 }
 
-.game_end, .navigation_box, .info_box{
+.game_end, .navigation_box, .info_box, .about_box{
   background-color: rgba(204, 204, 204, 0.75);
   width: 100%;
   height: 100%;
@@ -687,7 +696,7 @@ border-radius: 2.6vw;
   margin: 0 0.52vw;
 }
 
-.button_game_again{
+.button_game_again, .button_link{
   width: 5.21vw;
   height: 5.21vw;
   cursor: pointer;
@@ -696,7 +705,14 @@ border-radius: 2.6vw;
   transition-property: transform;
 }
 
-.button_game_again img{
+.button_link{
+    width: 4.17vw;
+  height: 4.17vw;
+  border-radius: 2.6vw;
+  background-color: var(--blue);
+  }
+
+.button_game_again img, , .button_link img{
   width: 100%;
 
 }
@@ -721,7 +737,7 @@ border-radius: 2.6vw;
 }
 
 
-.navigation, .info {
+.navigation, .info, .about {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -730,6 +746,26 @@ border-radius: 2.6vw;
     background-color: var(--white);
 
   width: 80.21vw;
+  height: 36.46vw;
+  color: var(--blue);
+    font-size: 0.75em;
+  line-height: 0.75em;
+  text-align: center;
+    border-radius: 2.6vw;
+    padding: 3.13vw;
+
+
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--white);
+
+  width: 60.14vw;
   height: 36.46vw;
   color: var(--blue);
     font-size: 0.75em;
@@ -864,6 +900,13 @@ overflow: hidden;
 
 }
 
+.about_content{
+  height: 31.25vw;
+  width: 53vw;
+  padding: 0 3.13vw;
+
+}
+
 .info_titles{
   height: 5.21vw;
   width: 100%;
@@ -917,7 +960,7 @@ overflow: hidden;
   z-index: 4;
 }
 
-.info_content h2 {
+.info_content h2, .about_content h2 {
   font-family: Montserrat-SemiBold;
   font-size: 1.75em;
   color: var(--blue);
@@ -926,7 +969,7 @@ overflow: hidden;
   margin-top: 1.04vw;
 }
 
-.info_content p {
+.info_content p, .about_content p {
   font-family: Montserrat-Regular;
   font-size: 1.25em;
   color: var(--dark-blue);
@@ -935,6 +978,9 @@ overflow: hidden;
   margin-top: 1.04vw;
 }
 
+.about_content p {
+  text-align: center;
+}
 
 .appear_button_animation{
   animation: appear_button 5s;

@@ -784,12 +784,19 @@ $(document).ready(function() {
             }
     });
 
+    $('.button_about').click(function() {
+            $('.about_box').fadeIn(0);
+    });
+
     $('.close').click(function() {
-        $(this).parent().parent().fadeOut(0);
+        var parent = $(this).parent().parent();
+        parent.fadeOut(0);
+        if(parent.attr('class') != 'about_box'){
         var currentVideo = findVideoById($('.active > .active').attr('id'));
         if(currentVideo){
             currentVideo.vPlayer.play();
         }
+    }
     });
 
     $('.navigation > div > div').click(function() {

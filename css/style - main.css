@@ -765,8 +765,7 @@ border-radius: 2.6vw;
     position: absolute;
     background-color: var(--white);
 
-  width: 60.14vw;
-  height: 36.46vw;
+
   color: var(--blue);
     font-size: 0.75em;
   line-height: 0.75em;
@@ -902,7 +901,7 @@ overflow: hidden;
 
 .about_content{
   height: 31.25vw;
-  width: 53vw;
+  width: 73vw;
   padding: 0 3.13vw;
 
 }
@@ -978,9 +977,7 @@ overflow: hidden;
   margin-top: 1.04vw;
 }
 
-.about_content p {
-  text-align: center;
-}
+
 
 .appear_button_animation{
   animation: appear_button 5s;
